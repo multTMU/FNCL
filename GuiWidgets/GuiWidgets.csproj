@@ -1,0 +1,1037 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5DD3639F-3703-479E-AAAC-094F4CB7E315}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GuiWidgets</RootNamespace>
+    <AssemblyName>GuiWidgets</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GeometrySampling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\FNCL_PoliMi\GeometrySampling.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.15.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CombinePulses\BatchCombinePulses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CombinePulses\BatchCombinePulses.Designer.cs">
+      <DependentUpon>BatchCombinePulses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CombinePulses\CombinePulses.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CombinePulses\CombinePulses.Designer.cs">
+      <DependentUpon>CombinePulses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CorrelatedPulseSelector\CorrelatedPulsesFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CorrelatedPulseSelector\CorrelatedPulsesFilter.Designer.cs">
+      <DependentUpon>CorrelatedPulsesFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetectorResponse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetectorResponse.Designer.cs">
+      <DependentUpon>DetectorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetectorSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetectorSelector.Designer.cs">
+      <DependentUpon>DetectorSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DieAwayTime\DieAwayTimeTool.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DieAwayTime\DieAwayTimeTool.Designer.cs">
+      <DependentUpon>DieAwayTimeTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DieAwayTime\DieAwayFitter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DieAwayTime\DieAwayFitter.Designer.cs">
+      <DependentUpon>DieAwayFitter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DieAwayTime\SingleExponentFit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DieAwayTime\SingleExponentFit.Designer.cs">
+      <DependentUpon>SingleExponentFit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DieAwayTime\TwoExponentFit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DieAwayTime\TwoExponentFit.Designer.cs">
+      <DependentUpon>TwoExponentFit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrfModelSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrfModelSelector.Designer.cs">
+      <DependentUpon>DrfModelSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalFourthPoly.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalFourthPoly.Designer.cs">
+      <DependentUpon>ECalFourthPoly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterPulses\FlatTopPulseFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterPulses\FlatTopPulseFilter.Designer.cs">
+      <DependentUpon>FlatTopPulseFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FnclDetectorButtons.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FnclDetectorButtons.Designer.cs">
+      <DependentUpon>FnclDetectorButtons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterPulses\FilterOrdering.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterPulses\FilterOrdering.Designer.cs">
+      <DependentUpon>FilterOrdering.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FittedDataPlotter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FittedDataPlotter.Designer.cs">
+      <DependentUpon>FittedDataPlotter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\StarFireNGen350Basis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\StarFireNGen350Basis.Designer.cs">
+      <DependentUpon>StarFireNGen350Basis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PileUpRejector\PileUpWaveform.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PileUpRejector\PileUpWaveform.Designer.cs">
+      <DependentUpon>PileUpWaveform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseAmplitude\LogVsLinear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseAmplitude\LogVsLinear.Designer.cs">
+      <DependentUpon>LogVsLinear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Waveform\NoWaveWidget.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Waveform\NoWaveWidget.Designer.cs">
+      <DependentUpon>NoWaveWidget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WidgetHelpers.cs" />
+    <Compile Include="InputBoolean.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputBoolean.Designer.cs">
+      <DependentUpon>InputBoolean.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputEnum.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputEnum.Designer.cs">
+      <DependentUpon>InputEnum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Materials\MaterialAdder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Materials\MaterialAdder.Designer.cs">
+      <DependentUpon>MaterialAdder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\AmLiBasis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\AmLiBasis.Designer.cs">
+      <DependentUpon>AmLiBasis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\ModelMcnpPoliMi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\ModelMcnpPoliMi.Designer.cs">
+      <DependentUpon>ModelMcnpPoliMi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\ModelSelectionGuiHelper.cs" />
+    <Compile Include="McnpModels\McnpSpec.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\McnpSpec.Designer.cs">
+      <DependentUpon>McnpSpec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\Mp320Basis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\Mp320Basis.Designer.cs">
+      <DependentUpon>Mp320Basis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\NGamArray.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\NGamArray.Designer.cs">
+      <DependentUpon>NGamArray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\NoModel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\NoModel.Designer.cs">
+      <DependentUpon>NoModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\ProblemRunner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\ProblemRunner.Designer.cs">
+      <DependentUpon>ProblemRunner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\SelMeasurement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\SelMeasurement.Designer.cs">
+      <DependentUpon>SelMeasurement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fuel\FuelArrayGui.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fuel\FuelArrayGui.Designer.cs">
+      <DependentUpon>FuelArrayGui.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fuel\FuelAssemblySpecs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fuel\FuelAssemblySpecs.Designer.cs">
+      <DependentUpon>FuelAssemblySpecs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fuel\FuelGuiHelper.cs" />
+    <Compile Include="Fuel\FuelPin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fuel\FuelPin.Designer.cs">
+      <DependentUpon>FuelPin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputFile.Designer.cs">
+      <DependentUpon>InputFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputString.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputString.Designer.cs">
+      <DependentUpon>InputString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Materials\MaterialManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Materials\MaterialManager.Designer.cs">
+      <DependentUpon>MaterialManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Materials\MaterialViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Materials\MaterialViewer.Designer.cs">
+      <DependentUpon>MaterialViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\ModelSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\ModelSelector.Designer.cs">
+      <DependentUpon>ModelSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\CaptureEvents.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\CaptureEvents.Designer.cs">
+      <DependentUpon>CaptureEvents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\CaptureGatedDetector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\CaptureGatedDetector.Designer.cs">
+      <DependentUpon>CaptureGatedDetector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\Correlations.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\Correlations.Designer.cs">
+      <DependentUpon>Correlations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\DeadTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\DeadTime.Designer.cs">
+      <DependentUpon>DeadTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\DetectorInformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\DetectorInformation.Designer.cs">
+      <DependentUpon>DetectorInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\DetectorPulseHeight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\DetectorPulseHeight.Designer.cs">
+      <DependentUpon>DetectorPulseHeight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\FileIO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\FileIO.Designer.cs">
+      <DependentUpon>FileIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\GeneralInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\GeneralInfo.Designer.cs">
+      <DependentUpon>GeneralInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\He3Module.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\He3Module.Designer.cs">
+      <DependentUpon>He3Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\InGaussianBroadening.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\InGaussianBroadening.Designer.cs">
+      <DependentUpon>InGaussianBroadening.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\LightResolution.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\LightResolution.Designer.cs">
+      <DependentUpon>LightResolution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\Memory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\Memory.Designer.cs">
+      <DependentUpon>Memory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\MPPostIO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\MPPostIO.Designer.cs">
+      <DependentUpon>MPPostIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\MPPostSpecificationPanels.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\MPPostSpecificationPanels.Designer.cs">
+      <DependentUpon>MPPostSpecificationPanels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\OrganicScintillator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\OrganicScintillator.Designer.cs">
+      <DependentUpon>OrganicScintillator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\PulseGeneration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\PulseGeneration.Designer.cs">
+      <DependentUpon>PulseGeneration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\PulseHeightCorrelation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\PulseHeightCorrelation.Designer.cs">
+      <DependentUpon>PulseHeightCorrelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPost\TimeResolution.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MPPost\TimeResolution.Designer.cs">
+      <DependentUpon>TimeResolution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Multiplicity\DisplayMultiplets.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Multiplicity\DisplayMultiplets.Designer.cs">
+      <DependentUpon>DisplayMultiplets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalLinear.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalLinear.Designer.cs">
+      <DependentUpon>ECalLinear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalNone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalNone.Designer.cs">
+      <DependentUpon>ECalNone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FnclPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FnclPanel.Designer.cs">
+      <DependentUpon>FnclPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalQuadratic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalQuadratic.Designer.cs">
+      <DependentUpon>ECalQuadratic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalRational.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalRational.Designer.cs">
+      <DependentUpon>ECalRational.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalTrans.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalTrans.Designer.cs">
+      <DependentUpon>ECalTrans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalTypeSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnergyCalibration\ECalTypeSelector.Designer.cs">
+      <DependentUpon>ECalTypeSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration\EnergyCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnergyCalibration\EnergyCalibration.Designer.cs">
+      <DependentUpon>EnergyCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration\IECalForm.cs" />
+    <Compile Include="FilterPulses\FnclDetectorSelect.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterPulses\FnclDetectorSelect.Designer.cs">
+      <DependentUpon>FnclDetectorSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistogramPlotter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HistogramPlotter.Designer.cs">
+      <DependentUpon>HistogramPlotter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputNumber.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputNumber.Designer.cs">
+      <DependentUpon>InputNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Multiplicity\GateSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Multiplicity\GateSelector.Designer.cs">
+      <DependentUpon>GateSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Multiplicity\MultiplicityViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Multiplicity\MultiplicityViewer.Designer.cs">
+      <DependentUpon>MultiplicityViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FnclPanelDetectors.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FnclPanelDetectors.Designer.cs">
+      <DependentUpon>FnclPanelDetectors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterPulses\ParticleSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterPulses\ParticleSelector.Designer.cs">
+      <DependentUpon>ParticleSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PileUpRejector\PileUpFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PileUpRejector\PileUpFilter.Designer.cs">
+      <DependentUpon>PileUpFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PoliMi\PoliMiFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PoliMi\PoliMiFiles.Designer.cs">
+      <DependentUpon>PoliMiFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PoliMi\PoliMiSpecification.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PoliMi\PoliMiSpecification.Designer.cs">
+      <DependentUpon>PoliMiSpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PulseAmplitude\PulseAmpPlotter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseAmplitude\PulseAmpPlotter.Designer.cs">
+      <DependentUpon>PulseAmpPlotter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseShapeDisc\DrawCurve.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseShapeDisc\DrawCurve.Designer.cs">
+      <DependentUpon>DrawCurve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PsdWaveformResults.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PsdWaveformResults.Designer.cs">
+      <DependentUpon>PsdWaveformResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseStream\PulseStreamControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseStream\PulseStreamControl.Designer.cs">
+      <DependentUpon>PulseStreamControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseStream\PulseStreamInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseStream\PulseStreamInfo.Designer.cs">
+      <DependentUpon>PulseStreamInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseStream\PulseStreamViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseStream\PulseStreamViewer.Designer.cs">
+      <DependentUpon>PulseStreamViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SampleParameters\FissionParameters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SampleParameters\FissionParameters.Designer.cs">
+      <DependentUpon>FissionParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Cylinder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\Cylinder.Designer.cs">
+      <DependentUpon>Cylinder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\FuelSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\FuelSource.Designer.cs">
+      <DependentUpon>FuelSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\EmbededSphere.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\EmbededSphere.Designer.cs">
+      <DependentUpon>EmbededSphere.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\HollowCylinder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\HollowCylinder.Designer.cs">
+      <DependentUpon>HollowCylinder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\NblStandard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\NblStandard.Designer.cs">
+      <DependentUpon>NblStandard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\PointSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\PointSource.Designer.cs">
+      <DependentUpon>PointSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PsdIntervals.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PsdIntervals.Designer.cs">
+      <DependentUpon>PsdIntervals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PsdTypeSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PsdTypeSelector.Designer.cs">
+      <DependentUpon>PsdTypeSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PSDviewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PSDviewer.Designer.cs">
+      <DependentUpon>PSDviewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseFileInformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseFileInformation.Designer.cs">
+      <DependentUpon>PulseFileInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterPulses\PulseFilters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterPulses\PulseFilters.Designer.cs">
+      <DependentUpon>PulseFilters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterPulses\PulseProcessing.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterPulses\PulseProcessing.Designer.cs">
+      <DependentUpon>PulseProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PsdViewerEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PulseShapeDisc\PsdViewerEditor.Designer.cs">
+      <DependentUpon>PsdViewerEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Multiplicity\SetMultGate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Multiplicity\SetMultGate.Designer.cs">
+      <DependentUpon>SetMultGate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SimConfig.Designer.cs">
+      <DependentUpon>SimConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\PickPoliMiSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\PickPoliMiSource.Designer.cs">
+      <DependentUpon>PickPoliMiSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Set3D.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Set3D.Designer.cs">
+      <DependentUpon>Set3D.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\SourceSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\SourceSelection.Designer.cs">
+      <DependentUpon>SourceSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\SourceSelectionGuiHelper.cs" />
+    <Compile Include="Source\SourceSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\SourceSelector.Designer.cs">
+      <DependentUpon>SourceSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\SphereSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\SphereSource.Designer.cs">
+      <DependentUpon>SphereSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UniPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UniPanel.Designer.cs">
+      <DependentUpon>UniPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Waveform\WaveFormViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Waveform\WaveFormViewer.Designer.cs">
+      <DependentUpon>WaveFormViewer.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FastNeutronCollar\FastNeutronCollar.csproj">
+      <Project>{6804A97B-2F50-4403-945B-7C6A382DD000}</Project>
+      <Name>FastNeutronCollar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GlobalHelpersDefaults\GlobalHelpersDefaults.csproj">
+      <Project>{6D5D4C37-EC93-4805-B31D-7EBF6B6669CB}</Project>
+      <Name>GlobalHelpersDefaults</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GuiInterface\GuiInterface.csproj">
+      <Project>{67D4E25B-1827-4115-9F3D-26390805CB5A}</Project>
+      <Name>GuiInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Multiplicity\Multiplicity.csproj">
+      <Project>{E06F86AC-6033-40B2-8E24-4FD5D9AF8612}</Project>
+      <Name>Multiplicity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PoliMiRunner\PoliMiRunner.csproj">
+      <Project>{33800F9E-344A-4314-8E29-AA73307A617C}</Project>
+      <Name>PoliMiRunner</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CombinePulses\BatchCombinePulses.resx">
+      <DependentUpon>BatchCombinePulses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CombinePulses\CombinePulses.resx">
+      <DependentUpon>CombinePulses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CorrelatedPulseSelector\CorrelatedPulsesFilter.resx">
+      <DependentUpon>CorrelatedPulsesFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetectorResponse.resx">
+      <DependentUpon>DetectorResponse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetectorSelector.resx">
+      <DependentUpon>DetectorSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DieAwayTime\DieAwayTimeTool.resx">
+      <DependentUpon>DieAwayTimeTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DieAwayTime\DieAwayFitter.resx">
+      <DependentUpon>DieAwayFitter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DieAwayTime\SingleExponentFit.resx">
+      <DependentUpon>SingleExponentFit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DieAwayTime\TwoExponentFit.resx">
+      <DependentUpon>TwoExponentFit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrfModelSelector.resx">
+      <DependentUpon>DrfModelSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnergyCalibration\ECalFourthPoly.resx">
+      <DependentUpon>ECalFourthPoly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterPulses\FlatTopPulseFilter.resx">
+      <DependentUpon>FlatTopPulseFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FnclDetectorButtons.resx">
+      <DependentUpon>FnclDetectorButtons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterPulses\FilterOrdering.resx">
+      <DependentUpon>FilterOrdering.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FittedDataPlotter.resx">
+      <DependentUpon>FittedDataPlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoolean.resx">
+      <DependentUpon>InputBoolean.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputEnum.resx">
+      <DependentUpon>InputEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Materials\MaterialAdder.resx">
+      <DependentUpon>MaterialAdder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\AmLiBasis.resx">
+      <DependentUpon>AmLiBasis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\ModelMcnpPoliMi.resx">
+      <DependentUpon>ModelMcnpPoliMi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\McnpSpec.resx">
+      <DependentUpon>McnpSpec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\Mp320Basis.resx">
+      <DependentUpon>Mp320Basis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\NGamArray.resx">
+      <DependentUpon>NGamArray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\ProblemRunner.resx">
+      <DependentUpon>ProblemRunner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\SelMeasurement.resx">
+      <DependentUpon>SelMeasurement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fuel\FuelArrayGui.resx">
+      <DependentUpon>FuelArrayGui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fuel\FuelAssemblySpecs.resx">
+      <DependentUpon>FuelAssemblySpecs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fuel\FuelPin.resx">
+      <DependentUpon>FuelPin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputFile.resx">
+      <DependentUpon>InputFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputString.resx">
+      <DependentUpon>InputString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Materials\MaterialManager.resx">
+      <DependentUpon>MaterialManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Materials\MaterialViewer.resx">
+      <DependentUpon>MaterialViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\ModelSelector.resx">
+      <DependentUpon>ModelSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\StarFireNGen350Basis.resx">
+      <DependentUpon>StarFireNGen350Basis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\CaptureEvents.resx">
+      <DependentUpon>CaptureEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\CaptureGatedDetector.resx">
+      <DependentUpon>CaptureGatedDetector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\Correlations.resx">
+      <DependentUpon>Correlations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\DeadTime.resx">
+      <DependentUpon>DeadTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\DetectorInformation.resx">
+      <DependentUpon>DetectorInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\DetectorPulseHeight.resx">
+      <DependentUpon>DetectorPulseHeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\FileIO.resx">
+      <DependentUpon>FileIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\GeneralInfo.resx">
+      <DependentUpon>GeneralInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\He3Module.resx">
+      <DependentUpon>He3Module.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\InGaussianBroadening.resx">
+      <DependentUpon>InGaussianBroadening.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\LightResolution.resx">
+      <DependentUpon>LightResolution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\Memory.resx">
+      <DependentUpon>Memory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\MPPostIO.resx">
+      <DependentUpon>MPPostIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\MPPostSpecificationPanels.resx">
+      <DependentUpon>MPPostSpecificationPanels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\OrganicScintillator.resx">
+      <DependentUpon>OrganicScintillator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\PulseGeneration.resx">
+      <DependentUpon>PulseGeneration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\PulseHeightCorrelation.resx">
+      <DependentUpon>PulseHeightCorrelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPost\TimeResolution.resx">
+      <DependentUpon>TimeResolution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Multiplicity\DisplayMultiplets.resx">
+      <DependentUpon>DisplayMultiplets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnergyCalibration\ECalLinear.resx">
+      <DependentUpon>ECalLinear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnergyCalibration\ECalNone.resx">
+      <DependentUpon>ECalNone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FnclPanel.resx">
+      <DependentUpon>FnclPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnergyCalibration\ECalQuadratic.resx">
+      <DependentUpon>ECalQuadratic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnergyCalibration\ECalRational.resx">
+      <DependentUpon>ECalRational.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnergyCalibration\ECalTrans.resx">
+      <DependentUpon>ECalTrans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnergyCalibration\ECalTypeSelector.resx">
+      <DependentUpon>ECalTypeSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnergyCalibration\EnergyCalibration.resx">
+      <DependentUpon>EnergyCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterPulses\FnclDetectorSelect.resx">
+      <DependentUpon>FnclDetectorSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistogramPlotter.resx">
+      <DependentUpon>HistogramPlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputNumber.resx">
+      <DependentUpon>InputNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Multiplicity\GateSelector.resx">
+      <DependentUpon>GateSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Multiplicity\MultiplicityViewer.resx">
+      <DependentUpon>MultiplicityViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FnclPanelDetectors.resx">
+      <DependentUpon>FnclPanelDetectors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterPulses\ParticleSelector.resx">
+      <DependentUpon>ParticleSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PileUpRejector\PileUpFilter.resx">
+      <DependentUpon>PileUpFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PileUpRejector\PileUpWaveform.resx">
+      <DependentUpon>PileUpWaveform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PoliMi\PoliMiFiles.resx">
+      <DependentUpon>PoliMiFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PoliMi\PoliMiSpecification.resx">
+      <DependentUpon>PoliMiSpecification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseAmplitude\LogVsLinear.resx">
+      <DependentUpon>LogVsLinear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseAmplitude\PulseAmpPlotter.resx">
+      <DependentUpon>PulseAmpPlotter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseShapeDisc\DrawCurve.resx">
+      <DependentUpon>DrawCurve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseShapeDisc\PsdWaveformResults.resx">
+      <DependentUpon>PsdWaveformResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseStream\PulseStreamControl.resx">
+      <DependentUpon>PulseStreamControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseStream\PulseStreamInfo.resx">
+      <DependentUpon>PulseStreamInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseStream\PulseStreamViewer.resx">
+      <DependentUpon>PulseStreamViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SampleParameters\FissionParameters.resx">
+      <DependentUpon>FissionParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\Cylinder.resx">
+      <DependentUpon>Cylinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\FuelSource.resx">
+      <DependentUpon>FuelSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\EmbededSphere.resx">
+      <DependentUpon>EmbededSphere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\HollowCylinder.resx">
+      <DependentUpon>HollowCylinder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\NblStandard.resx">
+      <DependentUpon>NblStandard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\PointSource.resx">
+      <DependentUpon>PointSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseShapeDisc\PsdIntervals.resx">
+      <DependentUpon>PsdIntervals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseShapeDisc\PsdTypeSelector.resx">
+      <DependentUpon>PsdTypeSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseShapeDisc\PSDviewer.resx">
+      <DependentUpon>PSDviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseFileInformation.resx">
+      <DependentUpon>PulseFileInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterPulses\PulseFilters.resx">
+      <DependentUpon>PulseFilters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterPulses\PulseProcessing.resx">
+      <DependentUpon>PulseProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseShapeDisc\PsdViewerEditor.resx">
+      <DependentUpon>PsdViewerEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Multiplicity\SetMultGate.resx">
+      <DependentUpon>SetMultGate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimConfig.resx">
+      <DependentUpon>SimConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\PickPoliMiSource.resx">
+      <DependentUpon>PickPoliMiSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Set3D.resx">
+      <DependentUpon>Set3D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\SourceSelection.resx">
+      <DependentUpon>SourceSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\SourceSelector.resx">
+      <DependentUpon>SourceSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\SphereSource.resx">
+      <DependentUpon>SphereSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UniPanel.resx">
+      <DependentUpon>UniPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Waveform\NoWaveWidget.resx">
+      <DependentUpon>NoWaveWidget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Waveform\WaveFormViewer.resx">
+      <DependentUpon>WaveFormViewer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
