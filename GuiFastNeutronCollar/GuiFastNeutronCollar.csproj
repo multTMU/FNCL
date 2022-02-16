@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D9C1CEDD-2942-40FB-9CB1-1E01EF93093C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GuiFastNeutronCollar</RootNamespace>
+    <AssemblyName>GuiFastNeutronCollar</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>FNCL_Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddPoliMi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPoliMi.Designer.cs">
+      <DependentUpon>AddPoliMi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BusyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BusyForm.Designer.cs">
+      <DependentUpon>BusyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CombineBatchPulseFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CombineBatchPulseFiles.Designer.cs">
+      <DependentUpon>CombineBatchPulseFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetectorResponse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetectorResponse.Designer.cs">
+      <DependentUpon>DetectorResponse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DieAwayTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DieAwayTime.Designer.cs">
+      <DependentUpon>DieAwayTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnergyCalibration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnergyCalibration.Designer.cs">
+      <DependentUpon>EnergyCalibration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FnclFiltersGUI.cs">
+    </Compile>
+    <Compile Include="FnclPsdGUI.cs">
+    </Compile>
+    <Compile Include="FnclWaveformGUI.cs">
+    </Compile>
+    <Compile Include="HelpSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpSplash.Designer.cs">
+      <DependentUpon>HelpSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModelManager.Designer.cs">
+      <DependentUpon>ModelManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FnclSimulationGUI.cs" />
+    <Compile Include="FuelSpecsEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FuelSpecsEditor.Designer.cs">
+      <DependentUpon>FuelSpecsEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FnclAnalysisGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FnclAnalysisGUI.Designer.cs">
+      <DependentUpon>FnclAnalysisGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FuelArrayEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FuelArrayEditor.Designer.cs">
+      <DependentUpon>FuelArrayEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPPostEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MPPostEditor.Designer.cs">
+      <DependentUpon>MPPostEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiplicityViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiplicityViewer.Designer.cs">
+      <DependentUpon>MultiplicityViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PulseAmplitude.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PulseAmplitude.Designer.cs">
+      <DependentUpon>PulseAmplitude.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseFilters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PulseFilters.Designer.cs">
+      <DependentUpon>PulseFilters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseShapeDiscrimination.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PulseShapeDiscrimination.Designer.cs">
+      <DependentUpon>PulseShapeDiscrimination.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseStream.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PulseStream.Designer.cs">
+      <DependentUpon>PulseStream.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PulseWaveFormViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PulseWaveFormViewer.Designer.cs">
+      <DependentUpon>PulseWaveFormViewer.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddPoliMi.resx">
+      <DependentUpon>AddPoliMi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BusyForm.resx">
+      <DependentUpon>BusyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CombineBatchPulseFiles.resx">
+      <DependentUpon>CombineBatchPulseFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetectorResponse.resx">
+      <DependentUpon>DetectorResponse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DieAwayTime.resx">
+      <DependentUpon>DieAwayTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EnergyCalibration.resx">
+      <DependentUpon>EnergyCalibration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FnclAnalysisGUI.resx">
+      <DependentUpon>FnclAnalysisGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpSplash.resx">
+      <DependentUpon>HelpSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModelManager.resx">
+      <DependentUpon>ModelManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FuelArrayEditor.resx">
+      <DependentUpon>FuelArrayEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FuelSpecsEditor.resx">
+      <DependentUpon>FuelSpecsEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MPPostEditor.resx">
+      <DependentUpon>MPPostEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiplicityViewer.resx">
+      <DependentUpon>MultiplicityViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="PulseAmplitude.resx">
+      <DependentUpon>PulseAmplitude.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseFilters.resx">
+      <DependentUpon>PulseFilters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseShapeDiscrimination.resx">
+      <DependentUpon>PulseShapeDiscrimination.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseStream.resx">
+      <DependentUpon>PulseStream.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PulseWaveFormViewer.resx">
+      <DependentUpon>PulseWaveFormViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeometrySampling\GeometrySampling.csproj">
+      <Project>{DDAE23BC-B015-4B64-931F-DD47D6B2DEE8}</Project>
+      <Name>GeometrySampling</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GlobalHelpersDefaults\GlobalHelpersDefaults.csproj">
+      <Project>{6D5D4C37-EC93-4805-B31D-7EBF6B6669CB}</Project>
+      <Name>GlobalHelpersDefaults</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GuiInterface\GuiInterface.csproj">
+      <Project>{67D4E25B-1827-4115-9F3D-26390805CB5A}</Project>
+      <Name>GuiInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GuiWidgets\GuiWidgets.csproj">
+      <Project>{5DD3639F-3703-479E-AAAC-094F4CB7E315}</Project>
+      <Name>GuiWidgets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Multiplicity\Multiplicity.csproj">
+      <Project>{E06F86AC-6033-40B2-8E24-4FD5D9AF8612}</Project>
+      <Name>Multiplicity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PoliMiRunner\PoliMiRunner.csproj">
+      <Project>{33800F9E-344A-4314-8E29-AA73307A617C}</Project>
+      <Name>PoliMiRunner</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FNCL_Icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
