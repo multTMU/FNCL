@@ -1,0 +1,59 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Users\9eo\Documents\SourceCode\FNCL\FNCL_PoliMi\FNCL.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9de2fee2_002D52a3_002D40bd_002D912c_002Db4f123f907b4/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="NGen350Fncl" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::320A77AC-1160-449B-B695-F4F125370734::.NETFramework,Version=v4.7.2::Tests.RunFNCLtests.NGen350Fncl&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::320A77AC-1160-449B-B695-F4F125370734::.NETFramework,Version=v4.7.2::Tests.TestInputValidators.TestInchToCm&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c79c7a99_002D6bec_002D46d6_002Db370_002Dbf4be2831d34/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="NGen350Fncl #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::320A77AC-1160-449B-B695-F4F125370734::.NETFramework,Version=v4.7.2::Tests.RunFNCLtests.NGen350Fncl&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</wpf:ResourceDictionary>
