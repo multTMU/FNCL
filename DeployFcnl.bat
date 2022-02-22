@@ -9,4 +9,4 @@ copy %programSource%GuiWidgets.dll %programDestination%
 copy %programSource%MathNet.Numerics.dll %programDestination%
 copy %programSource%NeutronCaptureGammaDetector.dll %programDestination%
 copy %programSource%PoliMiRunner.dll %programDestination%
-copy %programSource%Multiplicity.dll %programDestination%
+copy %programSource%Multiplicity.dll %programDestination%   
