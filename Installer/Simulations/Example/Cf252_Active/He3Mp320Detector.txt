@@ -1,0 +1,89 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#  version: 2.1.0
+#  3/14/2022 10:42:33
+#  9eo
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# General Info
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+username 9eo
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# File I/O
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+polimi_det_in dumn1
+output_file He3Mp320
+label_output yes
+seperate_det_response no
+list_of_pulses yes
+event_inventory_on no
+collision_history no
+overwrite_files yes
+comma_delimited yes
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Memory
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+division_size 1000
+cushion 200
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Detector Information
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+time_dependent no
+NPS 10000
+detector_type  0 0 0 0 0 0 0 0 0 0 0 0 2
+threshold 0.07
+upper_threshold 20
+detector_cell_numbers 111 121 131 141 211 221 231 241 311 321 331 341 771
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Detector Pulse Height
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pulse_height_on no
+sum_then_light no
+cross_talk_sub_on no
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Dead Time ns
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+histogram_start 0
+histogram_stop 20
+bin_step 0.1
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Organic Scintillator
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+calibration_regions 1
+region_type 1
+neutron_calibration 0 50 0.03495 0.1424 -0.036
+photon_calibration 1 0
+carbon_light_constant 0.02
+deuterium_calibration 0 0 0.0131 0.2009 -0.0331
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Pulse Height Correlations
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pulse_correlation_on no
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Pulse Generation Time ns
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Light Resolution
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+light_resolution_on no
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Time Resolution
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tme_resolution_on no
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Correlations
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tof_on no
+cross_correlation_on no
+auto_correlation_on no
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Capture Events
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+output_sort_file yes
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Capture Gated Detector
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+capture_gate_on no
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# He3 MODULE
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+he3_multiplicity no

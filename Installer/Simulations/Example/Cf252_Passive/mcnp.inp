@@ -1,0 +1,237 @@
+c 9eo 3/14/2022 10:42:33
+c 
+c MP320 DD FNCL 
+c Example Passive Problem
+c 
+c CELLS
+999 0   999   imp:n=0 $ External World
+998 40 -0.0012 -999 110 115 120 125 130 135 140 145 152 160 100 210 215 220 
+     225 230 235 240 245 252 260 200 310 315 320 325 330 335 340 345 352 360 
+     300 500 400 650 600 700 770 imp:n=1 $ Internal World
+c Panel One
+111 71 -1.032 -111   imp:n=1$ Liquid Scint
+110 50 -2.7000 -110 111   imp:n=1$ Enclosure
+116 54 -0.8 -116   imp:n=1$ Inside PMT
+115 43 -2.71 -115 116   imp:n=1$ PMT Shell
+121 71 -1.032 -121   imp:n=1$ Liquid Scint
+120 50 -2.7000 -120 121   imp:n=1$ Enclosure
+126 54 -0.8 -126   imp:n=1$ Inside PMT
+125 43 -2.71 -125 126   imp:n=1$ PMT Shell
+131 71 -1.032 -131   imp:n=1$ Liquid Scint
+130 50 -2.7000 -130 131   imp:n=1$ Enclosure
+136 54 -0.8 -136   imp:n=1$ Inside PMT
+135 43 -2.71 -135 136   imp:n=1$ PMT Shell
+141 71 -1.032 -141   imp:n=1$ Liquid Scint
+140 50 -2.7000 -140 141   imp:n=1$ Enclosure
+146 54 -0.8 -146   imp:n=1$ Inside PMT
+145 43 -2.71 -145 146   imp:n=1$ PMT Shell
+151 47 -11.35 -152 -151   imp:n=1 $ Panel Shield One Lead
+152 44 -8.65 -152 151   imp:n=1 $ Panel Shield One Cadmium
+160 42 -0.950 -160 110 120 130 140   imp:n=1 $ Detector HDPE Side Shield 
+101 40 -0.0012 -101 110 115 120 125 130 135 140 145 152 160   imp:n=1$ Inside Panel Enclosure
+100 50 -2.7000 -100 101   imp:n=1$ Enclosure
+c Panel Two
+211 71 -1.032 -211   imp:n=1$ Liquid Scint
+210 50 -2.7000 -210 211   imp:n=1$ Enclosure
+216 54 -0.8 -216   imp:n=1$ Inside PMT
+215 43 -2.71 -215 216   imp:n=1$ PMT Shell
+221 71 -1.032 -221   imp:n=1$ Liquid Scint
+220 50 -2.7000 -220 221   imp:n=1$ Enclosure
+226 54 -0.8 -226   imp:n=1$ Inside PMT
+225 43 -2.71 -225 226   imp:n=1$ PMT Shell
+231 71 -1.032 -231   imp:n=1$ Liquid Scint
+230 50 -2.7000 -230 231   imp:n=1$ Enclosure
+236 54 -0.8 -236   imp:n=1$ Inside PMT
+235 43 -2.71 -235 236   imp:n=1$ PMT Shell
+241 71 -1.032 -241   imp:n=1$ Liquid Scint
+240 50 -2.7000 -240 241   imp:n=1$ Enclosure
+246 54 -0.8 -246   imp:n=1$ Inside PMT
+245 43 -2.71 -245 246   imp:n=1$ PMT Shell
+251 47 -11.35 -252 -251   imp:n=1 $ Panel Shield Two Lead
+252 44 -8.65 -252 251   imp:n=1 $ Panel Shield Two Cadmium
+260 42 -0.950 -260 210 220 230 240   imp:n=1 $ Detector HDPE Side Shield 
+201 40 -0.0012 -201 210 215 220 225 230 235 240 245 252 260   imp:n=1$ Inside Panel Enclosure
+200 50 -2.7000 -200 201   imp:n=1$ Enclosure
+c Panel Three
+311 71 -1.032 -311   imp:n=1$ Liquid Scint
+310 50 -2.7000 -310 311   imp:n=1$ Enclosure
+316 54 -0.8 -316   imp:n=1$ Inside PMT
+315 43 -2.71 -315 316   imp:n=1$ PMT Shell
+321 71 -1.032 -321   imp:n=1$ Liquid Scint
+320 50 -2.7000 -320 321   imp:n=1$ Enclosure
+326 54 -0.8 -326   imp:n=1$ Inside PMT
+325 43 -2.71 -325 326   imp:n=1$ PMT Shell
+331 71 -1.032 -331   imp:n=1$ Liquid Scint
+330 50 -2.7000 -330 331   imp:n=1$ Enclosure
+336 54 -0.8 -336   imp:n=1$ Inside PMT
+335 43 -2.71 -335 336   imp:n=1$ PMT Shell
+341 71 -1.032 -341   imp:n=1$ Liquid Scint
+340 50 -2.7000 -340 341   imp:n=1$ Enclosure
+346 54 -0.8 -346   imp:n=1$ Inside PMT
+345 43 -2.71 -345 346   imp:n=1$ PMT Shell
+351 47 -11.35 -352 -351   imp:n=1 $ Panel Shield Three Lead
+352 44 -8.65 -352 351   imp:n=1 $ Panel Shield Three Cadmium
+360 42 -0.950 -360 310 320 330 340   imp:n=1 $ Detector HDPE Side Shield 
+301 40 -0.0012 -301 310 315 320 325 330 335 340 345 352 360   imp:n=1$ Inside Panel Enclosure
+300 50 -2.7000 -300 301   imp:n=1$ Enclosure
+c Encased HDPE Block Right
+501 42 -0.950 -501   imp:n=1$ HDPE
+500 50 -2.7000 -500 501   imp:n=1$ Enclosure
+c Encased HDPE Block Left
+401 42 -0.950 -401   imp:n=1$ HDPE
+400 50 -2.7000 -400 401   imp:n=1$ Enclosure
+c Mp320 Neutron Generator
+c Mp320 Moderator
+600 42 -0.950 -600 (-602:-601) (-603:-601)  700 770    imp:n=1 $ Mp320 Moderator 
+996 40 -0.0012 -600 601 603    imp:n=1 $ Mp320 Moderator 
+997 40 -0.0012 -600 601 602    imp:n=1 $ Mp320 Moderator 
+650 44 -8.65 -650    imp:n=1 $ Moderator Front Shield Cadmium
+700 43 -2.71 -700 701   imp:n=1 $ Neutron Generator Tube $ Enclosure
+701 54 -0.8 -701   imp:n=1 $ Neutron Generator Tube $ Interior
+771 70 -0.00240 -771   imp:n=1$ He 3 gas
+770 50 -2.7000 -770 771   imp:n=1$ Tube
+
+c SURFACES
+999 sph 0.0000 0.0000 0.0000 500.0000 $ External World
+c Panel One
+111 rpp 14.1500 23.5500 0.6000 10.0000 0.6000 10.0000 $ Detector One Liquid Scint
+110 rpp 13.8500 23.8500 0.3000 10.3000 0.3000 10.3000 $ Detector One Enclosure
+116 rcc 18.8500 5.3000 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside PMT
+115 rcc 18.8500 5.3000 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shell
+121 rpp 14.1500 23.5500 -10.0000 -0.6000 0.6000 10.0000 $ Detector Two Liquid Scint
+120 rpp 13.8500 23.8500 -10.3000 -0.3000 0.3000 10.3000 $ Detector Two Enclosure
+126 rcc 18.8500 -5.3000 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside PMT
+125 rcc 18.8500 -5.3000 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shell
+131 rpp 14.1500 23.5500 0.6000 10.0000 -10.0000 -0.6000 $ Detector Three Liquid Scint
+130 rpp 13.8500 23.8500 0.3000 10.3000 -10.3000 -0.3000 $ Detector Three Enclosure
+136 rcc 18.8500 5.3000 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside PMT
+135 rcc 18.8500 5.3000 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT Shell
+141 rpp 14.1500 23.5500 -10.0000 -0.6000 -10.0000 -0.6000 $ Detector Four Liquid Scint
+140 rpp 13.8500 23.8500 -10.3000 -0.3000 -10.3000 -0.3000 $ Detector Four Enclosure
+146 rcc 18.8500 -5.3000 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside PMT
+145 rcc 18.8500 -5.3000 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT Shell
+152 rpp 12.6000 13.7000 -10.8250 10.8250 -11.0000 11.0000 $ Panel Shield One shield box
+151 p -1.0000 0.0000 0.0000 -12.7000 $ Panel Shield One cut plane
+160 rpp 13.9000 23.8000 -10.9000 10.9000 -10.2500 10.2500 $ Detector HDPE Side Shield 
+101 rpp 12.3250 24.1750 -11.6250 11.6250 -48.5500 48.5500 $ Panel Inside Panel Enclosure
+100 rpp 12.0250 24.4750 -11.9250 11.9250 -48.8500 48.8500 $ Panel Enclosure
+c Panel Two
+211 rpp -23.5500 -14.1500 0.6000 10.0000 0.6000 10.0000 $ Detector One Liquid Scint
+210 rpp -23.8500 -13.8500 0.3000 10.3000 0.3000 10.3000 $ Detector One Enclosure
+216 rcc -18.8500 5.3000 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside PMT
+215 rcc -18.8500 5.3000 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shell
+221 rpp -23.5500 -14.1500 -10.0000 -0.6000 0.6000 10.0000 $ Detector Two Liquid Scint
+220 rpp -23.8500 -13.8500 -10.3000 -0.3000 0.3000 10.3000 $ Detector Two Enclosure
+226 rcc -18.8500 -5.3000 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside PMT
+225 rcc -18.8500 -5.3000 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shell
+231 rpp -23.5500 -14.1500 0.6000 10.0000 -10.0000 -0.6000 $ Detector Three Liquid Scint
+230 rpp -23.8500 -13.8500 0.3000 10.3000 -10.3000 -0.3000 $ Detector Three Enclosure
+236 rcc -18.8500 5.3000 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside PMT
+235 rcc -18.8500 5.3000 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT Shell
+241 rpp -23.5500 -14.1500 -10.0000 -0.6000 -10.0000 -0.6000 $ Detector Four Liquid Scint
+240 rpp -23.8500 -13.8500 -10.3000 -0.3000 -10.3000 -0.3000 $ Detector Four Enclosure
+246 rcc -18.8500 -5.3000 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside PMT
+245 rcc -18.8500 -5.3000 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT Shell
+252 rpp -13.7000 -12.6000 -10.8250 10.8250 -11.0000 11.0000 $ Panel Shield Two shield box
+251 p 1.0000 0.0000 0.0000 -12.7000 $ Panel Shield Two cut plane
+260 rpp -23.8000 -13.9000 -10.9000 10.9000 -10.2500 10.2500 $ Detector HDPE Side Shield 
+201 rpp -24.1750 -12.3250 -11.6250 11.6250 -48.5500 48.5500 $ Panel Inside Panel Enclosure
+200 rpp -24.4750 -12.0250 -11.9250 11.9250 -48.8500 48.8500 $ Panel Enclosure
+c Panel Three
+311 rpp 0.6000 10.0000 14.1500 23.5500 0.6000 10.0000 $ Detector One Liquid Scint
+310 rpp 0.3000 10.3000 13.8500 23.8500 0.3000 10.3000 $ Detector One Enclosure
+316 rcc 5.3000 18.8500 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside PMT
+315 rcc 5.3000 18.8500 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shell
+321 rpp -10.0000 -0.6000 14.1500 23.5500 0.6000 10.0000 $ Detector Two Liquid Scint
+320 rpp -10.3000 -0.3000 13.8500 23.8500 0.3000 10.3000 $ Detector Two Enclosure
+326 rcc -5.3000 18.8500 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside PMT
+325 rcc -5.3000 18.8500 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shell
+331 rpp 0.6000 10.0000 14.1500 23.5500 -10.0000 -0.6000 $ Detector Three Liquid Scint
+330 rpp 0.3000 10.3000 13.8500 23.8500 -10.3000 -0.3000 $ Detector Three Enclosure
+336 rcc 5.3000 18.8500 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside PMT
+335 rcc 5.3000 18.8500 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT Shell
+341 rpp -10.0000 -0.6000 14.1500 23.5500 -10.0000 -0.6000 $ Detector Four Liquid Scint
+340 rpp -10.3000 -0.3000 13.8500 23.8500 -10.3000 -0.3000 $ Detector Four Enclosure
+346 rcc -5.3000 18.8500 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside PMT
+345 rcc -5.3000 18.8500 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT Shell
+352 rpp -10.8250 10.8250 12.6000 13.7000 -11.0000 11.0000 $ Panel Shield Three shield box
+351 p 0.0000 -1.0000 0.0000 -12.7000 $ Panel Shield Three cut plane
+360 rpp -10.9000 10.9000 13.9000 23.8000 -10.2500 10.2500 $ Detector HDPE Side Shield 
+301 rpp -11.6250 11.6250 12.3250 24.1750 -48.5500 48.5500 $ Panel Inside Panel Enclosure
+300 rpp -11.9250 11.9250 12.0250 24.4750 -48.8500 48.8500 $ Panel Enclosure
+c Encased HDPE Block Right
+501 rpp 12.2800 25.5200 12.3500 24.8500 -14.2000 14.2000 $ Corner Moderator Block HDPE
+500 rpp 11.9800 25.8200 12.0500 25.1500 -14.5000 14.5000 $ Corner Moderator Block Enclosure
+c Encased HDPE Block Left
+401 rpp -25.5200 -12.2800 12.3500 24.8500 -14.2000 14.2000 $ Corner Moderator Block HDPE
+400 rpp -25.8200 -11.9800 12.0500 25.1500 -14.5000 14.5000 $ Corner Moderator Block Enclosure
+c Mp320 Neutron Generator
+c Mp320 Moderator
+600 rpp -17.7500 17.7500 -29.0300 -12.0150 -17.5000 17.5000 $ Mp320 Moderator Bulk
+601 p 0.0000 -1.0000 0.0000 16.5300 $ Mp320 Moderator Front Plane
+603 p 0.9678 -0.2516 0.0000 16.4992 $ Mp320 Moderator Right Plane
+602 p -0.9678 -0.2516 0.0000 16.4992 $ Mp320 Moderator Left Plane
+650 rpp -17.7500 17.7500 -12.0150 -12.0000 -17.5000 17.5000 $ Moderator Front Shield shield box
+700 rcc 0.0000 -19.0150 -33.7500 0.0000 0.0000 56.0000 5.2500 $ Enclosure
+701 rcc 0.0000 -19.0150 -33.2500 0.0000 0.0000 55.0000 4.7500 $ Interior
+771 rcc -6.7500 -26.0150 -10.5000 0.0000 0.0000 27.0000 2.0000 $ Cylinder He 3 gas
+770 rcc -6.7500 -26.0150 -10.6000 0.0000 0.0000 27.2000 2.1000 $ Cylinder Tube
+
+c SOURCES
+sdef pos = 0 0 0 $ Cf252Sf
+c MATERIALS
+c * Air
+m40 8016.60c 0.21
+     7014.60c 0.79
+c * polyethylene (CH2)
+m42 1001.60c 0.66666667
+     6000.60c 0.33333333
+mt42 poly.60t
+c * 1100f-Al Alloy
+m43 13027.60c -0.99
+     14000.60c -0.005
+     26000.55c -0.005
+c * Cadmium (s17400)
+m44 48000.51c 1.000000
+c * Lead (Pb)
+m47 82204 -1.378084e-02
+     82206 -2.395550e-01
+     82207 -2.207430e-01
+     82208 -5.259212e-01
+c * Al
+m50 13027.60c 1.0
+c * Electronic Soup
+m54 1001 -2.279317e-03
+     1002 -6.833722e-07
+     6012 -2.679703e-02
+     6013 -3.229664e-04
+     7014 -3.149606e-02
+     7015 -1.239370e-04
+     13027 -7.106700e-01
+     14028 -1.163853e-01
+     14029 -6.103634e-03
+     14030 -4.191108e-03
+     82204 -1.400547e-03
+     82206 -2.434597e-02
+     82207 -2.243411e-02
+     82208 -5.344937e-02
+c * He3 detector gas: 4 atm he-3 + ar + ch4
+m70 18000.35c -0.69323
+     6000.60c -0.07295
+     1001.60c -0.02447
+     2003.60c -0.20935
+c * Plasic Scintillator
+m71 NLIB=60c PLIB=04p
+     6000.60c 10
+     1001.60c 11
+c TRANSFORMATIONS
+c RUN SPECIFICATION
+mode n
+phys:n j 20.0
+nps 10000
+c  PoliMi Cards
+ipol 10 2 0 0 2J 13 111 121 131 141 211 221 231 241 311 321 331 341 771 
+rpol 0.001 0.001
+files 21 dumn1
+
+c END OF FILE

@@ -1,0 +1,3 @@
+10000
+10000
+C:\FNCL\Simulations\Example\Cf252_Passive\Det_All_pulses.o

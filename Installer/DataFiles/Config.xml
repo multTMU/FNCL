@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ProblemConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DataDirectory>C:\Users\9eo\Documents\SourceCode\FNCL\FNCL_PoliMi\DataFiles</DataDirectory>
+  <ResultsDirectory>C:\Users\9eo\Documents\Projects\FNCL\MCNPruns</ResultsDirectory>
+  <DetectorBasisFile>DetectorBasisFNCL.txt</DetectorBasisFile>
+  <DetectorOutPutFile>DetectorDefault</DetectorOutPutFile>
+  <FullPathToPoliMiExe>C:\ornldev\code\MCNPpolimi\bin\Win\mcnpx_polimi_v270_v200.exe</FullPathToPoliMiExe>
+  <FullPathToMPPostExe>C:\MPPost\bin\MPPost_win64.exe</FullPathToMPPostExe>
+  <GateWidthNanoSeconds>
+    <int>16</int>
+    <int>32</int>
+    <int>64</int>
+    <int>128</int>
+    <int>256</int>
+    <int>512</int>
+    <int>1024</int>
+    <int>2048</int>
+  </GateWidthNanoSeconds>
+  <PreDelay>8</PreDelay>
+  <LongDelay>4096</LongDelay>
+</ProblemConfig>

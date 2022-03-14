@@ -1,0 +1,58 @@
+ Post Processor Output File Summary
+ MPPost Version - v2.1.0
+  
+ 
+ Input File:   FnclLiquidScintDetector.txt
+ PoliMi File:  dumn1
+ Processed by: 9eo
+ Processed:    10:42:38 on 03/14/2022
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ MCNP-PoliMi File Characteristics
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ The number of lines:            41883
+ The number of histories:         6379
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Detector Information
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ Number of Detectors:           13
+ Detector 111 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 121 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 131 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 141 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 211 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 221 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 231 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 241 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 311 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 321 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 331 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 341 type: Organic Scintillator
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+ Detector 771 type: Not a detector
+      Lower and Upper Thresholds (MeVee):   7.0000000E-02   20.00000    
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Pulse Height Analysis
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  
+ Total number of pulses above threshold:            3247.000    
+ Total number of neutron pulses above threshold:    3247.000    
+ Total number of photon pulses above threshold:    0.0000000E+00
+  
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ This run took   0.0000000E+00  minutes to run

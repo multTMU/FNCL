@@ -1,0 +1,7 @@
+#
+# Fuel Assembly Specification
+# nx, ny, array pitch, fuel pin radius, cladding Inner Radius
+# , cladding Outer Radius, Cooling channnel IR, Cooling channnel OR, Length	
+17, 17, 1.278, 0.41275, 0.4180, 0.475, 0.543, 0.600, 300
+14, 14, 1.437, 0.41275, 0.4375, 0.508, 0.543, 0.600, 300
+15, 15, 1.452, 0.46340, 0.4375, 0.508, 0.474, 0.536, 300

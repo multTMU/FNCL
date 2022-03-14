@@ -1,0 +1,1087 @@
+1mcnpx    version 2.7.0 ld=Mon Apr 18 08:00:00 MST 2011               >>PoliMi v2.0.0<< 
+ ***************************************************************************************   probid =   03/14/22 10:42:34
+ inp=mcnp.inp out=mcnp.out                                                                                               
+
+ *************************************************************
+ *                                                           *
+ *                   MCNPX                                   *
+ *                                                           *
+ * Copyright 2007. Los Alamos National Security, LLC.        *
+ * All rights reserved.                                      *
+ *                                                           *
+ * This material was produced under U.S. Government contract *
+ * DE-AC52-06NA25396 for Los Alamos National Laboratory,     *
+ * which is operated by Los Alamos National Security, LLC    *
+ * for the U.S. Department of Energy. The Government is      *
+ * granted for itself and others acting on its behalf a      *
+ * paid-up, nonexclusive, irrevocable worldwide license in   *
+ * this material to reproduce, prepare derivative works, and *
+ * works, and perform publicly and display publicly.         *
+ * Beginning five (5) years after June 1, 2006, subject to   *
+ * additional five-year worldwide renewals, the Government   *
+ * is granted for itself and others acting on its behalf     *
+ * a paid-up, nonexclusive, irrevocable worldwide license    *
+ * in this material to reproduce, prepare derivative works,  *
+ * distribute copies to the public, perform publicly and     *
+ * display publicly, and to permit others to do so.          *
+ *                                                           *
+ * NEITHER THE UNITED STATES NOR THE UNITED STATES           *
+ * DEPARTMENT OF ENERGY, NOR LOS ALAMOS NATIONAL SECURITY,   *
+ * LLC, NOR ANY OF THEIR EMPLOYEES, MAKES ANY WARRANTY,      *
+ * EXPRESS OR IMPLIED, OR ASSUMES ANY LEGAL LIABILITY OR     *
+ * RESPONSIBILITY FOR THE ACCURACY, COMPLETENESS, OR         *
+ * USEFULNESS OF ANY INFORMATION, APPARATUS, PRODUCT, OR     *
+ * PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT   *
+ * INFRINGE PRIVATELY OWNED RIGHTS.                          *
+ *                                                           *
+ *************************************************************
+    1-       c 9eo 3/14/2022 10:42:33                                                        
+    2-       c                                                                               
+    3-       c MP320 DD FNCL                                                                 
+    4-       c Example Passive Problem                                                       
+    5-       c                                                                               
+    6-       c CELLS                                                                         
+    7-       999 0   999   imp:n=0 $ External World                                          
+    8-       998 40 -0.0012 -999 110 115 120 125 130 135 140 145 152 160 100 210 215 220     
+    9-            225 230 235 240 245 252 260 200 310 315 320 325 330 335 340 345 352 360    
+   10-            300 500 400 650 600 700 770 imp:n=1 $ Internal World                       
+   11-       c Panel One                                                                     
+   12-       111 71 -1.032 -111   imp:n=1$ Liquid Scint                                      
+   13-       110 50 -2.7000 -110 111   imp:n=1$ Enclosure                                    
+   14-       116 54 -0.8 -116   imp:n=1$ Inside PMT                                          
+   15-       115 43 -2.71 -115 116   imp:n=1$ PMT Shell                                      
+   16-       121 71 -1.032 -121   imp:n=1$ Liquid Scint                                      
+   17-       120 50 -2.7000 -120 121   imp:n=1$ Enclosure                                    
+   18-       126 54 -0.8 -126   imp:n=1$ Inside PMT                                          
+   19-       125 43 -2.71 -125 126   imp:n=1$ PMT Shell                                      
+   20-       131 71 -1.032 -131   imp:n=1$ Liquid Scint                                      
+   21-       130 50 -2.7000 -130 131   imp:n=1$ Enclosure                                    
+   22-       136 54 -0.8 -136   imp:n=1$ Inside PMT                                          
+   23-       135 43 -2.71 -135 136   imp:n=1$ PMT Shell                                      
+   24-       141 71 -1.032 -141   imp:n=1$ Liquid Scint                                      
+   25-       140 50 -2.7000 -140 141   imp:n=1$ Enclosure                                    
+   26-       146 54 -0.8 -146   imp:n=1$ Inside PMT                                          
+   27-       145 43 -2.71 -145 146   imp:n=1$ PMT Shell                                      
+   28-       151 47 -11.35 -152 -151   imp:n=1 $ Panel Shield One Lead                       
+   29-       152 44 -8.65 -152 151   imp:n=1 $ Panel Shield One Cadmium                      
+   30-       160 42 -0.950 -160 110 120 130 140   imp:n=1 $ Detector HDPE Side Shield        
+   31-       101 40 -0.0012 -101 110 115 120 125 130 135 140 145 152 160   imp:n=1$ Inside Pa
+   32-       100 50 -2.7000 -100 101   imp:n=1$ Enclosure                                    
+   33-       c Panel Two                                                                     
+   34-       211 71 -1.032 -211   imp:n=1$ Liquid Scint                                      
+   35-       210 50 -2.7000 -210 211   imp:n=1$ Enclosure                                    
+   36-       216 54 -0.8 -216   imp:n=1$ Inside PMT                                          
+   37-       215 43 -2.71 -215 216   imp:n=1$ PMT Shell                                      
+   38-       221 71 -1.032 -221   imp:n=1$ Liquid Scint                                      
+   39-       220 50 -2.7000 -220 221   imp:n=1$ Enclosure                                    
+   40-       226 54 -0.8 -226   imp:n=1$ Inside PMT                                          
+   41-       225 43 -2.71 -225 226   imp:n=1$ PMT Shell                                      
+   42-       231 71 -1.032 -231   imp:n=1$ Liquid Scint                                      
+   43-       230 50 -2.7000 -230 231   imp:n=1$ Enclosure                                    
+   44-       236 54 -0.8 -236   imp:n=1$ Inside PMT                                          
+   45-       235 43 -2.71 -235 236   imp:n=1$ PMT Shell                                      
+   46-       241 71 -1.032 -241   imp:n=1$ Liquid Scint                                      
+   47-       240 50 -2.7000 -240 241   imp:n=1$ Enclosure                                    
+   48-       246 54 -0.8 -246   imp:n=1$ Inside PMT                                          
+   49-       245 43 -2.71 -245 246   imp:n=1$ PMT Shell                                      
+   50-       251 47 -11.35 -252 -251   imp:n=1 $ Panel Shield Two Lead                       
+   51-       252 44 -8.65 -252 251   imp:n=1 $ Panel Shield Two Cadmium                      
+   52-       260 42 -0.950 -260 210 220 230 240   imp:n=1 $ Detector HDPE Side Shield        
+   53-       201 40 -0.0012 -201 210 215 220 225 230 235 240 245 252 260   imp:n=1$ Inside Pa
+   54-       200 50 -2.7000 -200 201   imp:n=1$ Enclosure                                    
+   55-       c Panel Three                                                                   
+   56-       311 71 -1.032 -311   imp:n=1$ Liquid Scint                                      
+   57-       310 50 -2.7000 -310 311   imp:n=1$ Enclosure                                    
+   58-       316 54 -0.8 -316   imp:n=1$ Inside PMT                                          
+   59-       315 43 -2.71 -315 316   imp:n=1$ PMT Shell                                      
+   60-       321 71 -1.032 -321   imp:n=1$ Liquid Scint                                      
+   61-       320 50 -2.7000 -320 321   imp:n=1$ Enclosure                                    
+   62-       326 54 -0.8 -326   imp:n=1$ Inside PMT                                          
+   63-       325 43 -2.71 -325 326   imp:n=1$ PMT Shell                                      
+   64-       331 71 -1.032 -331   imp:n=1$ Liquid Scint                                      
+   65-       330 50 -2.7000 -330 331   imp:n=1$ Enclosure                                    
+   66-       336 54 -0.8 -336   imp:n=1$ Inside PMT                                          
+   67-       335 43 -2.71 -335 336   imp:n=1$ PMT Shell                                      
+   68-       341 71 -1.032 -341   imp:n=1$ Liquid Scint                                      
+   69-       340 50 -2.7000 -340 341   imp:n=1$ Enclosure                                    
+   70-       346 54 -0.8 -346   imp:n=1$ Inside PMT                                          
+   71-       345 43 -2.71 -345 346   imp:n=1$ PMT Shell                                      
+   72-       351 47 -11.35 -352 -351   imp:n=1 $ Panel Shield Three Lead                     
+   73-       352 44 -8.65 -352 351   imp:n=1 $ Panel Shield Three Cadmium                    
+   74-       360 42 -0.950 -360 310 320 330 340   imp:n=1 $ Detector HDPE Side Shield        
+   75-       301 40 -0.0012 -301 310 315 320 325 330 335 340 345 352 360   imp:n=1$ Inside Pa
+   76-       300 50 -2.7000 -300 301   imp:n=1$ Enclosure                                    
+   77-       c Encased HDPE Block Right                                                      
+   78-       501 42 -0.950 -501   imp:n=1$ HDPE                                              
+   79-       500 50 -2.7000 -500 501   imp:n=1$ Enclosure                                    
+   80-       c Encased HDPE Block Left                                                       
+   81-       401 42 -0.950 -401   imp:n=1$ HDPE                                              
+   82-       400 50 -2.7000 -400 401   imp:n=1$ Enclosure                                    
+   83-       c Mp320 Neutron Generator                                                       
+   84-       c Mp320 Moderator                                                               
+   85-       600 42 -0.950 -600 (-602:-601) (-603:-601)  700 770    imp:n=1 $ Mp320 Moderator
+   86-       996 40 -0.0012 -600 601 603    imp:n=1 $ Mp320 Moderator                        
+   87-       997 40 -0.0012 -600 601 602    imp:n=1 $ Mp320 Moderator                        
+   88-       650 44 -8.65 -650    imp:n=1 $ Moderator Front Shield Cadmium                   
+   89-       700 43 -2.71 -700 701   imp:n=1 $ Neutron Generator Tube $ Enclosure            
+   90-       701 54 -0.8 -701   imp:n=1 $ Neutron Generator Tube $ Interior                  
+   91-       771 70 -0.00240 -771   imp:n=1$ He 3 gas                                        
+   92-       770 50 -2.7000 -770 771   imp:n=1$ Tube                                         
+   93-                                                                                       
+   94-       c SURFACES                                                                      
+   95-       999 sph 0.0000 0.0000 0.0000 500.0000 $ External World                          
+   96-       c Panel One                                                                     
+   97-       111 rpp 14.1500 23.5500 0.6000 10.0000 0.6000 10.0000 $ Detector One Liquid Scin
+   98-       110 rpp 13.8500 23.8500 0.3000 10.3000 0.3000 10.3000 $ Detector One Enclosure  
+   99-       116 rcc 18.8500 5.3000 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside PM
+  100-       115 rcc 18.8500 5.3000 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shell
+  101-       121 rpp 14.1500 23.5500 -10.0000 -0.6000 0.6000 10.0000 $ Detector Two Liquid Sc
+  102-       120 rpp 13.8500 23.8500 -10.3000 -0.3000 0.3000 10.3000 $ Detector Two Enclosure
+  103-       126 rcc 18.8500 -5.3000 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside P
+  104-       125 rcc 18.8500 -5.3000 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shel
+  105-       131 rpp 14.1500 23.5500 0.6000 10.0000 -10.0000 -0.6000 $ Detector Three Liquid 
+  106-       130 rpp 13.8500 23.8500 0.3000 10.3000 -10.3000 -0.3000 $ Detector Three Enclosu
+  107-       136 rcc 18.8500 5.3000 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside 
+  108-       135 rcc 18.8500 5.3000 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT She
+  109-       141 rpp 14.1500 23.5500 -10.0000 -0.6000 -10.0000 -0.6000 $ Detector Four Liquid
+  110-       140 rpp 13.8500 23.8500 -10.3000 -0.3000 -10.3000 -0.3000 $ Detector Four Enclos
+  111-       146 rcc 18.8500 -5.3000 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside
+  112-       145 rcc 18.8500 -5.3000 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT Sh
+  113-       152 rpp 12.6000 13.7000 -10.8250 10.8250 -11.0000 11.0000 $ Panel Shield One shi
+  114-       151 p -1.0000 0.0000 0.0000 -12.7000 $ Panel Shield One cut plane               
+  115-       160 rpp 13.9000 23.8000 -10.9000 10.9000 -10.2500 10.2500 $ Detector HDPE Side S
+  116-       101 rpp 12.3250 24.1750 -11.6250 11.6250 -48.5500 48.5500 $ Panel Inside Panel E
+  117-       100 rpp 12.0250 24.4750 -11.9250 11.9250 -48.8500 48.8500 $ Panel Enclosure     
+  118-       c Panel Two                                                                     
+  119-       211 rpp -23.5500 -14.1500 0.6000 10.0000 0.6000 10.0000 $ Detector One Liquid Sc
+  120-       210 rpp -23.8500 -13.8500 0.3000 10.3000 0.3000 10.3000 $ Detector One Enclosure
+  121-       216 rcc -18.8500 5.3000 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside P
+  122-       215 rcc -18.8500 5.3000 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shel
+  123-       221 rpp -23.5500 -14.1500 -10.0000 -0.6000 0.6000 10.0000 $ Detector Two Liquid 
+  124-       220 rpp -23.8500 -13.8500 -10.3000 -0.3000 0.3000 10.3000 $ Detector Two Enclosu
+  125-       226 rcc -18.8500 -5.3000 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside 
+  126-       225 rcc -18.8500 -5.3000 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT She
+  127-       231 rpp -23.5500 -14.1500 0.6000 10.0000 -10.0000 -0.6000 $ Detector Three Liqui
+  128-       230 rpp -23.8500 -13.8500 0.3000 10.3000 -10.3000 -0.3000 $ Detector Three Enclo
+  129-       236 rcc -18.8500 5.3000 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside
+  130-       235 rcc -18.8500 5.3000 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT Sh
+  131-       241 rpp -23.5500 -14.1500 -10.0000 -0.6000 -10.0000 -0.6000 $ Detector Four Liqu
+  132-       240 rpp -23.8500 -13.8500 -10.3000 -0.3000 -10.3000 -0.3000 $ Detector Four Encl
+  133-       246 rcc -18.8500 -5.3000 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Insid
+  134-       245 rcc -18.8500 -5.3000 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT S
+  135-       252 rpp -13.7000 -12.6000 -10.8250 10.8250 -11.0000 11.0000 $ Panel Shield Two s
+  136-       251 p 1.0000 0.0000 0.0000 -12.7000 $ Panel Shield Two cut plane                
+ warning.  this surface has been replaced by a surface of type px 
+  137-       260 rpp -23.8000 -13.9000 -10.9000 10.9000 -10.2500 10.2500 $ Detector HDPE Side
+  138-       201 rpp -24.1750 -12.3250 -11.6250 11.6250 -48.5500 48.5500 $ Panel Inside Panel
+  139-       200 rpp -24.4750 -12.0250 -11.9250 11.9250 -48.8500 48.8500 $ Panel Enclosure   
+  140-       c Panel Three                                                                   
+  141-       311 rpp 0.6000 10.0000 14.1500 23.5500 0.6000 10.0000 $ Detector One Liquid Scin
+  142-       310 rpp 0.3000 10.3000 13.8500 23.8500 0.3000 10.3000 $ Detector One Enclosure  
+  143-       316 rcc 5.3000 18.8500 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside PM
+  144-       315 rcc 5.3000 18.8500 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shell
+  145-       321 rpp -10.0000 -0.6000 14.1500 23.5500 0.6000 10.0000 $ Detector Two Liquid Sc
+  146-       320 rpp -10.3000 -0.3000 13.8500 23.8500 0.3000 10.3000 $ Detector Two Enclosure
+  147-       326 rcc -5.3000 18.8500 10.3640 0.0000 0.0000 20.7220 2.8760 $ Cylinder Inside P
+  148-       325 rcc -5.3000 18.8500 10.3000 0.0000 0.0000 20.8500 2.9400 $ Cylinder PMT Shel
+  149-       331 rpp 0.6000 10.0000 14.1500 23.5500 -10.0000 -0.6000 $ Detector Three Liquid 
+  150-       330 rpp 0.3000 10.3000 13.8500 23.8500 -10.3000 -0.3000 $ Detector Three Enclosu
+  151-       336 rcc 5.3000 18.8500 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside 
+  152-       335 rcc 5.3000 18.8500 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT She
+  153-       341 rpp -10.0000 -0.6000 14.1500 23.5500 -10.0000 -0.6000 $ Detector Four Liquid
+  154-       340 rpp -10.3000 -0.3000 13.8500 23.8500 -10.3000 -0.3000 $ Detector Four Enclos
+  155-       346 rcc -5.3000 18.8500 -10.3640 0.0000 0.0000 -20.7220 2.8760 $ Cylinder Inside
+  156-       345 rcc -5.3000 18.8500 -10.3000 0.0000 0.0000 -20.8500 2.9400 $ Cylinder PMT Sh
+  157-       352 rpp -10.8250 10.8250 12.6000 13.7000 -11.0000 11.0000 $ Panel Shield Three s
+  158-       351 p 0.0000 -1.0000 0.0000 -12.7000 $ Panel Shield Three cut plane             
+  159-       360 rpp -10.9000 10.9000 13.9000 23.8000 -10.2500 10.2500 $ Detector HDPE Side S
+  160-       301 rpp -11.6250 11.6250 12.3250 24.1750 -48.5500 48.5500 $ Panel Inside Panel E
+  161-       300 rpp -11.9250 11.9250 12.0250 24.4750 -48.8500 48.8500 $ Panel Enclosure     
+  162-       c Encased HDPE Block Right                                                      
+  163-       501 rpp 12.2800 25.5200 12.3500 24.8500 -14.2000 14.2000 $ Corner Moderator Bloc
+  164-       500 rpp 11.9800 25.8200 12.0500 25.1500 -14.5000 14.5000 $ Corner Moderator Bloc
+  165-       c Encased HDPE Block Left                                                       
+  166-       401 rpp -25.5200 -12.2800 12.3500 24.8500 -14.2000 14.2000 $ Corner Moderator Bl
+  167-       400 rpp -25.8200 -11.9800 12.0500 25.1500 -14.5000 14.5000 $ Corner Moderator Bl
+  168-       c Mp320 Neutron Generator                                                       
+  169-       c Mp320 Moderator                                                               
+  170-       600 rpp -17.7500 17.7500 -29.0300 -12.0150 -17.5000 17.5000 $ Mp320 Moderator Bu
+  171-       601 p 0.0000 -1.0000 0.0000 16.5300 $ Mp320 Moderator Front Plane               
+  172-       603 p 0.9678 -0.2516 0.0000 16.4992 $ Mp320 Moderator Right Plane               
+  173-       602 p -0.9678 -0.2516 0.0000 16.4992 $ Mp320 Moderator Left Plane               
+  174-       650 rpp -17.7500 17.7500 -12.0150 -12.0000 -17.5000 17.5000 $ Moderator Front Sh
+  175-       700 rcc 0.0000 -19.0150 -33.7500 0.0000 0.0000 56.0000 5.2500 $ Enclosure       
+  176-       701 rcc 0.0000 -19.0150 -33.2500 0.0000 0.0000 55.0000 4.7500 $ Interior        
+  177-       771 rcc -6.7500 -26.0150 -10.5000 0.0000 0.0000 27.0000 2.0000 $ Cylinder He 3 g
+  178-       770 rcc -6.7500 -26.0150 -10.6000 0.0000 0.0000 27.2000 2.1000 $ Cylinder Tube  
+  179-                                                                                       
+  180-       c SOURCES                                                                       
+  181-       sdef pos = 0 0 0 $ Cf252Sf                                                      
+  182-       c MATERIALS                                                                     
+  183-       c * Air                                                                         
+  184-       m40 8016.60c 0.21                                                               
+  185-            7014.60c 0.79                                                              
+  186-       c * polyethylene (CH2)                                                          
+  187-       m42 1001.60c 0.66666667                                                         
+  188-            6000.60c 0.33333333                                                        
+  189-       mt42 poly.60t                                                                   
+  190-       c * 1100f-Al Alloy                                                              
+  191-       m43 13027.60c -0.99                                                             
+  192-            14000.60c -0.005                                                           
+  193-            26000.55c -0.005                                                           
+  194-       c * Cadmium (s17400)                                                            
+  195-       m44 48000.51c 1.000000                                                          
+  196-       c * Lead (Pb)                                                                   
+  197-       m47 82204 -1.378084e-02                                                         
+  198-            82206 -2.395550e-01                                                        
+  199-            82207 -2.207430e-01                                                        
+  200-            82208 -5.259212e-01                                                        
+  201-       c * Al                                                                          
+  202-       m50 13027.60c 1.0                                                               
+  203-       c * Electronic Soup                                                             
+  204-       m54 1001 -2.279317e-03                                                          
+  205-            1002 -6.833722e-07                                                         
+  206-            6012 -2.679703e-02                                                         
+  207-            6013 -3.229664e-04                                                         
+  208-            7014 -3.149606e-02                                                         
+  209-            7015 -1.239370e-04                                                         
+  210-            13027 -7.106700e-01                                                        
+  211-            14028 -1.163853e-01                                                        
+  212-            14029 -6.103634e-03                                                        
+  213-            14030 -4.191108e-03                                                        
+  214-            82204 -1.400547e-03                                                        
+  215-            82206 -2.434597e-02                                                        
+  216-            82207 -2.243411e-02                                                        
+  217-            82208 -5.344937e-02                                                        
+  218-       c * He3 detector gas: 4 atm he-3 + ar + ch4                                     
+  219-       m70 18000.35c -0.69323                                                          
+  220-            6000.60c -0.07295                                                          
+  221-            1001.60c -0.02447                                                          
+  222-            2003.60c -0.20935                                                          
+  223-       c * Plasic Scintillator                                                         
+  224-       m71 NLIB=60c PLIB=04p                                                           
+  225-            6000.60c 10                                                                
+  226-            1001.60c 11                                                                
+  227-       c TRANSFORMATIONS                                                               
+  228-       c RUN SPECIFICATION                                                             
+  229-       mode n                                                                          
+  230-       phys:n j 20.0                                                                   
+  231-       nps 10000                                                                       
+  232-       c  PoliMi Cards                                                                 
+  233-       ipol 10 2 0 0 2J 13 111 121 131 141 211 221 231 241 311 321 331 341 771         
+  234-       rpol 0.001 0.001                                                                
+  235-       files 21 dumn1                                                                  
+  236-                                                                                       
+ 
+ warning.  total nu is now the default for fixed-source problems.
+
+ surface    111.1 and surface    121.1 are the same.    121.1 will be deleted.
+
+ surface    111.1 and surface    131.1 are the same.    131.1 will be deleted.
+
+ surface    111.1 and surface    141.1 are the same.    141.1 will be deleted.
+
+ surface    111.2 and surface    121.2 are the same.    121.2 will be deleted.
+
+ surface    111.2 and surface    131.2 are the same.    131.2 will be deleted.
+
+ surface    111.2 and surface    141.2 are the same.    141.2 will be deleted.
+
+ surface    111.3 and surface    131.3 are the same.    131.3 will be deleted.
+
+ surface    111.3 and surface    211.3 are the same.    211.3 will be deleted.
+
+ surface    111.3 and surface    231.3 are the same.    231.3 will be deleted.
+
+ surface    111.4 and surface    131.4 are the same.    131.4 will be deleted.
+
+ surface    111.4 and surface    211.4 are the same.    211.4 will be deleted.
+
+ surface    111.4 and surface    231.4 are the same.    231.4 will be deleted.
+
+ surface    111.5 and surface    121.5 are the same.    121.5 will be deleted.
+
+ surface    111.5 and surface    211.5 are the same.    211.5 will be deleted.
+
+ surface    111.5 and surface    221.5 are the same.    221.5 will be deleted.
+
+ surface    111.5 and surface    311.5 are the same.    311.5 will be deleted.
+
+ surface    111.5 and surface    321.5 are the same.    321.5 will be deleted.
+
+ surface    111.6 and surface    121.6 are the same.    121.6 will be deleted.
+
+ surface    111.6 and surface    211.6 are the same.    211.6 will be deleted.
+
+ surface    111.6 and surface    221.6 are the same.    221.6 will be deleted.
+
+ surface    111.6 and surface    311.6 are the same.    311.6 will be deleted.
+
+ surface    111.6 and surface    321.6 are the same.    321.6 will be deleted.
+
+ surface    110.1 and surface    120.1 are the same.    120.1 will be deleted.
+
+ surface    110.1 and surface    130.1 are the same.    130.1 will be deleted.
+
+ surface    110.1 and surface    140.1 are the same.    140.1 will be deleted.
+
+ surface    110.2 and surface    120.2 are the same.    120.2 will be deleted.
+
+ surface    110.2 and surface    130.2 are the same.    130.2 will be deleted.
+
+ surface    110.2 and surface    140.2 are the same.    140.2 will be deleted.
+
+ surface    110.3 and surface    130.3 are the same.    130.3 will be deleted.
+
+ surface    110.3 and surface    210.3 are the same.    210.3 will be deleted.
+
+ surface    110.3 and surface    230.3 are the same.    230.3 will be deleted.
+
+ surface    110.4 and surface    130.4 are the same.    130.4 will be deleted.
+
+ surface    110.4 and surface    210.4 are the same.    210.4 will be deleted.
+
+ surface    110.4 and surface    230.4 are the same.    230.4 will be deleted.
+
+ surface    110.5 and surface    115.3 are the same.    115.3 will be deleted.
+
+ surface    110.5 and surface    120.5 are the same.    120.5 will be deleted.
+
+ surface    110.5 and surface    125.3 are the same.    125.3 will be deleted.
+
+ surface    110.5 and surface    210.5 are the same.    210.5 will be deleted.
+
+ surface    110.5 and surface    215.3 are the same.    215.3 will be deleted.
+
+ surface    110.5 and surface    220.5 are the same.    220.5 will be deleted.
+
+ surface    110.5 and surface    225.3 are the same.    225.3 will be deleted.
+
+ surface    110.5 and surface    310.5 are the same.    310.5 will be deleted.
+
+ surface    110.5 and surface    315.3 are the same.    315.3 will be deleted.
+
+ surface    110.5 and surface    320.5 are the same.    320.5 will be deleted.
+
+ surface    110.5 and surface    325.3 are the same.    325.3 will be deleted.
+
+ surface    110.6 and surface    120.6 are the same.    120.6 will be deleted.
+
+ surface    110.6 and surface    210.6 are the same.    210.6 will be deleted.
+
+ surface    110.6 and surface    220.6 are the same.    220.6 will be deleted.
+
+ surface    110.6 and surface    310.6 are the same.    310.6 will be deleted.
+
+ surface    110.6 and surface    320.6 are the same.    320.6 will be deleted.
+
+ surface    116.1 and surface    136.1 are the same.    136.1 will be deleted.
+
+ surface    116.2 and surface    126.2 are the same.    126.2 will be deleted.
+
+ surface    116.2 and surface    216.2 are the same.    216.2 will be deleted.
+
+ surface    116.2 and surface    226.2 are the same.    226.2 will be deleted.
+
+ surface    116.2 and surface    316.2 are the same.    316.2 will be deleted.
+
+ surface    116.2 and surface    326.2 are the same.    326.2 will be deleted.
+
+ surface    116.3 and surface    126.3 are the same.    126.3 will be deleted.
+
+ surface    116.3 and surface    216.3 are the same.    216.3 will be deleted.
+
+ surface    116.3 and surface    226.3 are the same.    226.3 will be deleted.
+
+ surface    116.3 and surface    316.3 are the same.    316.3 will be deleted.
+
+ surface    116.3 and surface    326.3 are the same.    326.3 will be deleted.
+
+ surface    115.1 and surface    135.1 are the same.    135.1 will be deleted.
+
+ surface    115.2 and surface    125.2 are the same.    125.2 will be deleted.
+
+ surface    115.2 and surface    215.2 are the same.    215.2 will be deleted.
+
+ surface    115.2 and surface    225.2 are the same.    225.2 will be deleted.
+
+ surface    115.2 and surface    315.2 are the same.    315.2 will be deleted.
+
+ surface    115.2 and surface    325.2 are the same.    325.2 will be deleted.
+
+ surface    121.3 and surface    141.3 are the same.    141.3 will be deleted.
+
+ surface    121.3 and surface    221.3 are the same.    221.3 will be deleted.
+
+ surface    121.3 and surface    241.3 are the same.    241.3 will be deleted.
+
+ surface    121.4 and surface    141.4 are the same.    141.4 will be deleted.
+
+ surface    121.4 and surface    221.4 are the same.    221.4 will be deleted.
+
+ surface    121.4 and surface    241.4 are the same.    241.4 will be deleted.
+
+ surface    120.3 and surface    140.3 are the same.    140.3 will be deleted.
+
+ surface    120.3 and surface    220.3 are the same.    220.3 will be deleted.
+
+ surface    120.3 and surface    240.3 are the same.    240.3 will be deleted.
+
+ surface    120.4 and surface    140.4 are the same.    140.4 will be deleted.
+
+ surface    120.4 and surface    220.4 are the same.    220.4 will be deleted.
+
+ surface    120.4 and surface    240.4 are the same.    240.4 will be deleted.
+
+ surface    126.1 and surface    146.1 are the same.    146.1 will be deleted.
+
+ surface    125.1 and surface    145.1 are the same.    145.1 will be deleted.
+
+ surface    131.5 and surface    141.5 are the same.    141.5 will be deleted.
+
+ surface    131.5 and surface    231.5 are the same.    231.5 will be deleted.
+
+ surface    131.5 and surface    241.5 are the same.    241.5 will be deleted.
+
+ surface    131.5 and surface    331.5 are the same.    331.5 will be deleted.
+
+ surface    131.5 and surface    341.5 are the same.    341.5 will be deleted.
+
+ surface    131.6 and surface    141.6 are the same.    141.6 will be deleted.
+
+ surface    131.6 and surface    231.6 are the same.    231.6 will be deleted.
+
+ surface    131.6 and surface    241.6 are the same.    241.6 will be deleted.
+
+ surface    131.6 and surface    331.6 are the same.    331.6 will be deleted.
+
+ surface    131.6 and surface    341.6 are the same.    341.6 will be deleted.
+
+ surface    130.5 and surface    140.5 are the same.    140.5 will be deleted.
+
+ surface    130.5 and surface    230.5 are the same.    230.5 will be deleted.
+
+ surface    130.5 and surface    240.5 are the same.    240.5 will be deleted.
+
+ surface    130.5 and surface    330.5 are the same.    330.5 will be deleted.
+
+ surface    130.5 and surface    340.5 are the same.    340.5 will be deleted.
+
+ surface    130.6 and surface    135.3 are the same.    135.3 will be deleted.
+
+ surface    130.6 and surface    140.6 are the same.    140.6 will be deleted.
+
+ surface    130.6 and surface    145.3 are the same.    145.3 will be deleted.
+
+ surface    130.6 and surface    230.6 are the same.    230.6 will be deleted.
+
+ surface    130.6 and surface    235.3 are the same.    235.3 will be deleted.
+
+ surface    130.6 and surface    240.6 are the same.    240.6 will be deleted.
+
+ surface    130.6 and surface    245.3 are the same.    245.3 will be deleted.
+
+ surface    130.6 and surface    330.6 are the same.    330.6 will be deleted.
+
+ surface    130.6 and surface    335.3 are the same.    335.3 will be deleted.
+
+ surface    130.6 and surface    340.6 are the same.    340.6 will be deleted.
+
+ surface    130.6 and surface    345.3 are the same.    345.3 will be deleted.
+
+ surface    136.2 and surface    146.2 are the same.    146.2 will be deleted.
+
+ surface    136.2 and surface    236.2 are the same.    236.2 will be deleted.
+
+ surface    136.2 and surface    246.2 are the same.    246.2 will be deleted.
+
+ surface    136.2 and surface    336.2 are the same.    336.2 will be deleted.
+
+ surface    136.2 and surface    346.2 are the same.    346.2 will be deleted.
+
+ surface    136.3 and surface    146.3 are the same.    146.3 will be deleted.
+
+ surface    136.3 and surface    236.3 are the same.    236.3 will be deleted.
+
+ surface    136.3 and surface    246.3 are the same.    246.3 will be deleted.
+
+ surface    136.3 and surface    336.3 are the same.    336.3 will be deleted.
+
+ surface    136.3 and surface    346.3 are the same.    346.3 will be deleted.
+
+ surface    135.2 and surface    145.2 are the same.    145.2 will be deleted.
+
+ surface    135.2 and surface    235.2 are the same.    235.2 will be deleted.
+
+ surface    135.2 and surface    245.2 are the same.    245.2 will be deleted.
+
+ surface    135.2 and surface    335.2 are the same.    335.2 will be deleted.
+
+ surface    135.2 and surface    345.2 are the same.    345.2 will be deleted.
+
+ surface    152.3 and surface    252.3 are the same.    252.3 will be deleted.
+
+ surface    152.4 and surface    252.4 are the same.    252.4 will be deleted.
+
+ surface    152.5 and surface    252.5 are the same.    252.5 will be deleted.
+
+ surface    152.5 and surface    352.5 are the same.    352.5 will be deleted.
+
+ surface    152.6 and surface    252.6 are the same.    252.6 will be deleted.
+
+ surface    152.6 and surface    352.6 are the same.    352.6 will be deleted.
+
+ surface    160.3 and surface    260.3 are the same.    260.3 will be deleted.
+
+ surface    160.4 and surface    260.4 are the same.    260.4 will be deleted.
+
+ surface    160.5 and surface    260.5 are the same.    260.5 will be deleted.
+
+ surface    160.5 and surface    360.5 are the same.    360.5 will be deleted.
+
+ surface    160.6 and surface    260.6 are the same.    260.6 will be deleted.
+
+ surface    160.6 and surface    360.6 are the same.    360.6 will be deleted.
+
+ surface    101.3 and surface    201.3 are the same.    201.3 will be deleted.
+
+ surface    101.4 and surface    201.4 are the same.    201.4 will be deleted.
+
+ surface    101.5 and surface    201.5 are the same.    201.5 will be deleted.
+
+ surface    101.5 and surface    301.5 are the same.    301.5 will be deleted.
+
+ surface    101.6 and surface    201.6 are the same.    201.6 will be deleted.
+
+ surface    101.6 and surface    301.6 are the same.    301.6 will be deleted.
+
+ surface    100.3 and surface    200.3 are the same.    200.3 will be deleted.
+
+ surface    100.4 and surface    200.4 are the same.    200.4 will be deleted.
+
+ surface    100.5 and surface    200.5 are the same.    200.5 will be deleted.
+
+ surface    100.5 and surface    300.5 are the same.    300.5 will be deleted.
+
+ surface    100.6 and surface    200.6 are the same.    200.6 will be deleted.
+
+ surface    100.6 and surface    300.6 are the same.    300.6 will be deleted.
+
+ surface    211.1 and surface    221.1 are the same.    221.1 will be deleted.
+
+ surface    211.1 and surface    231.1 are the same.    231.1 will be deleted.
+
+ surface    211.1 and surface    241.1 are the same.    241.1 will be deleted.
+
+ surface    211.2 and surface    221.2 are the same.    221.2 will be deleted.
+
+ surface    211.2 and surface    231.2 are the same.    231.2 will be deleted.
+
+ surface    211.2 and surface    241.2 are the same.    241.2 will be deleted.
+
+ surface    210.1 and surface    220.1 are the same.    220.1 will be deleted.
+
+ surface    210.1 and surface    230.1 are the same.    230.1 will be deleted.
+
+ surface    210.1 and surface    240.1 are the same.    240.1 will be deleted.
+
+ surface    210.2 and surface    220.2 are the same.    220.2 will be deleted.
+
+ surface    210.2 and surface    230.2 are the same.    230.2 will be deleted.
+
+ surface    210.2 and surface    240.2 are the same.    240.2 will be deleted.
+
+ surface    216.1 and surface    236.1 are the same.    236.1 will be deleted.
+
+ surface    215.1 and surface    235.1 are the same.    235.1 will be deleted.
+
+ surface    226.1 and surface    246.1 are the same.    246.1 will be deleted.
+
+ surface    225.1 and surface    245.1 are the same.    245.1 will be deleted.
+
+ surface    311.1 and surface    331.1 are the same.    331.1 will be deleted.
+
+ surface    311.2 and surface    331.2 are the same.    331.2 will be deleted.
+
+ surface    311.3 and surface    321.3 are the same.    321.3 will be deleted.
+
+ surface    311.3 and surface    331.3 are the same.    331.3 will be deleted.
+
+ surface    311.3 and surface    341.3 are the same.    341.3 will be deleted.
+
+ surface    311.4 and surface    321.4 are the same.    321.4 will be deleted.
+
+ surface    311.4 and surface    331.4 are the same.    331.4 will be deleted.
+
+ surface    311.4 and surface    341.4 are the same.    341.4 will be deleted.
+
+ surface    310.1 and surface    330.1 are the same.    330.1 will be deleted.
+
+ surface    310.2 and surface    330.2 are the same.    330.2 will be deleted.
+
+ surface    310.3 and surface    320.3 are the same.    320.3 will be deleted.
+
+ surface    310.3 and surface    330.3 are the same.    330.3 will be deleted.
+
+ surface    310.3 and surface    340.3 are the same.    340.3 will be deleted.
+
+ surface    310.4 and surface    320.4 are the same.    320.4 will be deleted.
+
+ surface    310.4 and surface    330.4 are the same.    330.4 will be deleted.
+
+ surface    310.4 and surface    340.4 are the same.    340.4 will be deleted.
+
+ surface    316.1 and surface    336.1 are the same.    336.1 will be deleted.
+
+ surface    315.1 and surface    335.1 are the same.    335.1 will be deleted.
+
+ surface    321.1 and surface    341.1 are the same.    341.1 will be deleted.
+
+ surface    321.2 and surface    341.2 are the same.    341.2 will be deleted.
+
+ surface    320.1 and surface    340.1 are the same.    340.1 will be deleted.
+
+ surface    320.2 and surface    340.2 are the same.    340.2 will be deleted.
+
+ surface    326.1 and surface    346.1 are the same.    346.1 will be deleted.
+
+ surface    325.1 and surface    345.1 are the same.    345.1 will be deleted.
+
+ surface    501.3 and surface    401.3 are the same.    401.3 will be deleted.
+
+ surface    501.4 and surface    401.4 are the same.    401.4 will be deleted.
+
+ surface    501.5 and surface    401.5 are the same.    401.5 will be deleted.
+
+ surface    501.6 and surface    401.6 are the same.    401.6 will be deleted.
+
+ surface    500.3 and surface    400.3 are the same.    400.3 will be deleted.
+
+ surface    500.4 and surface    400.4 are the same.    400.4 will be deleted.
+
+ surface    500.5 and surface    400.5 are the same.    400.5 will be deleted.
+
+ surface    500.6 and surface    400.6 are the same.    400.6 will be deleted.
+
+ surface    600.1 and surface    650.1 are the same.    650.1 will be deleted.
+
+ surface    600.2 and surface    650.2 are the same.    650.2 will be deleted.
+
+ surface    600.3 and surface    650.4 are the same.    650.4 will be deleted.
+
+ surface    600.5 and surface    650.5 are the same.    650.5 will be deleted.
+
+ surface    600.6 and surface    650.6 are the same.    650.6 will be deleted.
+ 
+ warning.   199 surfaces were deleted for being the same as others.
+ 
+ warning.  there are no tallies in this problem.
+ 
+ warning.    1001.  c and   1001.60c are both called for.
+ 
+ warning.    7014.  c and   7014.60c are both called for.
+ 
+ warning.   13027.  c and  13027.60c are both called for.
+ 
+ warning.    1 materials had unnormalized fractions. print table 40.
+
+
+1LAHET physics options:                                                                                 print table 41
+
+ lca    ielas   ipreq  iexisa  ichoic   jcoul  nexite   npidk   noact    icem    ilaq
+ lca        2       1       1      23       1       1       0       1       0       0
+
+ lcb    flenb(i),i=1,6                                                          ctofe       flim0
+ lcb    3.4900E+03  3.4900E+03  2.4900E+03  2.4900E+03  8.0000E+02  8.0000E+02 -1.0000E+00 -1.0000E+00
+
+ lea     ipht     icc  nobalc  nobale   ifbrk  ilvden   ievap   nofis
+ lea        1       4       1       0       1       0       0       1
+
+ leb    yzere       bzere       yzero       bzero
+ leb    1.5000E+00  8.0000E+00  1.5000E+00  1.0000E+01
+
+ 
+ warning.  cross-section file barpol.dat does not exist.
+1cells                                                                                                  print table 60
+
+                      atom        gram                                     neutron                                       
+        cell  mat    density     density     volume       mass     pieces  importance                                    
+
+     1   999    0  0.00000E+00 0.00000E+00 0.00000E+00 0.00000E+00      0  0.0000E+00                                    
+     2   998   40  5.01094E-05 1.20000E-03 0.00000E+00 0.00000E+00      0  1.0000E+00                                    
+     3   111   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+     4   110   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+     5   116   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+     6   115   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+     7   121   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+     8   120   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+     9   126   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    10   125   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    11   131   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    12   130   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    13   136   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    14   135   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    15   141   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    16   140   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    17   146   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    18   145   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    19   151   47  3.29849E-02 1.13500E+01 4.76300E+02 5.40601E+03      0  1.0000E+00                                    
+    20   152   44  4.63393E-02 8.65000E+00 4.76300E+01 4.11999E+02      0  1.0000E+00                                    
+    21   160   42s 1.22358E-01 9.50000E-01 4.84110E+02 4.59905E+02      0  1.0000E+00                                    
+    22   101   40  5.01094E-05 1.20000E-03 0.00000E+00 0.00000E+00      0  1.0000E+00                                    
+    23   100   50  6.02616E-02 2.70000E+00 2.25804E+03 6.09671E+03      0  1.0000E+00                                    
+    24   211   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    25   210   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    26   216   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    27   215   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    28   221   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    29   220   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    30   226   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    31   225   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    32   231   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    33   230   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    34   236   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    35   235   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    36   241   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    37   240   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    38   246   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    39   245   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    40   251   47  3.29849E-02 1.13500E+01 4.76300E+02 5.40601E+03      0  1.0000E+00                                    
+    41   252   44  4.63393E-02 8.65000E+00 4.76300E+01 4.11999E+02      0  1.0000E+00                                    
+    42   260   42s 1.22358E-01 9.50000E-01 4.84110E+02 4.59905E+02      0  1.0000E+00                                    
+    43   201   40  5.01094E-05 1.20000E-03 0.00000E+00 0.00000E+00      0  1.0000E+00                                    
+    44   200   50  6.02616E-02 2.70000E+00 2.25804E+03 6.09671E+03      0  1.0000E+00                                    
+    45   311   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    46   310   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    47   316   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    48   315   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    49   321   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    50   320   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    51   326   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    52   325   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    53   331   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    54   330   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    55   336   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    56   335   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    57   341   71  9.94766E-02 1.03200E+00 8.30584E+02 8.57163E+02      0  1.0000E+00                                    
+    58   340   50  6.02616E-02 2.70000E+00 1.69416E+02 4.57423E+02      0  1.0000E+00                                    
+    59   346   54  1.83636E-02 8.00000E-01 5.38467E+02 4.30774E+02      1  1.0000E+00                                    
+    60   345   43  6.03166E-02 2.71000E+00 2.77076E+01 7.50876E+01      1  1.0000E+00                                    
+    61   351   47  3.29849E-02 1.13500E+01 4.76300E+02 5.40601E+03      0  1.0000E+00                                    
+    62   352   44  4.63393E-02 8.65000E+00 4.76300E+01 4.11999E+02      0  1.0000E+00                                    
+    63   360   42s 1.22358E-01 9.50000E-01 4.84110E+02 4.59905E+02      0  1.0000E+00                                    
+    64   301   40  5.01094E-05 1.20000E-03 0.00000E+00 0.00000E+00      0  1.0000E+00                                    
+    65   300   50  6.02616E-02 2.70000E+00 2.25804E+03 6.09671E+03      0  1.0000E+00                                    
+    66   501   42s 1.22358E-01 9.50000E-01 4.70020E+03 4.46519E+03      0  1.0000E+00                                    
+    67   500   50  6.02616E-02 2.70000E+00 5.57616E+02 1.50556E+03      0  1.0000E+00                                    
+    68   401   42s 1.22358E-01 9.50000E-01 4.70020E+03 4.46519E+03      0  1.0000E+00                                    
+    69   400   50  6.02616E-02 2.70000E+00 5.57616E+02 1.50556E+03      0  1.0000E+00                                    
+    70   600   42s 1.22358E-01 9.50000E-01 0.00000E+00 0.00000E+00      0  1.0000E+00                                    
+    71   996   40  5.01094E-05 1.20000E-03 2.89800E+03 3.47760E+00      0  1.0000E+00                                    
+    72   997   40  5.01094E-05 1.20000E-03 2.89800E+03 3.47760E+00      0  1.0000E+00                                    
+    73   650   44  4.63393E-02 8.65000E+00 1.86375E+01 1.61214E+02      0  1.0000E+00                                    
+    74   700   43  6.03166E-02 2.71000E+00 9.50528E+02 2.57593E+03      1  1.0000E+00                                    
+    75   701   54  1.83636E-02 8.00000E-01 3.89852E+03 3.11882E+03      1  1.0000E+00                                    
+    76   771   70  1.69272E-04 2.40000E-03 3.39292E+02 8.14301E-01      1  1.0000E+00                                    
+    77   770   50  6.02616E-02 2.70000E+00 3.75483E+01 1.01380E+02      1  1.0000E+00                                    
+
+ total                                     5.01485E+04 7.68758E+04
+
+
+ random number control    0.830206021468160E+14
+
+    minimum source weight = 1.0000E+00    maximum source weight = 1.0000E+00
+
+         9 warning messages so far.
+1cross-section tables                                                                                   print table 100
+
+     table    length
+
+                        tables from file xdata/endf71x/H/1001.710nc                                      
+
+ particle-production data for ipt= 31 being expunged from   1001.80c
+   1001.80c    5053  H1 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)          mat 125      12/17/12
+
+                        tables from file xdata/endf60                                                    
+
+   1001.60c    2145  1-h-1 from endf-vi.1                                                         mat 125      11/25/93
+   2003.60c    2492  2-he-3 from endf-vi.1                                                        mat 225      11/25/93
+   6000.60c   19763  6-c-nat from endf-vi.1                                                       mat 600      11/25/93
+   7014.60c   34668  7-n-14 from special lanl endf-6 evaluation                                   mat 725      11/25/93
+   8016.60c   45187  8-o-16 from endf/b-vi                                            mat 8    25              11/25/93
+  13027.60c   28252  13-al-27 from endf/b-vi                                                      mat1325      11/25/93
+  14000.60c   56351  14-si-nat from endf/b-vi                                                     mat1400      11/25/93
+
+                        tables from file xdata/endf71x/H/1002.710nc                                      
+
+ particle-production data for ipt=  9 being expunged from   1002.80c
+ particle-production data for ipt= 32 being expunged from   1002.80c
+   1002.80c    7699  H2 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)          mat 128      12/17/12
+
+                        tables from file xdata/rmccs                                                     
+
+   6012.50c   18015  njoy                                                                       (  1306)      79/07/31.
+  26000.55c  119441  njoy                                                                       ( 260)       10/21/82  
+  48000.51c    5916  njoy                                                                       (  1281)     03/10/80  
+
+                        tables from file xdata/endl92                                                    
+
+   6013.42c    3874   ENDL library name:  nd920609  MCNP translation:  930914 12:03:33                       911219    
+                     temperature = 2.5860E-08 adjusted to 2.5300E-08
+
+                        tables from file xdata/endf71x/N/7014.710nc                                      
+
+ particle-production data for ipt=  9 being expunged from   7014.80c
+ particle-production data for ipt= 31 being expunged from   7014.80c
+ particle-production data for ipt= 34 being expunged from   7014.80c
+   7014.80c   91431  N14 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)         mat 725      12/16/12
+
+                        tables from file xdata/endf71x/N/7015.710nc                                      
+
+   7015.80c   21818  N15 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)         mat 728      12/16/12
+
+                        tables from file xdata/endf71x/Al/13027.710nc                                    
+
+ particle-production data for ipt=  9 being expunged from  13027.80c
+ particle-production data for ipt= 31 being expunged from  13027.80c
+ particle-production data for ipt= 32 being expunged from  13027.80c
+ particle-production data for ipt= 34 being expunged from  13027.80c
+  13027.80c  131898  Al27 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat1325      12/22/12
+
+                        tables from file xdata/endf71x/Si/14028.710nc                                    
+
+ particle-production data for ipt=  9 being expunged from  14028.80c
+ particle-production data for ipt= 31 being expunged from  14028.80c
+ particle-production data for ipt= 32 being expunged from  14028.80c
+ particle-production data for ipt= 34 being expunged from  14028.80c
+  14028.80c  159646  Si28 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat1425      12/14/12
+
+                        tables from file xdata/endf71x/Si/14029.710nc                                    
+
+ particle-production data for ipt=  9 being expunged from  14029.80c
+ particle-production data for ipt= 31 being expunged from  14029.80c
+ particle-production data for ipt= 32 being expunged from  14029.80c
+ particle-production data for ipt= 34 being expunged from  14029.80c
+  14029.80c  144364  Si29 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat1428      12/14/12
+
+                        tables from file xdata/endf71x/Si/14030.710nc                                    
+
+ particle-production data for ipt=  9 being expunged from  14030.80c
+ particle-production data for ipt= 31 being expunged from  14030.80c
+ particle-production data for ipt= 32 being expunged from  14030.80c
+ particle-production data for ipt= 34 being expunged from  14030.80c
+  14030.80c  114398  Si30 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)        mat1431      12/16/12
+
+                        tables from file xdata/rmccsa                                                    
+
+  18000.35c    2605      endl85                                                                   (  18)       11/01/85
+                     temperature = 0.0000E+00 adjusted to 2.5300E-08
+
+                        tables from file xdata/endf71x/Pb/82204.710nc                                    
+
+ particle-production data for ipt=  9 being expunged from  82204.80c
+ particle-production data for ipt= 31 being expunged from  82204.80c
+ particle-production data for ipt= 32 being expunged from  82204.80c
+ particle-production data for ipt= 33 being expunged from  82204.80c
+ particle-production data for ipt= 34 being expunged from  82204.80c
+  82204.80c  395953  Pb204 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat8225      12/22/12
+
+                        tables from file xdata/endf71x/Pb/82206.710nc                                    
+
+ particle-production data for ipt=  9 being expunged from  82206.80c
+ particle-production data for ipt= 31 being expunged from  82206.80c
+ particle-production data for ipt= 32 being expunged from  82206.80c
+ particle-production data for ipt= 33 being expunged from  82206.80c
+ particle-production data for ipt= 34 being expunged from  82206.80c
+  82206.80c  902802  Pb206 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat8231      12/22/12
+
+                        tables from file xdata/endf71x/Pb/82207.710nc                                    
+
+ particle-production data for ipt=  9 being expunged from  82207.80c
+ particle-production data for ipt= 31 being expunged from  82207.80c
+ particle-production data for ipt= 32 being expunged from  82207.80c
+ particle-production data for ipt= 33 being expunged from  82207.80c
+ particle-production data for ipt= 34 being expunged from  82207.80c
+  82207.80c  357895  Pb207 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat8234      12/22/12
+
+                        tables from file xdata/endf71x/Pb/82208.710nc                                    
+
+ particle-production data for ipt=  9 being expunged from  82208.80c
+ particle-production data for ipt= 31 being expunged from  82208.80c
+ particle-production data for ipt= 32 being expunged from  82208.80c
+ particle-production data for ipt= 34 being expunged from  82208.80c
+  82208.80c  264049  Pb208 ENDF71x (jlconlin)  Ref. see jlconlin (ref 09/10/2012  10:00:53)       mat8237      12/22/12
+
+                        tables from file xdata/sab2002                                                   
+
+   poly.60t   69775  1-h-1 in polyethylene at 293.6k from endf-vi.5 njoy99.0                 1001     0     0  09/14/99
+
+  total     3005490
+ 
+ warning.  neutron energy cutoff is below some cross-section tables.
+ 
+ warning.     2 cross sections modified by free gas thermal treatment.
+
+1particles and energy limits                                                                            print table 101
+
+                         particle      maximum       smallest      largest       always        always
+                         cutoff        particle      table         table         use table     use model
+   particle type         energy        energy        maximum       maximum       below         above
+
+    1  n  neutron       0.0000E+00    1.0000E+37    2.0000E+01    2.0000E+02    2.0000E+01    2.0000E+02
+ 
+1decimal words of dynamically allocated storage
+
+     general                  0
+     tallies                  0
+     bank                233473
+     cross sections     3005491
+
+     total                    0     =           0 bytes
+
+ ***********************************************************************************************************************
+ dump no.    1 on file runtpe     nps =           0   coll =              0     ctm =        0.00     nrn =              0
+
+
+        11 warning messages so far.
+
+         ---->  -PoliMi source = 252Cf
+
+1problem summary                                                                                                       
+
+      run terminated when        10000 particle histories were done.
++                                                                                                     03/14/22 10:42:38
+      c 9eo 3/14/2022 10:42:33                                                             probid =   03/14/22 10:42:34
+
+ neutron creation       tracks   weight        energy            neutron loss           tracks   weight        energy
+                                 (per source particle)                                           (per source particle)
+
+ source               37708    3.7708E+00    8.0421E+00          escape               31104    3.1104E+00    4.6470E+00
+ nucl. interaction        0    0.            0.                  energy cutoff            0    0.            0.        
+ particle decay           0    0.            0.                  time cutoff              0    0.            0.        
+ weight window            0    0.            0.                  weight window            0    0.            0.        
+ cell importance          0    0.            0.                  cell importance          0    0.            0.        
+ weight cutoff            0    0.            0.                  weight cutoff            0    0.            0.        
+ energy importance        0    0.            0.                  energy importance        0    0.            0.        
+ dxtran                   0    0.            0.                  dxtran                   0    0.            0.        
+ forced collisions        0    0.            0.                  forced collisions        0    0.            0.        
+ exp. transform           0    0.            0.                  exp. transform           0    0.            0.        
+ upscattering             0    0.            4.1826E-07          downscattering           0    0.            3.3420E+00
+ *photonuclear            0    0.            0.                  capture               6609    6.6090E-01    4.9018E-02
+ (n,xn)                  10    1.0000E-03    8.2318E-04          loss to (n,xn)           5    5.0000E-04    4.8236E-03
+ prompt fission           0    0.            0.                  loss to fission          0    0.            0.        
+ delayed fission          0    0.            0.                  nucl. interaction        0    0.            0.        
+ *prompt photofiss        0    0.            0.                  particle decay           0    0.            0.        
+ tabular boundary         0    0.            0.                  tabular boundary         0    0.            0.        
+ tabular sampling         0    0.            0.                                                                        
+     total            37718    3.7718E+00    8.0429E+00              total            37718    3.7718E+00    8.0429E+00
+
+   number of neutrons banked                   27736        average time of (shakes)              cutoffs
+   neutron tracks per source particle     3.7718E+00          escape            1.8186E+04          tco   1.0000E+34
+   neutron collisions per source particle 8.8420E+01          capture           1.1172E+04          eco   0.0000E+00
+   total neutron collisions                   884198          capture or escape 1.6957E+04          wc1  -5.0000E-01
+   net multiplication              4.7800E+00 0.0026          any termination   1.6955E+04          wc2  -2.5000E-01
+
+ computer time so far in this run     0.07 minutes            maximum number ever in bank         9
+ computer time in mcrun               0.05 minutes            bank overflows to backup file       0
+ source particles per minute            2.0325E+05            dynamic storage         0 words,          0 bytes.
+ random numbers generated                 11138588            most random numbers used was    10948 in history     7149
+
+ range of sampled source weights = 1.0000E+00 to 1.0000E+00
+1neutron     activity in each cell                                                                      print table 126
+
+                 tracks     population   collisions   collisions     number        flux        average      average
+        cell    entering                               * weight     weighted     weighted   track weight   track mfp
+                                                    (per history)    energy       energy     (relative)      (cm)
+
+     2   998       88153        37712         3012    3.0120E-01   2.0803E-03   1.4764E+00   1.0000E+00   8.2688E+03
+     3   111        1996         1457        14624    1.4624E+00   2.8319E-04   6.9939E-01   1.0000E+00   1.8246E+00
+     4   110        4193         1653          420    4.2000E-02   4.3483E-04   8.5629E-01   1.0000E+00   8.2791E+00
+     5   116         600          587          234    2.3400E-02   2.0016E-03   1.2759E+00   1.0000E+00   1.7187E+01
+     6   115        1214          607           23    2.3000E-03   1.9180E-03   1.3181E+00   1.0000E+00   7.1160E+00
+     7   121        1977         1440        13880    1.3880E+00   3.0240E-04   7.2326E-01   1.0000E+00   1.8609E+00
+     8   120        4105         1616          401    4.0100E-02   6.2709E-04   9.3551E-01   1.0000E+00   8.1114E+00
+     9   126         585          571          186    1.8600E-02   3.1469E-03   1.4602E+00   1.0000E+00   1.7565E+01
+    10   125        1179          590           30    3.0000E-03   2.1888E-03   1.3479E+00   1.0000E+00   6.8947E+00
+    11   131        1956         1439        12513    1.2513E+00   3.2576E-04   7.5960E-01   1.0000E+00   1.9218E+00
+    12   130        4073         1618          376    3.7600E-02   5.3997E-04   9.7526E-01   1.0000E+00   8.1848E+00
+    13   136         580          571          198    1.9800E-02   2.2035E-03   1.3527E+00   1.0000E+00   1.7479E+01
+    14   135        1178          592           32    3.2000E-03   3.0719E-03   1.3567E+00   1.0000E+00   6.9744E+00
+    15   141        1920         1425        12819    1.2819E+00   3.4017E-04   7.7389E-01   1.0000E+00   1.9290E+00
+    16   140        3976         1596          357    3.5700E-02   5.8431E-04   9.5106E-01   1.0000E+00   8.0854E+00
+    17   146         555          546          182    1.8200E-02   3.7926E-03   1.4568E+00   1.0000E+00   1.7546E+01
+    18   145        1130          574           29    2.9000E-03   3.7417E-03   1.4581E+00   1.0000E+00   6.7407E+00
+    19   151        7808         6041         2861    2.8610E-01   2.4173E-03   1.3220E+00   1.0000E+00   4.4994E+00
+    20   152        7905         6123          665    6.6500E-02   2.5104E-02   1.4886E+00   1.0000E+00   3.7473E+00
+    21   160        5958         3059        14520    1.4520E+00   3.0261E-04   7.1415E-01   1.0000E+00   1.3432E+00
+    22   101       27700        11006           20    2.0000E-03   2.9198E-03   1.4486E+00   1.0000E+00   8.4303E+03
+    23   100       24407        11597         2310    2.3100E-01   2.4525E-03   1.4165E+00   1.0000E+00   7.0748E+00
+    24   211        2079         1489        14982    1.4982E+00   2.7064E-04   7.0076E-01   1.0000E+00   1.8181E+00
+    25   210        4331         1668          364    3.6400E-02   5.1829E-04   9.2693E-01   1.0000E+00   8.2593E+00
+    26   216         595          581          206    2.0600E-02   2.9959E-03   1.3625E+00   1.0000E+00   1.7271E+01
+    27   215        1202          600           35    3.5000E-03   2.7009E-03   1.3406E+00   1.0000E+00   6.8550E+00
+    28   221        1847         1366        12319    1.2319E+00   3.4708E-04   7.4630E-01   1.0000E+00   1.9110E+00
+    29   220        3892         1561          390    3.9000E-02   6.5402E-04   1.0208E+00   1.0000E+00   8.0837E+00
+    30   226         608          591          215    2.1500E-02   4.1427E-03   1.4960E+00   1.0000E+00   1.7405E+01
+    31   225        1235          620           27    2.7000E-03   3.4654E-03   1.4242E+00   1.0000E+00   6.8744E+00
+    32   231        2044         1490        14861    1.4861E+00   2.8770E-04   7.0757E-01   1.0000E+00   1.8427E+00
+    33   230        4255         1651          403    4.0300E-02   5.3430E-04   9.0159E-01   1.0000E+00   8.1287E+00
+    34   236         604          592          218    2.1800E-02   2.2210E-03   1.4258E+00   1.0000E+00   1.7382E+01
+    35   235        1228          612           32    3.2000E-03   1.7911E-03   1.3562E+00   1.0000E+00   6.9940E+00
+    36   241        1798         1323        12411    1.2411E+00   3.0717E-04   7.5327E-01   1.0000E+00   1.8984E+00
+    37   240        3791         1523          373    3.7300E-02   5.8662E-04   9.7626E-01   1.0000E+00   8.0773E+00
+    38   246         561          554          203    2.0300E-02   2.9565E-03   1.3689E+00   1.0000E+00   1.7653E+01
+    39   245        1149          582           28    2.8000E-03   2.3711E-03   1.3319E+00   1.0000E+00   7.0073E+00
+    40   251        7963         6135         3022    3.0220E-01   2.6154E-03   1.3344E+00   1.0000E+00   4.4900E+00
+    41   252        8103         6227          697    6.9700E-02   2.5896E-02   1.4953E+00   1.0000E+00   3.7237E+00
+    42   260        5854         2993        13711    1.3711E+00   3.3615E-04   7.6539E-01   1.0000E+00   1.4077E+00
+    43   201       27921        10938           14    1.4000E-03   3.1587E-03   1.4478E+00   1.0000E+00   8.3369E+03
+    44   200       24389        11551         2339    2.3390E-01   2.8525E-03   1.4105E+00   1.0000E+00   6.9667E+00
+    45   311        2141         1461        15556    1.5556E+00   2.3614E-04   6.2059E-01   1.0000E+00   1.7093E+00
+    46   310        4433         1630          412    4.1200E-02   4.0166E-04   7.9985E-01   1.0000E+00   8.2388E+00
+    47   316         604          592          221    2.2100E-02   1.9991E-03   1.1895E+00   1.0000E+00   1.6913E+01
+    48   315        1223          613           21    2.1000E-03   2.1655E-03   1.2323E+00   1.0000E+00   6.9226E+00
+    49   321        2029         1425        14438    1.4438E+00   2.6868E-04   6.7775E-01   1.0000E+00   1.7892E+00
+    50   320        4255         1613          407    4.0700E-02   4.5831E-04   8.3286E-01   1.0000E+00   8.3543E+00
+    51   326         623          607          247    2.4700E-02   2.7068E-03   1.3550E+00   1.0000E+00   1.7440E+01
+    52   325        1272          637           26    2.6000E-03   2.5188E-03   1.2990E+00   1.0000E+00   7.0655E+00
+    53   331        2085         1469        14732    1.4732E+00   2.8135E-04   6.5414E-01   1.0000E+00   1.7707E+00
+    54   330        4354         1654          428    4.2800E-02   4.4081E-04   8.2292E-01   1.0000E+00   8.4988E+00
+    55   336         603          590          218    2.1800E-02   2.7848E-03   1.3958E+00   1.0000E+00   1.7513E+01
+    56   335        1226          613           25    2.5000E-03   3.2744E-03   1.4588E+00   1.0000E+00   7.0509E+00
+    57   341        1988         1460        13731    1.3731E+00   2.8465E-04   7.0446E-01   1.0000E+00   1.8352E+00
+    58   340        4117         1614          378    3.7800E-02   5.0976E-04   8.7181E-01   1.0000E+00   8.2653E+00
+    59   346         614          595          185    1.8500E-02   2.4274E-03   1.4121E+00   1.0000E+00   1.7491E+01
+    60   345        1241          614           32    3.2000E-03   2.5591E-03   1.3186E+00   1.0000E+00   6.8510E+00
+    61   351        8035         6119         3095    3.0950E-01   2.1030E-03   1.2852E+00   1.0000E+00   4.4555E+00
+    62   352        8132         6210          773    7.7300E-02   2.3360E-02   1.4528E+00   1.0000E+00   3.7167E+00
+    63   360        6653         3128        17572    1.7572E+00   2.1960E-04   6.0207E-01   1.0000E+00   1.1937E+00
+    64   301       29012        11155           25    2.5000E-03   2.5686E-03   1.3890E+00   1.0000E+00   8.2031E+03
+    65   300       25578        11752         2410    2.4100E-01   1.9559E-03   1.3537E+00   1.0000E+00   7.1378E+00
+    66   501        3008         2305       112363    1.1236E+01   1.0446E-04   4.5095E-01   1.0000E+00   9.3530E-01
+    67   500        5721         2494          484    4.8400E-02   4.1744E-04   8.5942E-01   1.0000E+00   8.4361E+00
+    68   401        2929         2307       112660    1.1266E+01   1.0234E-04   4.4610E-01   1.0000E+00   9.2718E-01
+    69   400        5526         2507          457    4.5700E-02   4.6854E-04   8.9900E-01   1.0000E+00   8.3617E+00
+    70   600       16530        10557       410321    4.1032E+01   1.5928E-04   5.6551E-01   1.0000E+00   1.1049E+00
+    71   996         982          913            2    2.0000E-04   4.7122E-04   9.6786E-01   1.0000E+00   6.1896E+03
+    72   997        1040          962            1    1.0000E-04   4.4350E-04   9.1056E-01   1.0000E+00   5.9000E+03
+    73   650       14599        10544         1088    1.0880E-01   6.5861E-03   1.4054E+00   1.0000E+00   3.6353E+00
+    74   700       12006         3595         1654    1.6540E-01   2.4482E-04   6.9580E-01   1.0000E+00   8.8441E+00
+    75   701        5698         3271         3565    3.5650E-01   2.6072E-04   7.1268E-01   1.0000E+00   1.5762E+01
+    76   771         363          286          105    1.0500E-02   4.8553E-04   8.2330E-01   1.0000E+00   9.0520E+02
+    77   770         638          293           24    2.4000E-03   3.0393E-04   6.4462E-01   1.0000E+00   9.7383E+00
+
+     total        477855       242652       884198    8.8420E+01
+
+ ***********************************************************************************************************************
+ dump no.    2 on file runtpe     nps =       10000   coll =         884198     ctm =        0.05     nrn =       11138588
+
+
+        11 warning messages so far.
+
+
+ run terminated when        10000 particle histories were done.
+
+ computer time =    0.07 minutes
+
+ mcnpx    version 2.7.0 Mon Apr 18 08:00:00 MST 2011                 03/14/22 10:42:38     probid =   03/14/22 10:42:34
