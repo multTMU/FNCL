@@ -149,7 +149,8 @@ namespace GuiInterface
             {
                 foreach (var p in filteredPulses.GetPulses())
                 {
-                    pulseAmp.Add(p.GetAdcPulseMax());
+                  //  pulseAmp.Add(p.GetAdcPulseMax());
+                    pulseAmp.Add(p.GetAdcIntegral());
                 }
             }
 

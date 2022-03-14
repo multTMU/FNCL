@@ -68,8 +68,8 @@ namespace Multiplicity.PulseFilters
 
         protected override double GetPulseHeight(TPulse pulse)
         {
-            return pulse.GetAdcPulseMax();
-            //return pulse.GetAdcIntegral();
+            //return pulse.GetAdcPulseMax();
+            return pulse.GetAdcIntegral();
         }
     }
 
