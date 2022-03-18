@@ -9,7 +9,7 @@ namespace MonteCarlo
         double Z;
         Point3D();
         Point3D(double x, double y, double z);
-
+        
         void MakeUnitVector();
         bool operator == (const Point3D& rhs) const;
         void operator += (const Point3D & rhs);

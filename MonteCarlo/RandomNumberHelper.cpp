@@ -24,7 +24,12 @@ namespace MonteCarlo
 
      double RandomNumberHelper::getRand() const
     {
-         return (double)rand() / RAND_MAX;
+#if _DEBUG
+         double randNumber = (double)rand() / RAND_MAX;
+         return randNumber;
+#endif
+         return (double)rand() / RAND_MAX;        
+
     }
 
     double RandomNumberHelper::getCosine() const

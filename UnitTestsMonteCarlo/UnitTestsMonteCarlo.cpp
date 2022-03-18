@@ -62,9 +62,9 @@ namespace UnitTestsMonteCarlo
 
 
     private:
-        static bool floatEqual(const float& a, const float& b)
+        static bool floatEqual(const double& a, const double& b)
         {
-            return fabs(a - b) < DOUBLE_EPSILON;
+            return abs(a - b) < DOUBLE_EPSILON;
         }
 
 	};
@@ -75,8 +75,9 @@ namespace UnitTestsMonteCarlo
         TEST_METHOD(SeedRand)
         { 
             RandomNumberHelper* randomHelper = RandomNumberHelper::GetInstance(1);
-            Assert::IsTrue(randomHelper->getInt(0, 1) > 0);
-            Assert::IsTrue(randomHelper->getRadial(10.0f) <= 10.0);
+            int randInt = randomHelper->getInt(10, 100);
+            Assert::IsTrue( randInt >= 10);
+            Assert::IsTrue(randomHelper->getRadial(10.0) <= 10.0);
         }
     };
 }

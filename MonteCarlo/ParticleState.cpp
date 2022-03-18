@@ -19,20 +19,10 @@ namespace MonteCarlo
 
     bool Point3D::operator==(const Point3D& rhs) const
     {
-        return  (fabs(X - rhs.X) < DOUBLE_EPSILON) &&
-            (fabs(Y - rhs.Y) < DOUBLE_EPSILON) &&
-            (fabs(Z - rhs.Z) < DOUBLE_EPSILON);
+        return  (abs(X - rhs.X) < DOUBLE_EPSILON) &&
+            (abs(Y - rhs.Y) < DOUBLE_EPSILON) &&
+            (abs(Z - rhs.Z) < DOUBLE_EPSILON);
     }
-
-   /* Point3D Point3D::operator+(const Point3D& rhs) const
-    {
-       return {X + rhs.X, Y + rhs.Y, Z + rhs.Z};
-    }*/
-
-  /*  Point3D Point3D::operator*(const float& scalar) const
-    {
-        return {scalar * X, scalar * Y, scalar * Z};
-    }*/
 
     void Point3D::operator+=(const Point3D& rhs)
     {
@@ -45,17 +35,6 @@ namespace MonteCarlo
     {
         return sqrt(X * X + Y * Y + Z * Z);
     }
-
-   /* Point3D& operator*(const float& scalar, const Point3D& rhs) 
-    {
-        return Point3D( scalar * rhs.X, scalar * rhs.Y, scalar * rhs.Z );
-    }*/
-
-    /*Point3D& operator*(const float& scalar, const Point3D& rhs)
-    {
-        Point3D test = rhs;
-        return scalar * test;
-    }*/
 
     void Point3D::MakeUnitVector()
     {

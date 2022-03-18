@@ -11,7 +11,7 @@ namespace MonteCarlo
         position = Position;
         direction = Direction;
         direction.MakeUnitVector();
-        lifeTime = 0.0f;
+        lifeTime = 0.0;
     }
 
     Point3D Particle::Position() const
