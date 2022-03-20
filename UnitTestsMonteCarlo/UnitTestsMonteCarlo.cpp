@@ -77,7 +77,7 @@ namespace UnitTestsMonteCarlo
             RandomNumberHelper* randomHelper = RandomNumberHelper::GetInstance(1);
             int randInt = randomHelper->getInt(10, 100);
             Assert::IsTrue( randInt >= 10);
-            Assert::IsTrue(randomHelper->getRadial(10.0) <= 10.0);
+            Assert::IsTrue(randomHelper->getRadius(10.0) <= 10.0);
         }
     };
 }

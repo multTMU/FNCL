@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Geometry.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleState.h" />
     <ClInclude Include="pch.h" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleState.cpp" />
     <ClCompile Include="pch.cpp">

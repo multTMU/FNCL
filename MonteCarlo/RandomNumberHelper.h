@@ -1,19 +1,26 @@
 #pragma once
 #include <cstdlib>
+#include <ctime>
+
+
+#include "ParticleState.h"
 
 namespace MonteCarlo
 {
     class RandomNumberHelper
     {
     protected:
-        RandomNumberHelper(const int randomSeed) : seed(randomSeed)
+        RandomNumberHelper(int randomSeed) 
         {
+            if(randomSeed == DEFAULT_SEED)
+            {
+                randomSeed = static_cast<int>(time(0));
+            }
             srand(randomSeed);
         }
 
         static RandomNumberHelper* randomNumberHelper;
-
-        int seed;
+        int static const DEFAULT_SEED = 0;
 
     public:
 
@@ -24,18 +31,15 @@ namespace MonteCarlo
         int getInt(int low, int high) const;
         double getNumber(double low, double high) const;
         double getCosine() const;
-        double getRadial(double radius) const;
+        double getRadius(double radius) const;
         double getUniform(double maximum) const;
         double getMeanFreePath() const;
-        static RandomNumberHelper* GetInstance(const int& randomSeed);
+        Point3D getOnUnitSphere()const;
+        static RandomNumberHelper* GetInstance(const int& randomSeed = DEFAULT_SEED);
        
-    private:
-
+    private:        
         double getRand() const;
-
-    };
-
-
-   
+        Point3D getUnitSpherePoint(double theta, double cosine) const;
+    };   
 }
 

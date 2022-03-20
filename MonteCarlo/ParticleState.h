@@ -1,5 +1,6 @@
 #pragma once
 #define DOUBLE_EPSILON 0.0001
+
 namespace MonteCarlo
 {
     struct Point3D

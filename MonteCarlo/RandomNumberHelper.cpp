@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "RandomNumberHelper.h"
+#include "Geometry.h"
+
 namespace MonteCarlo
 {
     RandomNumberHelper* RandomNumberHelper::randomNumberHelper = nullptr;
@@ -14,10 +16,12 @@ namespace MonteCarlo
         return (high - low) * getRand() + low;
     }
 
-    RandomNumberHelper* RandomNumberHelper::GetInstance(const int& value)
+    RandomNumberHelper* RandomNumberHelper::GetInstance(const int& randomSeed)
     {
         if (randomNumberHelper == nullptr) {
-            randomNumberHelper = new RandomNumberHelper(value);
+           
+                randomNumberHelper = new RandomNumberHelper(randomSeed);
+            
         }
         return randomNumberHelper;
     }
@@ -32,12 +36,18 @@ namespace MonteCarlo
 
     }
 
+    Point3D RandomNumberHelper::getUnitSpherePoint(double theta, double cosine) const
+    {
+        double sine = sqrt(1 - cosine * cosine);
+        return Point3D(sine * cos(theta), sine * sin(theta), cosine);
+    }
+
     double RandomNumberHelper::getCosine() const
      {
         return 2.0f * getRand() - 1.0f;
      }
 
-    double RandomNumberHelper::getRadial(double radius) const
+    double RandomNumberHelper::getRadius(double radius) const
     {
         return sqrt(getRand()) * radius;
     }
@@ -50,5 +60,13 @@ namespace MonteCarlo
     double RandomNumberHelper::getMeanFreePath() const
     {
         return -1.0 * log(getRand());
+    }
+
+    Point3D RandomNumberHelper::getOnUnitSphere() const
+    {
+        double theta = getUniform(2.0 * PI);
+        double cosine = getCosine();
+        double sine = sqrt(1 - cosine * cosine);
+        return Point3D(sine * cos(theta), sine * sin(theta), cosine);
     }
 }
