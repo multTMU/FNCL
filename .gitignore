@@ -343,7 +343,8 @@ TestDataFiles/RunPoliMiTests/
 TestDataFiles/log.txt
 TestDataFiles/tests*
 TestDataFiles/DD*
-*.bin
+# Need some binary for test data
+#*.bin
 *.pdf
 *.png
 TestDataFiles/FNCLdata/JANY/
