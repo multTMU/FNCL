@@ -13,9 +13,10 @@ namespace MonteCarlo
     struct Extents
     {
         virtual double getVolume() const = 0;
-        Point3D Center;
         virtual double maximumDistance() const = 0;
         virtual  GeometryTypes getGeometryType() const = 0;
+
+        Point3D Center;
     };
 
     struct  SphereExtents : Extents
@@ -101,5 +102,6 @@ namespace MonteCarlo
         case Box:
             return new OrthogonalBox(dynamic_cast<OrthogonalBoxExtents&>(extents));
         }
+        return nullptr;
     }
 }

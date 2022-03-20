@@ -80,4 +80,6 @@ namespace UnitTestsMonteCarlo
             Assert::IsTrue(randomHelper->getRadius(10.0) <= 10.0);
         }
     };
+
+    //NOTE: Would normally continue TDD
 }
