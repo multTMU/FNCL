@@ -7,18 +7,22 @@
 
 namespace MonteCarlo
 {
+    enum GeometryTypes{Spherical, Box};
+
     //TODO better name, Center isn't really an extent
     struct Extents
     {
         virtual double getVolume() const = 0;
         Point3D Center;
         virtual double maximumDistance() const = 0;
+        virtual  GeometryTypes getGeometryType() const = 0;
     };
 
     struct  SphereExtents : Extents
     {
         double getVolume() const override { return PI * Radius * Radius; }
         double maximumDistance() const override { return 2.0 * Radius; }
+        GeometryTypes getGeometryType() const override { return Spherical; }
         double Radius;
     };
 
@@ -26,6 +30,7 @@ namespace MonteCarlo
     {
         double getVolume() const override { return SideLengths.X * SideLengths.Y * SideLengths.Z; }
         double maximumDistance() const override { return SideLengths.Magnitude(); }
+        GeometryTypes getGeometryType() const override { return Box; }
         Point3D SideLengths;
     };
 
@@ -37,7 +42,7 @@ namespace MonteCarlo
         {
             extents = Extents;
         }
-        double getVolume() const;
+        double getVolume() const { return extents.getVolume(); }
         virtual Point3D getRandomPoint() = 0;
         virtual bool pointIsWithin(Point3D testPoint) const = 0;
         double distanceToBoundary(Point3D position, Point3D direction);
@@ -63,7 +68,6 @@ namespace MonteCarlo
             double low;
             double high;
 
-            bool stopCriteriaNotMeet();
             bool solutionFound(double midPoint) const;
             Point3D getNewTestPoint(double distance) const;
         };
@@ -87,4 +91,15 @@ namespace MonteCarlo
         static bool dimensionBounded(double dimension, double dimensionLength);
     };
 
+    template <class TExtents>
+    Geometry<TExtents>* GeometryFactory(Extents& extents)
+    {
+        switch(extents.getGeometryType())
+        {
+        case Spherical:
+            return new Sphere(dynamic_cast<SphereExtents&>(extents));
+        case Box:
+            return new OrthogonalBox(dynamic_cast<OrthogonalBoxExtents&>(extents));
+        }
+    }
 }

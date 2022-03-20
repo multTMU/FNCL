@@ -17,13 +17,14 @@ namespace MonteCarlo
     template <class TExtents>
     double Geometry<TExtents>::Bisector::getDistance(const Geometry* geometry)
     {
+        //TODO this is too long, refactor
         double distance = 0;
         low = minDistance;
         high = maxDistance;
 
         currentIteration = 0;
 
-        while (stopCriteriaNotMeet())
+        while (currentIteration < maxIterations)
         {
             currentIteration++;
             distance = (low + high) / 2.0;
