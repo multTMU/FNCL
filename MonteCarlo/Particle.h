@@ -18,7 +18,7 @@ namespace MonteCarlo
         Point3D Direction() const;// { return direction; }
         double LifeTime() const;// { return lifeTime; }
 
-        void StreamDistance(const double distance);
+        void StreamDistance(double distance);
 
     protected:
         double lifeTime;
@@ -29,7 +29,7 @@ namespace MonteCarlo
 
     private:
 
-        void updateLifeTime(const double distance);
+        void updateLifeTime(double distance);
     };
 
     class PhotonParticle :public Particle

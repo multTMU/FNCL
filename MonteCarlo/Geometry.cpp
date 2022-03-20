@@ -3,7 +3,8 @@
 
 namespace MonteCarlo
 {
-    Geometry::Bisector::Bisector(double MinDistance, double MaxDistance, const Point3D Position,
+    template <class TExtents>
+    Geometry<TExtents>::Bisector::Bisector(double MinDistance, double MaxDistance, const Point3D Position,
         const Point3D Direction, int MaxIterations)
     {
         minDistance = MinDistance;
@@ -11,9 +12,10 @@ namespace MonteCarlo
         position = Position;
         direction = Direction;
         maxIterations = MaxIterations;
-    }    
+    }
 
-    double Geometry::Bisector::getDistance(bool pointInside(const Point3D))
+    template <class TExtents>
+    double Geometry<TExtents>::Bisector::getDistance(const Geometry* geometry)
     {
         double distance = 0;
         low = minDistance;
@@ -21,19 +23,20 @@ namespace MonteCarlo
 
         currentIteration = 0;
 
-        while(stopCriteriaNotMeet())
+        while (stopCriteriaNotMeet())
         {
             currentIteration++;
             distance = (low + high) / 2.0;
-            if(solutionFound(distance))
+            if (solutionFound(distance))
             {
                 return distance;
             }
-            const Point3D testPoint = position + distance * direction;
-            if(pointInside(testPoint))
+            
+            if (geometry->pointIsWithin(getNewTestPoint(distance)))
             {
                 low = distance;
-            }else
+            }
+            else
             {
                 high = distance;
             }
@@ -42,7 +45,14 @@ namespace MonteCarlo
         return distance;
     }
 
-    bool Geometry::Bisector::solutionFound(double midPoint)
+    template <class TExtents>
+    Point3D Geometry<TExtents>::Bisector::getNewTestPoint(double distance) const
+    {
+        return position + distance * direction;
+    }
+
+    template <class TExtents>
+    bool Geometry<TExtents>::Bisector::solutionFound(double midPoint) const
     {
         if(currentIteration > maxIterations)
         {
@@ -51,28 +61,49 @@ namespace MonteCarlo
         return  ((high - low) / 2.0) < DOUBLE_EPSILON;
     }
 
-    Sphere::Sphere(const Point3D& Center, const double Radius)
-    {
-        center = Center;
-        radius = Radius;
-    }
-
     Point3D Sphere::getRandomPoint()
     {
-        double r = randomHelper->getRadius(radius);
-        return center + r * randomHelper->getOnUnitSphere();
+        double r = randomHelper->getRadius(extents.Radius);
+        return extents.Center + r * randomHelper->getOnUnitSphere();
     }
 
-    bool Sphere::pointIsWithin(const Point3D testPoint)
+    bool Sphere::pointIsWithin(const Point3D testPoint) const
     {
-        const Point3D point = testPoint - center;
-        return point.Magnitude() <= radius;
+        const Point3D point = testPoint - extents.Center;
+        return point.Magnitude() <= extents.Radius;
     }
 
-    double Sphere::distanceToBoundary(const Point3D position, const Point3D direction)
+    template <class TExtents>
+    double Geometry<TExtents>::distanceToBoundary(Point3D position, Point3D direction)
     {
-        Bisector bisector(0.0, radius, position, direction);
-        return bisector.getDistance()
-            ;
+        Bisector bisector(0.0, extents.maximumDistance(), position, direction);
+        return bisector.getDistance(this);
+    }
+
+    Point3D OrthogonalBox::getRandomPoint()
+    {
+        Point3D point(randomHelper->getUniform(extents.SideLengths.X),
+            randomHelper->getUniform(extents.SideLengths.Y),
+            randomHelper->getUniform(extents.SideLengths.Z));
+        point.X -= extents.SideLengths.X / 2.0;
+        point.Y -= extents.SideLengths.Y / 2.0;
+        point.Z -= extents.SideLengths.Z / 2.0;
+        return extents.Center + point;
+    }
+
+    bool OrthogonalBox::pointIsWithin(Point3D testPoint) const
+    {
+        Point3D point = testPoint - extents.Center;
+        point.X += extents.SideLengths.X / 2.0;
+        point.Y += extents.SideLengths.Y / 2.0;
+        point.Z += extents.SideLengths.Z / 2.0;
+        return dimensionBounded(point.X, extents.SideLengths.X)
+            && dimensionBounded(point.Y, extents.SideLengths.Y)
+            && dimensionBounded(point.Z, extents.SideLengths.Z);
+    }
+
+    bool OrthogonalBox::dimensionBounded(double dimension, double dimensionLength)
+    {
+        return ( dimension >= 0 )&& (dimension <= dimensionLength);
     }
 }

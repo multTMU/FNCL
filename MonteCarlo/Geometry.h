@@ -7,22 +7,51 @@
 
 namespace MonteCarlo
 {
+    //TODO better name, Center isn't really an extent
+    struct Extents
+    {
+        virtual double getVolume() const = 0;
+        Point3D Center;
+        virtual double maximumDistance() const = 0;
+    };
+
+    struct  SphereExtents : Extents
+    {
+        double getVolume() const override { return PI * Radius * Radius; }
+        double maximumDistance() const override { return 2.0 * Radius; }
+        double Radius;
+    };
+
+    struct OrthogonalBoxExtents :Extents
+    {
+        double getVolume() const override { return SideLengths.X * SideLengths.Y * SideLengths.Z; }
+        double maximumDistance() const override { return SideLengths.Magnitude(); }
+        Point3D SideLengths;
+    };
+
+    template <class TExtents>
     class Geometry
     {
     public:
+        Geometry(TExtents& Extents)
+        {
+            extents = Extents;
+        }
+        double getVolume() const;
         virtual Point3D getRandomPoint() = 0;
-        virtual bool pointIsWithin(const Point3D testPoint) = 0;
-        virtual double distanceToBoundary(const Point3D position, const Point3D direction) = 0;
+        virtual bool pointIsWithin(Point3D testPoint) const = 0;
+        double distanceToBoundary(Point3D position, Point3D direction);
     protected:
         RandomNumberHelper* randomHelper;
-
+        TExtents extents;
         class Bisector
         {
         public:
-            
-            Bisector(double MinDistance, double MaxDistance, const Point3D Position, const Point3D Direction, 
-                int MaxIterations = MAX_BISECT_ITERATIONS);            
-            double getDistance(bool pointInside(const Point3D));
+
+            Bisector(double MinDistance, double MaxDistance, Point3D Position, Point3D Direction,
+                int MaxIterations = MAX_BISECT_ITERATIONS);
+
+            double getDistance(const Geometry<TExtents>* geometry);
 
         private:
             double minDistance;
@@ -35,20 +64,27 @@ namespace MonteCarlo
             double high;
 
             bool stopCriteriaNotMeet();
-            bool solutionFound(double midPoint);
+            bool solutionFound(double midPoint) const;
+            Point3D getNewTestPoint(double distance) const;
         };
     };
 
-    class Sphere :Geometry
+    class Sphere : public Geometry<SphereExtents>
     {
     public:
-        Sphere(const Point3D& Center, const double Radius);
+        Sphere(SphereExtents& sphereExtents) :Geometry(sphereExtents) {};
         Point3D getRandomPoint() override;
-        bool pointIsWithin(const Point3D testPoint) override;
-        double distanceToBoundary(const Point3D position, const Point3D direction) override;
-    private:
-        double radius;
-        Point3D center;
-
+        bool pointIsWithin(Point3D testPoint) const override;
     };
+
+    class OrthogonalBox : public Geometry<OrthogonalBoxExtents>
+    {
+    public:
+        OrthogonalBox(OrthogonalBoxExtents& boxExtents) :Geometry(boxExtents) {};
+        Point3D getRandomPoint() override;
+        bool pointIsWithin(Point3D testPoint) const override;
+    private:
+        static bool dimensionBounded(double dimension, double dimensionLength);
+    };
+
 }
