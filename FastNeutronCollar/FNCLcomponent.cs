@@ -35,7 +35,7 @@ namespace FastNeutronCollar
             enclosureMat = MaterialManager.GetMaterial(materialEnclosureKey);
         }
 
-        public void OverrideDefaultCenter(Point3D newCenterPoint)
+        public void OverrideDefaultCenter(MyPoint3D newCenterPoint)
         {
             center = newCenterPoint;
         }
@@ -52,7 +52,7 @@ namespace FastNeutronCollar
 
         protected override void InitializeSubComponents()
         {
-            Point3D panelCenter = Extents.FNCL.PANEL_CENTER;
+            MyPoint3D panelCenter = Extents.FNCL.PANEL_CENTER;
 
             subComponents.Add(new Panel(Indices.FNCL.PANEL1, new PanelOneHelper(center, panelCenter)));
             subComponents.Add(new Panel(Indices.FNCL.PANEL2, new PanelTwoHelper(center, panelCenter)));
@@ -61,7 +61,7 @@ namespace FastNeutronCollar
             subComponents.Add(new EncasedBlockOfHDPE(Indices.FNCL.RIGHT_HDPE,
                 Extents.FNCL.HDPE_BLOCK_CENTER + center, enclosureThickness, "Right"));
             subComponents.Add(new EncasedBlockOfHDPE(Indices.FNCL.LEFT_HDPE,
-                Point3D.MirrorX(Extents.FNCL.HDPE_BLOCK_CENTER) + center, enclosureThickness, "Left"));
+                MyPoint3D.MirrorX(Extents.FNCL.HDPE_BLOCK_CENTER) + center, enclosureThickness, "Left"));
         }
     }
 }

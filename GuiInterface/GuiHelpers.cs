@@ -126,7 +126,7 @@ namespace GuiInterface
 
     public static class MultiplicityInterfaceHelper
     {
-        public const string EXT_TIMESTAMP = ".txt";
+        public const string EXT_TIMESTAMP = ".txt"; // this is also used for SnlNGam files
         public const string EXT_POLIMI = ".o";
         public const string EXT_FNCLBINARY = ".bin";
         private const int DEAULT_NUMBER = 0;
@@ -144,13 +144,27 @@ namespace GuiInterface
             switch (Path.GetExtension(pulseFile))
             {
                 case EXT_TIMESTAMP:
-                    return new FnclTimeStampMultiplicityGui(pulseFile);
+                    if (isFlatFile(pulseFile))
+                    {
+                        return new FnclTimeStampMultiplicityGui(pulseFile);
+                    }
+                    return new NGamSnlMultiplicityGui(pulseFile);
+
                 case EXT_POLIMI:
                     return new FnlcPoliMiMultiplicityGui(pulseFile);
                 case EXT_FNCLBINARY:
                     return new FnclBinaryMultiplicityGui(pulseFile);
                 default:
                     return new UndefinedPulsesForGui();
+            }
+        }
+
+        private static bool isFlatFile(string pulseFile)
+        {
+            using (StreamReader sr = new StreamReader(pulseFile))
+            {
+                string firstLine = sr.ReadLine();
+                return PulsesHelper.isFlatFile(firstLine);
             }
         }
 

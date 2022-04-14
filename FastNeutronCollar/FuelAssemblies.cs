@@ -43,7 +43,7 @@ namespace FastNeutronCollar
             hasSourceTerm = HasSourceTerm;
         }
 
-        public void OverrideDefaultFuelCenter(Point3D fuelCenter)
+        public void OverrideDefaultFuelCenter(MyPoint3D fuelCenter)
         {
             fuelSurfaces.SetFuelCenter(fuelCenter);
         }

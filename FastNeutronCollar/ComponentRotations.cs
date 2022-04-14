@@ -6,7 +6,7 @@ namespace FastNeutronCollar
     {
         private class DetectorOne : DetectorTransform
         {
-            public DetectorOne(PanelTransform Transform, Point3D DetectorCenter, Point3D DetectorExtents) : base(
+            public DetectorOne(PanelTransform Transform, MyPoint3D DetectorCenter, MyPoint3D DetectorExtents) : base(
                 Transform, DetectorCenter, DetectorExtents)
             {
                 comment = "One";
@@ -15,91 +15,91 @@ namespace FastNeutronCollar
 
         private class DetectorTwo : DetectorTransform
         {
-            public DetectorTwo(PanelTransform Transform, Point3D DetectorCenter, Point3D DetectorExtents) : base(
+            public DetectorTwo(PanelTransform Transform, MyPoint3D DetectorCenter, MyPoint3D DetectorExtents) : base(
                 Transform, DetectorCenter, DetectorExtents)
             {
                 comment = "Two";
             }
 
-            protected override Point3D GetCenter(Point3D center)
+            protected override MyPoint3D GetCenter(MyPoint3D center)
             {
-                return Point3D.MirrorY(center);
+                return MyPoint3D.MirrorY(center);
             }
         }
 
         private class DetectorThree : DetectorTransform
         {
-            public DetectorThree(PanelTransform Transform, Point3D DetectorCenter, Point3D DetectorExtents) : base(
+            public DetectorThree(PanelTransform Transform, MyPoint3D DetectorCenter, MyPoint3D DetectorExtents) : base(
                 Transform, DetectorCenter, DetectorExtents)
             {
                 comment = "Three";
             }
 
-            protected override Point3D GetCenter(Point3D center)
+            protected override MyPoint3D GetCenter(MyPoint3D center)
             {
-                return Point3D.MirrorZ(center);
+                return MyPoint3D.MirrorZ(center);
             }
 
-            protected override Point3D TransformAxis(Point3D axis)
+            protected override MyPoint3D TransformAxis(MyPoint3D axis)
             {
-                return Point3D.MirrorZ(axis);
+                return MyPoint3D.MirrorZ(axis);
             }
         }
 
         private class DetectorFour : DetectorTransform
         {
-            public DetectorFour(PanelTransform Transform, Point3D DetectorCenter, Point3D DetectorExtents) : base(
+            public DetectorFour(PanelTransform Transform, MyPoint3D DetectorCenter, MyPoint3D DetectorExtents) : base(
                 Transform, DetectorCenter, DetectorExtents)
             {
                 comment = "Four";
             }
 
-            protected override Point3D GetCenter(Point3D center)
+            protected override MyPoint3D GetCenter(MyPoint3D center)
             {
-                return Point3D.MirrorZ(Point3D.MirrorY(center));
+                return MyPoint3D.MirrorZ(MyPoint3D.MirrorY(center));
             }
 
-            protected override Point3D TransformAxis(Point3D axis)
+            protected override MyPoint3D TransformAxis(MyPoint3D axis)
             {
-                return Point3D.MirrorZ(axis);
+                return MyPoint3D.MirrorZ(axis);
             }
         }
 
         private abstract class DetectorTransform
         {
             private readonly PanelTransform transform;
-            protected readonly Point3D detectorCenter;
-            private readonly Point3D detectorExtents;
+            protected readonly MyPoint3D detectorCenter;
+            private readonly MyPoint3D detectorExtents;
             protected string comment;
 
-            public DetectorTransform(PanelTransform Transform, Point3D DetectorCenter, Point3D DetectorExtents)
+            public DetectorTransform(PanelTransform Transform, MyPoint3D DetectorCenter, MyPoint3D DetectorExtents)
             {
                 transform = Transform;
                 detectorCenter = DetectorCenter;
                 detectorExtents = transform.TransformExtents(DetectorExtents);
             }
 
-            public Point3D GetDetectorCenter()
+            public MyPoint3D GetDetectorCenter()
             {
                 return TransformCenter(GetCenter());
             }
 
-            private Point3D GetCenter()
+            private MyPoint3D GetCenter()
             {
                 return GetCenter(detectorCenter);
             }
 
-            protected virtual Point3D GetCenter(Point3D center)
+            protected virtual MyPoint3D GetCenter(MyPoint3D center)
             {
                 return center;
             }
 
-            private Point3D TransformCenter(Point3D center)
+            private MyPoint3D TransformCenter(MyPoint3D center)
             {
                 return transform.GetPanelCenter() + transform.TransformPoint(center);
             }
 
-            public Point3D GetDetectorExtents()
+            public MyPoint3D GetDetectorExtents()
             {
                 return transform.TransformExtents(detectorExtents);
             }
@@ -109,11 +109,11 @@ namespace FastNeutronCollar
                 return comment;
             }
 
-            public Encased<Point3D> GetPmtCenter(Encased<Point3D> getPmtCenter)
+            public Encased<MyPoint3D> GetPmtCenter(Encased<MyPoint3D> getPmtCenter)
             {
                 var inner = TransformCenter(GetCenter(getPmtCenter.Inner));
                 var outer = TransformCenter(GetCenter(getPmtCenter.Outer));
-                return new Encased<Point3D>(inner, outer);
+                return new Encased<MyPoint3D>(inner, outer);
             }
 
             public Encased<CylinderExtent> GetPmtExtents(Encased<CylinderExtent> pmtExtents)
@@ -123,7 +123,7 @@ namespace FastNeutronCollar
                 return pmtExtents;
             }
 
-            protected virtual Point3D TransformAxis(Point3D axis)
+            protected virtual MyPoint3D TransformAxis(MyPoint3D axis)
             {
                 return axis;
             }
@@ -131,16 +131,16 @@ namespace FastNeutronCollar
 
         private abstract class PanelTransform
         {
-            private readonly Point3D center;
-            private readonly Point3D panelCenter;
+            private readonly MyPoint3D center;
+            private readonly MyPoint3D panelCenter;
 
-            public PanelTransform(Point3D Center, Point3D PanelCenter)
+            public PanelTransform(MyPoint3D Center, MyPoint3D PanelCenter)
             {
                 center = Center;
                 panelCenter = PanelCenter;
             }
 
-            public Point3D GetPanelCenter()
+            public MyPoint3D GetPanelCenter()
             {
                 return center + TransformPoint(panelCenter);
             }
@@ -150,12 +150,12 @@ namespace FastNeutronCollar
                 return string.Empty;
             }
 
-            public virtual Point3D TransformPoint(Point3D panelCenterPoint)
+            public virtual MyPoint3D TransformPoint(MyPoint3D panelCenterPoint)
             {
                 return panelCenterPoint;
             }
 
-            public virtual Point3D TransformExtents(Point3D extents)
+            public virtual MyPoint3D TransformExtents(MyPoint3D extents)
             {
                 return extents;
             }
@@ -175,7 +175,7 @@ namespace FastNeutronCollar
                 return 10;
             }
 
-            public PanelOneHelper(Point3D Center, Point3D PanelCenter) : base(Center, PanelCenter)
+            public PanelOneHelper(MyPoint3D Center, MyPoint3D PanelCenter) : base(Center, PanelCenter)
             {
             }
         }
@@ -187,9 +187,9 @@ namespace FastNeutronCollar
                 return "Two";
             }
 
-            public override Point3D TransformPoint(Point3D point)
+            public override MyPoint3D TransformPoint(MyPoint3D point)
             {
-                return Point3D.MirrorX(point);
+                return MyPoint3D.MirrorX(point);
             }
 
             public override int PanelIndexOffset()
@@ -197,7 +197,7 @@ namespace FastNeutronCollar
                 return 20;
             }
 
-            public PanelTwoHelper(Point3D Center, Point3D PanelCenter) : base(Center, PanelCenter)
+            public PanelTwoHelper(MyPoint3D Center, MyPoint3D PanelCenter) : base(Center, PanelCenter)
             {
             }
         }
@@ -209,14 +209,14 @@ namespace FastNeutronCollar
                 return "Three";
             }
 
-            public override Point3D TransformPoint(Point3D point)
+            public override MyPoint3D TransformPoint(MyPoint3D point)
             {
-                return Point3D.Swap_213(point);
+                return MyPoint3D.Swap_213(point);
             }
 
-            public override Point3D TransformExtents(Point3D extents)
+            public override MyPoint3D TransformExtents(MyPoint3D extents)
             {
-                return Point3D.Swap_213(extents);
+                return MyPoint3D.Swap_213(extents);
             }
 
             public override int PanelIndexOffset()
@@ -224,7 +224,7 @@ namespace FastNeutronCollar
                 return 30;
             }
 
-            public PanelThreeHelper(Point3D Center, Point3D PanelCenter) : base(Center, PanelCenter)
+            public PanelThreeHelper(MyPoint3D Center, MyPoint3D PanelCenter) : base(Center, PanelCenter)
             {
             }
         }

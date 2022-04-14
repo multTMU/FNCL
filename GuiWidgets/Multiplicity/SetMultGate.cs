@@ -17,9 +17,9 @@ namespace GuiWidgets
             inPreDelay.DataIsInteger = false;
             inLongDelay.DataIsInteger = false;
 
-            inGate.SetCustomValidator(GuiWidgets.CustomValidatorHelper.GetDistanceToCm);
-            inPreDelay.SetCustomValidator(GuiWidgets.CustomValidatorHelper.GetDistanceToCm);
-            inLongDelay.SetCustomValidator(GuiWidgets.CustomValidatorHelper.GetDistanceToCm);
+            inGate.SetCustomValidator(CustomValidatorHelper.ConvertTimeToNanoSeconds);
+            inPreDelay.SetCustomValidator(CustomValidatorHelper.ConvertTimeToNanoSeconds);
+            inLongDelay.SetCustomValidator(CustomValidatorHelper.ConvertTimeToNanoSeconds);
         }
 
         public void SetNewTitle(string title)

@@ -55,11 +55,11 @@ namespace FastNeutronCollar
 
             private class BWRblock : Component
             {
-                private Point3D blockExtents;
-                private Point3D frontOuterFace;
+                private MyPoint3D blockExtents;
+                private MyPoint3D frontOuterFace;
                 private List<int> amLiExteriorCells;
 
-                public BWRblock(int primaryIndex, Point3D blockCenter, Point3D BlockExtents,
+                public BWRblock(int primaryIndex, MyPoint3D blockCenter, MyPoint3D BlockExtents,
                     List<int> AmLiExteriorCells) :
                     base(primaryIndex, "VVER Block")
                 {
@@ -223,41 +223,41 @@ namespace FastNeutronCollar
                 {
                     List<string> surfaces = new List<string>();
 
-                    Point3D topRightOuterCorner = frontOuterFace;
+                    MyPoint3D topRightOuterCorner = frontOuterFace;
                     topRightOuterCorner.X += Extents.AmLiSource.BWR.CavityLength / 2;
 
-                    Point3D bottomRightOuterCorner = frontOuterFace;
+                    MyPoint3D bottomRightOuterCorner = frontOuterFace;
                     bottomRightOuterCorner.Y -= Extents.AmLiSource.BWR.ExtensionLength;
                     bottomRightOuterCorner.X += Extents.AmLiSource.BWR.BlockLength / 2;
 
-                    Point3D slopeVector = Point3DHelper.GetUnitVector(topRightOuterCorner - bottomRightOuterCorner);
+                    MyPoint3D slopeVector = Point3DHelper.GetUnitVector(topRightOuterCorner - bottomRightOuterCorner);
 
-                    Point3D rightNormal = Point3DHelper.GetUnitVector(
+                    MyPoint3D rightNormal = Point3DHelper.GetUnitVector(
                         Point3DHelper.CrossProduct(slopeVector, Extents.AmLiSource.Axis));
                     // Right Side
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.RIGHT_SLOPE_OUTER_PLANE),
                         McnpSurfaces.GetPlane(topRightOuterCorner, rightNormal), "Outer Right Sloped"));
 
-                    Point3D topRightMiddleCorner = topRightOuterCorner - Extents.ENCLOSURE_THICK * rightNormal;
+                    MyPoint3D topRightMiddleCorner = topRightOuterCorner - Extents.ENCLOSURE_THICK * rightNormal;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.RIGHT_SLOPE_MIDDLE_PLANE),
                         McnpSurfaces.GetPlane(topRightMiddleCorner, rightNormal), "Middle Right Sloped"));
 
-                    Point3D topRightInnerCorner = topRightMiddleCorner - Extents.CADMIUM_THICKNESS * rightNormal;
+                    MyPoint3D topRightInnerCorner = topRightMiddleCorner - Extents.CADMIUM_THICKNESS * rightNormal;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.RIGHT_SLOPE_INNER_PLANE),
                         McnpSurfaces.GetPlane(topRightInnerCorner, rightNormal), "Inner Right Sloped"));
 
                     // Left Side
-                    Point3D leftNormal = Point3D.MirrorX(rightNormal);
+                    MyPoint3D leftNormal = MyPoint3D.MirrorX(rightNormal);
 
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.LEFT_SLOPE_OUTER_PLANE),
-                        McnpSurfaces.GetPlane(Point3D.MirrorX(topRightOuterCorner), leftNormal), "Outer Left Sloped"));
+                        McnpSurfaces.GetPlane(MyPoint3D.MirrorX(topRightOuterCorner), leftNormal), "Outer Left Sloped"));
 
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.LEFT_SLOPE_MIDDLE_PLANE),
-                        McnpSurfaces.GetPlane(Point3D.MirrorX(topRightMiddleCorner), leftNormal),
+                        McnpSurfaces.GetPlane(MyPoint3D.MirrorX(topRightMiddleCorner), leftNormal),
                         "Middle Left Sloped"));
 
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.LEFT_SLOPE_INNER_PLANE),
-                        McnpSurfaces.GetPlane(Point3D.MirrorX(topRightInnerCorner), leftNormal), "Inner Left Sloped"));
+                        McnpSurfaces.GetPlane(MyPoint3D.MirrorX(topRightInnerCorner), leftNormal), "Inner Left Sloped"));
 
                     return surfaces;
                 }
@@ -266,37 +266,37 @@ namespace FastNeutronCollar
                 {
                     List<string> surfaces = new List<string>();
 
-                    Point3D outerTop = center;
+                    MyPoint3D outerTop = center;
                     outerTop.Z += blockExtents.Z / 2;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.TOP_OUTER_PLANE),
                         McnpSurfaces.GetPlane(outerTop, Extents.AmLiSource.Axis), "Top Outer Cut Plane"));
 
-                    Point3D middleTop = outerTop;
+                    MyPoint3D middleTop = outerTop;
                     middleTop.Z -= Extents.ENCLOSURE_THICK;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.TOP_MIDDLE_PLANE),
                         McnpSurfaces.GetPlane(outerTop, Extents.AmLiSource.Axis), "Top Middle Cut Plane"));
 
-                    Point3D innerTop = middleTop;
+                    MyPoint3D innerTop = middleTop;
                     innerTop.Z -= Extents.CADMIUM_THICKNESS;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.TOP_INNER_PLANE),
                         McnpSurfaces.GetPlane(innerTop, Extents.AmLiSource.Axis), "Top Inner Cut Plane"));
 
-                    Point3D outerBottom = center;
+                    MyPoint3D outerBottom = center;
                     outerBottom.Z -= blockExtents.Z / 2;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.BOTTON_OUTER_PLANE),
-                        McnpSurfaces.GetPlane(outerBottom, Point3D.Mirror(Extents.AmLiSource.Axis)),
+                        McnpSurfaces.GetPlane(outerBottom, MyPoint3D.Mirror(Extents.AmLiSource.Axis)),
                         "Bottom Outer Cut Plane"));
 
-                    Point3D middleBottom = outerBottom;
+                    MyPoint3D middleBottom = outerBottom;
                     middleBottom.Z += Extents.ENCLOSURE_THICK;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.BOTTOM_MIDDLE_PLANE),
-                        McnpSurfaces.GetPlane(middleBottom, Point3D.Mirror(Extents.AmLiSource.Axis)),
+                        McnpSurfaces.GetPlane(middleBottom, MyPoint3D.Mirror(Extents.AmLiSource.Axis)),
                         "Bottom Middle Cut Plane"));
 
-                    Point3D innerBottom = middleBottom;
+                    MyPoint3D innerBottom = middleBottom;
                     innerBottom.Z += Extents.CADMIUM_THICKNESS;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.BOTTOM_INNER_PLANE),
-                        McnpSurfaces.GetPlane(innerBottom, Point3D.Mirror(Extents.AmLiSource.Axis)),
+                        McnpSurfaces.GetPlane(innerBottom, MyPoint3D.Mirror(Extents.AmLiSource.Axis)),
                         "Bottom Inner Cut Plane"));
 
                     return surfaces;
@@ -306,17 +306,17 @@ namespace FastNeutronCollar
                 {
                     List<string> surfaces = new List<string>();
 
-                    Point3D outerFace = frontOuterFace;
+                    MyPoint3D outerFace = frontOuterFace;
                     outerFace.Y -= Extents.AmLiSource.BWR.ExtensionLength;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.MIDDLE_OUTER_PLANE),
                         McnpSurfaces.GetPlane(outerFace, Extents.AmLiSource.IntoCavity), "Middle Outer"));
 
-                    Point3D middleFace = outerFace;
+                    MyPoint3D middleFace = outerFace;
                     middleFace.Y -= Extents.ENCLOSURE_THICK;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.MIDDLE_MIDDLE_PLANE),
                         McnpSurfaces.GetPlane(middleFace, Extents.AmLiSource.IntoCavity), "Middle Middle"));
 
-                    Point3D insideFace = middleFace;
+                    MyPoint3D insideFace = middleFace;
                     insideFace.Y -= Extents.CADMIUM_THICKNESS;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.MIDDLE_INNER_PLANE),
                         McnpSurfaces.GetPlane(insideFace, Extents.AmLiSource.IntoCavity), "Middle Inner"));
@@ -328,34 +328,34 @@ namespace FastNeutronCollar
                 {
                     List<string> surfaces = new List<string>();
 
-                    Point3D outerFace = center;
+                    MyPoint3D outerFace = center;
                     outerFace.X += blockExtents.X / 2;
-                    Point3D rightNormal = Extents.AmLiSource.SideCavity;
-                    Point3D leftNormal = Point3D.Mirror(rightNormal);
+                    MyPoint3D rightNormal = Extents.AmLiSource.SideCavity;
+                    MyPoint3D leftNormal = MyPoint3D.Mirror(rightNormal);
 
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.RIGHT_SIDE_OUTER_PLANE),
                         McnpSurfaces.GetPlane(outerFace, rightNormal), "Right Side Outer"));
 
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.LEFT_SIDE_OUTER_PLANE),
-                        McnpSurfaces.GetPlane(Point3D.Mirror(outerFace), leftNormal),
+                        McnpSurfaces.GetPlane(MyPoint3D.Mirror(outerFace), leftNormal),
                         "Left Side Outer"));
 
-                    Point3D middleFace = outerFace;
+                    MyPoint3D middleFace = outerFace;
                     middleFace.X -= Extents.ENCLOSURE_THICK;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.RIGHT_SIDE_MIDDLE_PLANE),
                         McnpSurfaces.GetPlane(middleFace, rightNormal), "Right Side Middle"));
 
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.LEFT_SIDE_MIDDLE_PLANE),
-                        McnpSurfaces.GetPlane(Point3D.Mirror(middleFace), leftNormal), "Left Side Middle"));
+                        McnpSurfaces.GetPlane(MyPoint3D.Mirror(middleFace), leftNormal), "Left Side Middle"));
 
 
-                    Point3D insideFace = middleFace;
+                    MyPoint3D insideFace = middleFace;
                     insideFace.X -= Extents.CADMIUM_THICKNESS;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.RIGHT_SIDE_INNER_PLANE),
                         McnpSurfaces.GetPlane(insideFace, rightNormal), "Right Side Inner"));
 
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.LEFT_SIDE_INNER_PLANE),
-                        McnpSurfaces.GetPlane(Point3D.Mirror(insideFace), leftNormal), "Left Side Inner"));
+                        McnpSurfaces.GetPlane(MyPoint3D.Mirror(insideFace), leftNormal), "Left Side Inner"));
 
                     return surfaces;
                 }
@@ -364,22 +364,22 @@ namespace FastNeutronCollar
                 {
                     List<string> surfaces = new List<string>();
 
-                    Point3D backFace = center;
+                    MyPoint3D backFace = center;
                     backFace.Y -= blockExtents.Y / 2;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.BACK_OUTER_PLANE),
-                        McnpSurfaces.GetPlane(backFace, Point3D.Mirror(Extents.AmLiSource.IntoCavity)), "Back Outer"));
+                        McnpSurfaces.GetPlane(backFace, MyPoint3D.Mirror(Extents.AmLiSource.IntoCavity)), "Back Outer"));
 
 
-                    Point3D middleFace = backFace;
+                    MyPoint3D middleFace = backFace;
                     middleFace.Y += Extents.ENCLOSURE_THICK;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.BACK_MIDDLE_PLANE),
-                        McnpSurfaces.GetPlane(middleFace, Point3D.Mirror(Extents.AmLiSource.IntoCavity)),
+                        McnpSurfaces.GetPlane(middleFace, MyPoint3D.Mirror(Extents.AmLiSource.IntoCavity)),
                         "Back Middle"));
 
-                    Point3D frontFace = middleFace;
+                    MyPoint3D frontFace = middleFace;
                     frontFace.Y += Extents.CADMIUM_THICKNESS;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.BACK_INNER_PLANE),
-                        McnpSurfaces.GetPlane(frontFace, Point3D.Mirror(Extents.AmLiSource.IntoCavity)), "Back Inner"));
+                        McnpSurfaces.GetPlane(frontFace, MyPoint3D.Mirror(Extents.AmLiSource.IntoCavity)), "Back Inner"));
 
                     return surfaces;
                 }
@@ -391,12 +391,12 @@ namespace FastNeutronCollar
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.FRONT_OUTER_PLANE),
                         McnpSurfaces.GetPlane(frontOuterFace, Extents.AmLiSource.IntoCavity), "Front Outer"));
 
-                    Point3D innerAlFace = frontOuterFace;
+                    MyPoint3D innerAlFace = frontOuterFace;
                     innerAlFace.Y -= Extents.ENCLOSURE_THICK;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.FRONT_MIDDLE_PLANE),
                         McnpSurfaces.GetPlane(innerAlFace, Extents.AmLiSource.IntoCavity), "Front Middle"));
 
-                    Point3D cdFace = innerAlFace;
+                    MyPoint3D cdFace = innerAlFace;
                     cdFace.Y -= Extents.CADMIUM_THICKNESS;
                     surfaces.Add(MCNPformatHelper.GetSurface(GetIndex(Indices.AmLi.BWR.FRONT_INNER_PLANE),
                         McnpSurfaces.GetPlane(cdFace, Extents.AmLiSource.IntoCavity), "Front Inner"));
@@ -429,7 +429,7 @@ namespace FastNeutronCollar
 
             private class VVERblock : Component
             {
-                public VVERblock(int primaryIndex, Point3D blockCenter) : base(primaryIndex, "VVER Block")
+                public VVERblock(int primaryIndex, MyPoint3D blockCenter) : base(primaryIndex, "VVER Block")
                 {
                     center = blockCenter;
                 }
@@ -488,7 +488,7 @@ namespace FastNeutronCollar
 
                 protected override List<string> MakeSurfaces()
                 {
-                    Point3D cdCenter = Extents.AmLiSource.PWR.CadmiumCenter;
+                    MyPoint3D cdCenter = Extents.AmLiSource.PWR.CadmiumCenter;
                     cdCenter.Z += heightOffset;
                     return new List<string>()
                     {
@@ -507,9 +507,9 @@ namespace FastNeutronCollar
 
         private abstract class AmLiBlock : Component
         {
-            protected Point3D blockCenter;
-            protected Point3D blockExtents;
-            protected Point3D amLiCenter;
+            protected MyPoint3D blockCenter;
+            protected MyPoint3D blockExtents;
+            protected MyPoint3D amLiCenter;
             protected double caseThickness;
             protected static MaterialElement blockMat;
             protected static MaterialElement caseMat;
@@ -563,8 +563,8 @@ namespace FastNeutronCollar
 
             private class AmLiSources : Component
             {
-                private readonly Point3D centerRight;
-                private readonly Point3D centerLeft;
+                private readonly MyPoint3D centerRight;
+                private readonly MyPoint3D centerLeft;
                 private readonly Encased<MaterialElement> material;
                 private Encased<CylinderExtent> extents;
                 private const bool TOPLEVEL = false;
@@ -573,12 +573,12 @@ namespace FastNeutronCollar
                 private readonly double magnitudeLeft;
                 private readonly double magnitudeRight;
 
-                public AmLiSources(int mcnpIndex, Point3D amLiCenter, double MagnitudeLeft, double MagnitudeRight,
+                public AmLiSources(int mcnpIndex, MyPoint3D amLiCenter, double MagnitudeLeft, double MagnitudeRight,
                     bool ActiveInterrogation) : base(mcnpIndex, "AmLi Source", TOPLEVEL)
                 {
                     hasSourceTerm = ActiveInterrogation;
                     centerRight = amLiCenter;
-                    centerLeft = Point3D.MirrorX(centerRight);
+                    centerLeft = MyPoint3D.MirrorX(centerRight);
                     material.Inner = MaterialManager.GetMaterial(Materials.AMLI_SOURCE);
                     material.Outer = MaterialManager.GetMaterial(Materials.TUNGSTEN_ALLOY);
                     magnitudeLeft = MagnitudeLeft;
@@ -661,9 +661,9 @@ namespace FastNeutronCollar
                     return sourceSpecification;
                 }
 
-                private Encased<Point3D> GetSharedEncased(Point3D point)
+                private Encased<MyPoint3D> GetSharedEncased(MyPoint3D point)
                 {
-                    return new Encased<Point3D>(point, point);
+                    return new Encased<MyPoint3D>(point, point);
                 }
             }
         }

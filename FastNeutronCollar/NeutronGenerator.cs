@@ -7,7 +7,7 @@ namespace FastNeutronCollar
     {
         private const string COMMENT = "Mp320 Neutron Generator";
 
-        private readonly Point3D axis;
+        private readonly MyPoint3D axis;
         protected readonly double heightDisplacement;
         private readonly bool includeSource;
         private readonly bool usePdShield;
@@ -18,10 +18,10 @@ namespace FastNeutronCollar
 
         private bool useSideShieldLeftPanelTwo;
         private bool useSideShieldRightPanelOne;
-        private Point3D sideShieldDimensions;
+        private MyPoint3D sideShieldDimensions;
 
-        public Mp320Component(Point3D generatorCenter, Point3D orientationAxis,
-            bool UsePbSheild, double PbThickness, bool UseCdShield, double CdThickness, Point3D SideShieldDimensions,
+        public Mp320Component(MyPoint3D generatorCenter, MyPoint3D orientationAxis,
+            bool UsePbSheild, double PbThickness, bool UseCdShield, double CdThickness, MyPoint3D SideShieldDimensions,
             bool IncludeSource = true,
             double HeightDisplacement = 0, double ExtraPEthickness = 0, bool UseSideShieldLeftPanelTwo = false,
             bool UseSideShieldRightPanelOne = false) : base(
@@ -60,14 +60,14 @@ namespace FastNeutronCollar
             subComponents.Add(new He3TubeDetector(he3externalIndex, GetHe3TubeCenter(), axis, "Mp320 Poly Embedded"));
         }
 
-        private Point3D GetHe3TubeCenter()
+        private MyPoint3D GetHe3TubeCenter()
         {
             return GetNGenCenter() + Extents.He3TubeMP320.TubeOffsetFromNGenCenter;
         }
 
-        private Point3D GetNGenCenter()
+        private MyPoint3D GetNGenCenter()
         {
-            Point3D ngenCenter = center + Extents.Mp320.ModeratorFaceCenter;
+            MyPoint3D ngenCenter = center + Extents.Mp320.ModeratorFaceCenter;
             ngenCenter.Y -= (extraPEthickness + cdThickness + pbThickness);
             if (useSideShieldRightPanelOne || useSideShieldLeftPanelTwo)
             {

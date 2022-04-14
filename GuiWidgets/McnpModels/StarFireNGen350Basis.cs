@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using GuiWidgets.FnclModels;
 using GlobalHelpers;
-using GeometrySampling;
 using GuiInterface;
+using GeometrySampling;
 
 namespace GuiWidgets.McnpModels
 {
@@ -52,12 +45,12 @@ namespace GuiWidgets.McnpModels
             return GARBAGE;
         }
 
-        public Point3D GetExtraLeadSideShieldDimensions()
+        public MyPoint3D GetExtraLeadSideShieldDimensions()
         {
-            return new Point3D(GARBAGE, GARBAGE, GARBAGE);
+            return new MyPoint3D(GARBAGE, GARBAGE, GARBAGE);
         }
 
-        public Point3D GetGeneratorAxis()
+        public MyPoint3D GetGeneratorAxis()
         {
             return this.inAxis.GetPoint();
         }
@@ -67,7 +60,7 @@ namespace GuiWidgets.McnpModels
             return this.inRotation.GetValue();
         }
 
-        public Point3D GetGeneratorSourcePoint()
+        public MyPoint3D GetGeneratorSourcePoint()
         {
             return this.inSourcePoint.GetPoint();
         }

@@ -25,7 +25,7 @@ namespace FastNeutronCollar
             return Math.PI * Math.Pow(radius, 2) * height;
         }
 
-        public static double GetCuboidVolume(Point3D extents)
+        public static double GetCuboidVolume(MyPoint3D extents)
         {
             return extents.X * extents.Y * extents.Z;
         }
@@ -67,71 +67,71 @@ namespace FastNeutronCollar
 
         public static string Format = "F6";
 
-        public static string GetRightCircularCylinder(Point3D baseCenter, Point3D axisVectorWithLength, double radius)
+        public static string GetRightCircularCylinder(MyPoint3D baseCenter, MyPoint3D axisVectorWithLength, double radius)
         {
             return NAME_CYLINDER + " " + baseCenter.ToString() + " " + axisVectorWithLength.ToString() + " " +
-                   radius.ToString(Point3D.format);
+                   radius.ToString(MyPoint3D.format);
         }
 
-        public static string GetRightCircularCylinder(Point3D baseCenter, CylinderExtent cylinderExtent)
+        public static string GetRightCircularCylinder(MyPoint3D baseCenter, CylinderExtent cylinderExtent)
         {
             return GetRightCircularCylinder(baseCenter, cylinderExtent.Axis, cylinderExtent.Height,
                 cylinderExtent.Radius);
         }
 
-        public static string GetRightCircularCylinder(Point3D baseCenter, Point3D axisVector, double length,
+        public static string GetRightCircularCylinder(MyPoint3D baseCenter, MyPoint3D axisVector, double length,
             double radius)
         {
-            Point3D axisVectorWithLength = length * axisVector;
+            MyPoint3D axisVectorWithLength = length * axisVector;
             return NAME_CYLINDER + " " + baseCenter.ToString() + " " + axisVectorWithLength.ToString() + " " +
-                   radius.ToString(Point3D.format);
+                   radius.ToString(MyPoint3D.format);
         }
 
-        public static string GetSphere(Point3D center, double radius)
+        public static string GetSphere(MyPoint3D center, double radius)
         {
-            return NAME_SPHERE + " " + center.ToString() + " " + radius.ToString(Point3D.format);
+            return NAME_SPHERE + " " + center.ToString() + " " + radius.ToString(MyPoint3D.format);
         }
 
-        public static string GetRectangularParallelepipedFromCenterExtents(Point3D center, Point3D extents)
+        public static string GetRectangularParallelepipedFromCenterExtents(MyPoint3D center, MyPoint3D extents)
         {
             return GetRectangularParallelepiped(McnpSurfaceHelpers.GetRectangleMinPoint(center, extents),
                 McnpSurfaceHelpers.GetRectangleMaxPoint(center, extents));
         }
 
-        public static string GetRectangularParallelepiped(Point3D minimumPoints, Point3D maximumPoints)
+        public static string GetRectangularParallelepiped(MyPoint3D minimumPoints, MyPoint3D maximumPoints)
         {
-            Point3D minPoints = McnpSurfaceHelpers.GetMinPointFromBoundPoints(minimumPoints, maximumPoints);
-            Point3D maxPoints = McnpSurfaceHelpers.GetMaxPointFromBoundPoints(minimumPoints, maximumPoints);
+            MyPoint3D minPoints = McnpSurfaceHelpers.GetMinPointFromBoundPoints(minimumPoints, maximumPoints);
+            MyPoint3D maxPoints = McnpSurfaceHelpers.GetMaxPointFromBoundPoints(minimumPoints, maximumPoints);
 
             return NAME_RECTANGLE + " " +
-                   minPoints.X.ToString(Point3D.format) + " " + maxPoints.X.ToString(Point3D.format) + " " +
-                   minPoints.Y.ToString(Point3D.format) + " " + maxPoints.Y.ToString(Point3D.format) + " " +
-                   minPoints.Z.ToString(Point3D.format) + " " + maxPoints.Z.ToString(Point3D.format);
+                   minPoints.X.ToString(MyPoint3D.format) + " " + maxPoints.X.ToString(MyPoint3D.format) + " " +
+                   minPoints.Y.ToString(MyPoint3D.format) + " " + maxPoints.Y.ToString(MyPoint3D.format) + " " +
+                   minPoints.Z.ToString(MyPoint3D.format) + " " + maxPoints.Z.ToString(MyPoint3D.format);
         }
 
-        public static string GetArbitrarilyOrientedOrthogonalBox(Point3D corner, Matrix3D sides)
+        public static string GetArbitrarilyOrientedOrthogonalBox(MyPoint3D corner, Matrix3D sides)
         {
             return GetArbitrarilyOrientedOrthogonalBox(corner, sides.Xrow, sides.Yrow, sides.Zrow);
         }
 
-        public static string GetArbitrarilyOrientedOrthogonalBox(Point3D corner, Point3D side1, Point3D side2,
-            Point3D side3)
+        public static string GetArbitrarilyOrientedOrthogonalBox(MyPoint3D corner, MyPoint3D side1, MyPoint3D side2,
+            MyPoint3D side3)
         {
             return NAME_BOX + " " + corner.ToString() + " " + side1.ToString() + " " + side2.ToString() + " " +
                    side3.ToString();
         }
 
-        public static string GetPlane(Point3D planeCoefficients, double planeConstant)
+        public static string GetPlane(MyPoint3D planeCoefficients, double planeConstant)
         {
-            return NAME_PLANE + " " + planeCoefficients.ToString() + " " + planeConstant.ToString(Point3D.format);
+            return NAME_PLANE + " " + planeCoefficients.ToString() + " " + planeConstant.ToString(MyPoint3D.format);
         }
 
-        public static string GetPlane(Point3D point, Point3D normal)
+        public static string GetPlane(MyPoint3D point, MyPoint3D normal)
         {
             return GetPlane(Point3DHelper.GetUnitVector(normal), Point3DHelper.DotProduct(normal, point));
         }
 
-        public static string GetWedge(Point3D vertex, Point3D vectorBaseA, Point3D vectorBaseB, Point3D vectorHeight)
+        public static string GetWedge(MyPoint3D vertex, MyPoint3D vectorBaseA, MyPoint3D vectorBaseB, MyPoint3D vectorHeight)
         {
             return NAME_WEDGE + " " + vertex.ToString() + " " + vectorBaseA.ToString() + " " + vectorBaseB.ToString() +
                    " " + vertex.ToString();
@@ -140,33 +140,33 @@ namespace FastNeutronCollar
 
     public static class McnpSurfaceHelpers
     {
-        public static Point3D GetRectangleMinPoint(Point3D center, Point3D extents)
+        public static MyPoint3D GetRectangleMinPoint(MyPoint3D center, MyPoint3D extents)
         {
             return center - (extents / 2);
         }
 
-        public static Point3D GetRectangleMaxPoint(Point3D center, Point3D extents)
+        public static MyPoint3D GetRectangleMaxPoint(MyPoint3D center, MyPoint3D extents)
         {
             return center + (extents / 2);
         }
 
-        public static Point3D GetMinPointFromBoundPoints(Point3D pointA, Point3D pointB)
+        public static MyPoint3D GetMinPointFromBoundPoints(MyPoint3D pointA, MyPoint3D pointB)
         {
-            return new Point3D()
+            return new MyPoint3D()
             {
                 X = Math.Min(pointA.X, pointB.X), Y = Math.Min(pointA.Y, pointB.Y), Z = Math.Min(pointA.Z, pointB.Z)
             };
         }
 
-        public static Point3D GetMaxPointFromBoundPoints(Point3D pointA, Point3D pointB)
+        public static MyPoint3D GetMaxPointFromBoundPoints(MyPoint3D pointA, MyPoint3D pointB)
         {
-            return new Point3D()
+            return new MyPoint3D()
             {
                 X = Math.Max(pointA.X, pointB.X), Y = Math.Max(pointA.Y, pointB.Y), Z = Math.Max(pointA.Z, pointB.Z)
             };
         }
 
-        public static double BoundingSphereRadiusForCylinder(double radius, Point3D axisWithLength)
+        public static double BoundingSphereRadiusForCylinder(double radius, MyPoint3D axisWithLength)
         {
             return Math.Sqrt(Math.Pow(radius, 2) + Math.Pow(Point3DHelper.GetMagnitude(axisWithLength) / 2, 2));
         }

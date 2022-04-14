@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Xml.Serialization;
 using GeometrySampling;
 using GlobalHelpersDefaults;
@@ -17,7 +16,7 @@ namespace GlobalHelpers
         public static ParticleImportance ParticleInProblem = ParticleImportance.NeutronOnly;
         public static ParticleImportance ExternalParticleImportance = ParticleImportance.NoNeutron;
         public const int NO_TRANSFORMATION = -1;
-        public static Point3D CENTER = new Point3D(0, 0, 0);
+        public static MyPoint3D CENTER = new MyPoint3D(0, 0, 0);
         public static int FillMaterial = Materials.AIR;
         public static int MCNP_PARTILCES_TO_RUN = (int)1e7;
         public const int FIRST_POLIMI_DETECTOR_INDEX = 1;
@@ -296,58 +295,58 @@ namespace GlobalHelpers
             // N = best guess
             private static double detectorOffsetX = 2.0 * ENCLOSURE_THICK;
 
-            public static Point3D DETECTOR_EXTENT = new Point3D(9.4, 9.4, 9.4); //Y
-            public static Point3D HDPE_BLOCK_EXTENT = new Point3D(13.24, 12.5, 28.4); // Y
+            public static MyPoint3D DETECTOR_EXTENT = new MyPoint3D(9.4, 9.4, 9.4); //Y
+            public static MyPoint3D HDPE_BLOCK_EXTENT = new MyPoint3D(13.24, 12.5, 28.4); // Y
 
-            public static Point3D
+            public static MyPoint3D
                 HDPE_BLOCK_CENTER =
-                    new Point3D(18.00 + 3.0 * ENCLOSURE_THICK, 18 + 2.0 * ENCLOSURE_THICK,
+                    new MyPoint3D(18.00 + 3.0 * ENCLOSURE_THICK, 18 + 2.0 * ENCLOSURE_THICK,
                         0.0); //N, assuming PANEL_CENTER and it is diagonally located
 
-            public static Point3D PANEL_CENTER = new Point3D(18.25, 0.0, 0.0); // N
-            public static Point3D PANEL_SHIELD_EXTENT = new Point3D(CADMIUM_THICKNESS + LEAD_THICKNESS, 21.65, 22); //N
+            public static MyPoint3D PANEL_CENTER = new MyPoint3D(18.25, 0.0, 0.0); // N
+            public static MyPoint3D PANEL_SHIELD_EXTENT = new MyPoint3D(CADMIUM_THICKNESS + LEAD_THICKNESS, 21.65, 22); //N
 
-            public static Point3D PANEL_SHIELD_CENTER =
-                new Point3D(12.75 + ENCLOSURE_THICK + CADMIUM_THICKNESS, 0, 0); // N
+            public static MyPoint3D PANEL_SHIELD_CENTER =
+                new MyPoint3D(12.75 + ENCLOSURE_THICK + CADMIUM_THICKNESS, 0, 0); // N
 
-            public static Point3D PANEL_ENCLOSURE_EXTENT = new Point3D(12.45 - 2 * ENCLOSURE_THICK,
+            public static MyPoint3D PANEL_ENCLOSURE_EXTENT = new MyPoint3D(12.45 - 2 * ENCLOSURE_THICK,
                 23.85 - 2 * ENCLOSURE_THICK, 97.7 - 2 * ENCLOSURE_THICK); // Z includes the handle  
 
-            public static Point3D
+            public static MyPoint3D
                 PANEL_SHIELD_NORMAL =
-                    new Point3D(-1, 0, 0); //Y face toward center, kinda arbitrary but Detector.cs uses this convention
+                    new MyPoint3D(-1, 0, 0); //Y face toward center, kinda arbitrary but Detector.cs uses this convention
 
 
-            public static Point3D DETECTOR_CENTER =
-                new Point3D(0.0 + detectorOffsetX, 5.0 + ENCLOSURE_THICK, 5.0 + ENCLOSURE_THICK); // N
+            public static MyPoint3D DETECTOR_CENTER =
+                new MyPoint3D(0.0 + detectorOffsetX, 5.0 + ENCLOSURE_THICK, 5.0 + ENCLOSURE_THICK); // N
 
-            public static Encased<Point3D> GetPmtCenter() // Y derived
+            public static Encased<MyPoint3D> GetPmtCenter() // Y derived
             {
-                Point3D center = DETECTOR_CENTER;
+                MyPoint3D center = DETECTOR_CENTER;
                 center += (PMT_EXTENTS.Outer.Height / 2 * pmtAxis) + (DETECTOR_EXTENT / 2 * pmtAxis) +
                           ENCLOSURE_THICK * pmtAxis;
-                Encased<Point3D> pmtCenter = new Encased<Point3D> {Inner = center, Outer = center};
+                Encased<MyPoint3D> pmtCenter = new Encased<MyPoint3D> {Inner = center, Outer = center};
                 return pmtCenter;
             }
 
-            private static Point3D pmtAxis = new Point3D(0, 0, 1); // Y they are up!
+            private static MyPoint3D pmtAxis = new MyPoint3D(0, 0, 1); // Y they are up!
 
             public static Encased<CylinderExtent> PMT_EXTENTS = new Encased<CylinderExtent> // Y
             {
                 Inner = new CylinderExtent(20.722, 2.876, pmtAxis), Outer = new CylinderExtent(20.85, 2.94, pmtAxis)
             };
 
-            public static Point3D GetDetectorSideShieldExtents() //N
+            public static MyPoint3D GetDetectorSideShieldExtents() //N
             {
                 // screw it, just hardcode it
-                //Point3D sideShield = 2.0 * (DETECTOR_EXTENT + ENCLOSURE_THICK);
+                //MyPoint3D sideShield = 2.0 * (DETECTOR_EXTENT + ENCLOSURE_THICK);
                 //sideShield.Y += 2.0 * SIDESHIELD_THICK;
-                return new Point3D(9.9, 21.8, 20.5);
+                return new MyPoint3D(9.9, 21.8, 20.5);
             }
 
-            public static Point3D GetDetectorSideShieldCenter()
+            public static MyPoint3D GetDetectorSideShieldCenter()
             {
-                Point3D Center = PANEL_CENTER;
+                MyPoint3D Center = PANEL_CENTER;
                 Center.X += detectorOffsetX;
                 return Center;
             }
@@ -366,44 +365,44 @@ namespace GlobalHelpers
 
         public static class NGen350
         {
-            public static Point3D Axis = new Point3D(0, 0, 1);
-            public static Point3D InternalSourceLocation = new Point3D(0, -18, 0);
+            public static MyPoint3D Axis = new MyPoint3D(0, 0, 1);
+            public static MyPoint3D InternalSourceLocation = new MyPoint3D(0, -18, 0);
             public const double Radius = 4.5;
             public const double EndRadius = 5.0;
             public const double CentralLength = 25;
             public const double OverallLength = 50;
 
-            public static Point3D Block = new Point3D(17.0, 17.0, 13.0);
-            public static Point3D SourceOffsetFromCenterBlock = new Point3D(0, -3.35, 0);
+            public static MyPoint3D Block = new MyPoint3D(17.0, 17.0, 13.0);
+            public static MyPoint3D SourceOffsetFromCenterBlock = new MyPoint3D(0, -3.35, 0);
 
-            public static Point3D
-                SourceLocationFromFrontFaceTubeCentered = new Point3D(0, 0, 5); //new Point3D(0, -1.5, 0);
+            public static MyPoint3D
+                SourceLocationFromFrontFaceTubeCentered = new MyPoint3D(0, 0, 5); //new MyPoint3D(0, -1.5, 0);
 
-            public static Point3D DefaultTubeOrientation = new Point3D(0, 0, 1);
-            public static Point3D DefaultBlockOrientation = new Point3D(0, 1, 0);
+            public static MyPoint3D DefaultTubeOrientation = new MyPoint3D(0, 0, 1);
+            public static MyPoint3D DefaultBlockOrientation = new MyPoint3D(0, 1, 0);
 
             public const double BoronThickness = 0.3;
 
             public static class FluxMonitors
             {
                 public const double OFFSET_FROM_SOURCE = 2.2;
-                public static Point3D Dimensions = new Point3D(3.6, 0.6, 2.8);
+                public static MyPoint3D Dimensions = new MyPoint3D(3.6, 0.6, 2.8);
 
-                private static readonly List<Point3D> startEndPoint = new List<Point3D>()
+                private static readonly List<MyPoint3D> startEndPoint = new List<MyPoint3D>()
                 {
                     //Order Counts, as we get direction vector from x(i+1) - x(i)
-                    new Point3D(2.9, 3.9, OFFSET_FROM_SOURCE),
-                    new Point3D(5.0, 0.6, OFFSET_FROM_SOURCE),
-                    new Point3D(3.7, -3.4, OFFSET_FROM_SOURCE),
-                    new Point3D(0, -5.2, OFFSET_FROM_SOURCE),
-                    new Point3D(-3.7, -3.4, OFFSET_FROM_SOURCE),
-                    new Point3D(-5.0, 0.6, OFFSET_FROM_SOURCE),
-                    new Point3D(-2.9, 3.9, OFFSET_FROM_SOURCE)
+                    new MyPoint3D(2.9, 3.9, OFFSET_FROM_SOURCE),
+                    new MyPoint3D(5.0, 0.6, OFFSET_FROM_SOURCE),
+                    new MyPoint3D(3.7, -3.4, OFFSET_FROM_SOURCE),
+                    new MyPoint3D(0, -5.2, OFFSET_FROM_SOURCE),
+                    new MyPoint3D(-3.7, -3.4, OFFSET_FROM_SOURCE),
+                    new MyPoint3D(-5.0, 0.6, OFFSET_FROM_SOURCE),
+                    new MyPoint3D(-2.9, 3.9, OFFSET_FROM_SOURCE)
                 };
 
                 public const double CASE_THICKNESS = 0.05; // ?
 
-                public static Point3D GetHeadPoint(int index)
+                public static MyPoint3D GetHeadPoint(int index)
                 {
                     return startEndPoint[index];
                 }
@@ -412,12 +411,12 @@ namespace GlobalHelpers
 
         public static class Mp320
         {
-            public static Point3D CenterRelativeToModeratorBulkFace = new Point3D(0, -7, 0); // 
+            public static MyPoint3D CenterRelativeToModeratorBulkFace = new MyPoint3D(0, -7, 0); // 
 
-            public static Point3D Axis = new Point3D(0, 0, 1);
-            // public static Point3D ModeratorExtents = new Point3D(40, 10, 20);
+            public static MyPoint3D Axis = new MyPoint3D(0, 0, 1);
+            // public static MyPoint3D ModeratorExtents = new MyPoint3D(40, 10, 20);
 
-            public static Point3D ModeratorCenter = new Point3D(0, -17.75, 0);
+            public static MyPoint3D ModeratorCenter = new MyPoint3D(0, -17.75, 0);
 
             // distance from the end of the neutron generator, along the axis, where the source term lies
             public const double HEIGHT_SHIFT = 5.75; // 4.5; // 14.5,
@@ -428,22 +427,22 @@ namespace GlobalHelpers
 
             //
             public const double GENERATOR_CENTER_OFFSET = 7;
-            public static Point3D ModeratorBulk = new Point3D(35.5, 17, 35);
-            public static Point3D ModeratorShieldFace = new Point3D(35.5, 0, 35);
+            public static MyPoint3D ModeratorBulk = new MyPoint3D(35.5, 17, 35);
+            public static MyPoint3D ModeratorShieldFace = new MyPoint3D(35.5, 0, 35);
             public const double MODERATOR_FRONT_LENGTH_Y = 4.5;
             public const double MODERATOR_INSET_LENGTH_X = 5;
             public const double MODERATOR_BACK_LENGTH_X = 19;
-            public static Point3D ModeratorFaceCenter = new Point3D(0, -12, 0); // This is just to prevent collissions
+            public static MyPoint3D ModeratorFaceCenter = new MyPoint3D(0, -12, 0); // This is just to prevent collissions
             private const double SOURCE_OFFSET_FROM_CENTER = 0;
 
-            public static Point3D ModeratorFaceNormal = new Point3D(0, -1, 0);
+            public static MyPoint3D ModeratorFaceNormal = new MyPoint3D(0, -1, 0);
 
             public const double CADMIUM_THICKNESS = 0.015;
         }
 
         public static class He3TubeMP320
         {
-            public static Point3D TubeOffsetFromNGenCenter = new Point3D(-6.75, -7, 3);
+            public static MyPoint3D TubeOffsetFromNGenCenter = new MyPoint3D(-6.75, -7, 3);
             public const double TUBE_LENGTH = 27.0;
             public const double TUBE_THICKNESS = 0.1;
             public const double INNER_RADIUS = 2.0;
@@ -454,54 +453,54 @@ namespace GlobalHelpers
         {
             public static class PWR
             {
-                public static Point3D BlockCenter = new Point3D(0, -17.5, 0);
-                public static Point3D SourceCenter = new Point3D(7.25, 3, 0);
+                public static MyPoint3D BlockCenter = new MyPoint3D(0, -17.5, 0);
+                public static MyPoint3D SourceCenter = new MyPoint3D(7.25, 3, 0);
 
-                public static Point3D BlockExtent = new Point3D(51.3, 9.9, 28.4); //Y
+                public static MyPoint3D BlockExtent = new MyPoint3D(51.3, 9.9, 28.4); //Y
 
-                public static Point3D CadmiumCenter = new Point3D(0,
+                public static MyPoint3D CadmiumCenter = new MyPoint3D(0,
                     CADMIUM_THICKNESS / 2 + BlockCenter.Y + BlockExtent.Y / 2 + ENCLOSURE_THICK, 0);
 
-                public static Point3D CadmiumExtents = new Point3D(51.3, CADMIUM_THICKNESS, 28.4);
+                public static MyPoint3D CadmiumExtents = new MyPoint3D(51.3, CADMIUM_THICKNESS, 28.4);
             }
 
             public static class BWR
             {
-                public static Point3D BlockCenter = new Point3D(0, -13.0, 0);
-                public static Point3D SourceCenter = new Point3D(2.54, 6.0325, 0);
+                public static MyPoint3D BlockCenter = new MyPoint3D(0, -13.0, 0);
+                public static MyPoint3D SourceCenter = new MyPoint3D(2.54, 6.0325, 0);
 
-                public static Point3D BlockExtent = new Point3D(51.3, 18.4725, 28.4); // new Point3D(51.3, 9.9, 28.4);
+                public static MyPoint3D BlockExtent = new MyPoint3D(51.3, 18.4725, 28.4); // new MyPoint3D(51.3, 9.9, 28.4);
 
                 public const double ExtensionLength = 8.5725; // not sure on the length
                 public const double CavityLength = 13.6525;
                 public const double BlockLength = 21.2725;
 
-                //public static Point3D CadmiumCenter = new Point3D(0,
+                //public static MyPoint3D CadmiumCenter = new MyPoint3D(0,
                 //    CADMIUM_THICKNESS / 2 + BlockCenter.Y + BlockExtent.Y / 2 + ENCLOSURE_THICK, 0);
 
-                //public static Point3D CadmiumExtents = new Point3D(51.3, CADMIUM_THICKNESS, 28.4);
+                //public static MyPoint3D CadmiumExtents = new MyPoint3D(51.3, CADMIUM_THICKNESS, 28.4);
             }
 
             public static class VVER
             {
-                public static Point3D BlockCenter = new Point3D(0, -17.5, 0);
-                public static Point3D SourceCenter = new Point3D(7.25, 3, 0);
+                public static MyPoint3D BlockCenter = new MyPoint3D(0, -17.5, 0);
+                public static MyPoint3D SourceCenter = new MyPoint3D(7.25, 3, 0);
 
-                public static Point3D BlockExtent = new Point3D(51.3, 9.9, 28.4); //Y
+                public static MyPoint3D BlockExtent = new MyPoint3D(51.3, 9.9, 28.4); //Y
 
                 public const double NotchWidth = 5; //N
                 public const double NotchDepth = 4; //N
 
-                //public static Point3D CadmiumCenter = new Point3D(0,
+                //public static MyPoint3D CadmiumCenter = new MyPoint3D(0,
                 //    CADMIUM_THICKNESS / 2 + BlockCenter.Y + BlockExtent.Y / 2 + ENCLOSURE_THICK, 0);
 
-                //public static Point3D CadmiumExtents = new Point3D(51.3, CADMIUM_THICKNESS, 28.4);
+                //public static MyPoint3D CadmiumExtents = new MyPoint3D(51.3, CADMIUM_THICKNESS, 28.4);
             }
 
-            public static Point3D IntoCavity = new Point3D(0, 1, 0);
-            public static Point3D SideCavity = new Point3D(1, 0, 0);
+            public static MyPoint3D IntoCavity = new MyPoint3D(0, 1, 0);
+            public static MyPoint3D SideCavity = new MyPoint3D(1, 0, 0);
 
-            public static Point3D Axis = new Point3D(0, 0, 1);
+            public static MyPoint3D Axis = new MyPoint3D(0, 0, 1);
 
             // these points are wrong
             public static class OuterBottle
@@ -523,7 +522,7 @@ namespace GlobalHelpers
             InnerRadius = 8.5 / 2.0,
             OuterRadius = 13 / 2.0,
             Enrichment = UraniumEnrichment.Depleted,
-            Axis = new Point3D(0, 0, 1),
+            Axis = new MyPoint3D(0, 0, 1),
             InnerMat = Materials.AIR
         };
 
@@ -533,22 +532,22 @@ namespace GlobalHelpers
             InnerRadius = 7.5 / 2.0,
             OuterRadius = 13 / 2.0,
             Enrichment = UraniumEnrichment.Depleted,
-            Axis = new Point3D(0, 0, 1),
+            Axis = new MyPoint3D(0, 0, 1),
             InnerMat = Materials.AIR
         };
 
         public static class SelMeasurementSetup
         {
-            private static Point3D axis = new Point3D(0, 0, 1);
-            public static Point3D PostExtents = new Point3D(10, 10, 81.5);
-            public static Point3D PostTopOffsetFromCenter = new Point3D(0, 0, -6.25);
-            public static Point3D PEslab = new Point3D(58, 101, 3);
+            private static MyPoint3D axis = new MyPoint3D(0, 0, 1);
+            public static MyPoint3D PostExtents = new MyPoint3D(10, 10, 81.5);
+            public static MyPoint3D PostTopOffsetFromCenter = new MyPoint3D(0, 0, -6.25);
+            public static MyPoint3D PEslab = new MyPoint3D(58, 101, 3);
             public static CylinderExtent ConcreteFloor = new CylinderExtent(25, 100.0, axis);
             public static CylinderExtent Puck = new CylinderExtent(2.54, 4.1275, axis);
             public static double AmLiMagnitudeLeft = .5;
             public static double AmLiMagnitudeRight = .5;
 
-            public static Point3D GetPostCenter(Point3D postTopCenter)
+            public static MyPoint3D GetPostCenter(MyPoint3D postTopCenter)
             {
                 return postTopCenter - (PostExtents / 2.0) * axis;
             }
@@ -556,13 +555,13 @@ namespace GlobalHelpers
 
         public static class NGammaDetector
         {
-            //public static Point3D SHIELD_EXTENTS = new Point3D(33.02, 43.18, 7.62);
-            // public static CylinderExtent DETECTOR = new CylinderExtent(7.62, 3.81, new Point3D(0, 1, 0));
+            //public static MyPoint3D SHIELD_EXTENTS = new MyPoint3D(33.02, 43.18, 7.62);
+            // public static CylinderExtent DETECTOR = new CylinderExtent(7.62, 3.81, new MyPoint3D(0, 1, 0));
             // want to make arbitrary arrays
             public const double MIN_SHIELD_THICKNESS = 2.25;
             public const double DETECTOR_LENGTH = 7.62;
             public const double DETECTOR_RADIUS = 3.81;
-            public static Point3D FACE_NORMAL = new Point3D(0, 1, 0);
+            public static MyPoint3D FACE_NORMAL = new MyPoint3D(0, 1, 0);
             public static CylinderExtent Extent = new CylinderExtent(DETECTOR_LENGTH, DETECTOR_RADIUS, FACE_NORMAL);
             public static double THIN_SKIN = 0.01;
         }
@@ -574,7 +573,7 @@ namespace GlobalHelpers
         public double InnerRadius;
         public double OuterRadius;
         public UraniumEnrichment Enrichment;
-        public Point3D Axis;
+        public MyPoint3D Axis;
         public int InnerMat;
     }
 
@@ -595,8 +594,8 @@ namespace GlobalHelpers
 
         public double InnerRadius;
         public double OutRadius;
-        public Point3D Center;
-        public Point3D Axis;
+        public MyPoint3D Center;
+        public MyPoint3D Axis;
         public double Radius;
         public double Height;
 
@@ -616,14 +615,14 @@ namespace GlobalHelpers
         public double CdThickness;
         public bool UseLeftPanelTwoShield;
         public bool UseRightPanelOneShield;
-        public Point3D ExtraPbShieldDimensions;
+        public MyPoint3D ExtraPbShieldDimensions;
 
         public Particle TrackParticle;
 
         //Ngen 350 Starfire
         public double RotationDegrees;
-        public Point3D GeneratorAxis;
-        public Point3D GeneratorSourcePosistion;
+        public MyPoint3D GeneratorAxis;
+        public MyPoint3D GeneratorSourcePosistion;
     }
 
     public static class SimulationSpecificationHelper

@@ -14,6 +14,43 @@ namespace Multiplicity
             return File.Exists(pulseFile) && (new FileInfo(pulseFile).Length > 0);
         }
 
+        public static class NGamSnlFileHelper
+        {
+            private const char DEL = ';';
+            private const int BOARD_INDEX = 0;
+            private const int CHANNEL_INDEX = 1;
+            private const int TIME_INDEX = 2;
+            private const int ENERGY_INDEX = 3;
+            private const int FLAG_INDEX = 4;
+
+            public static NGamSnlPulse GetPulse(string line)
+            {
+                string[] p = line.Split(DEL);
+                return new NGamSnlPulse(int.Parse(p[BOARD_INDEX]),int.Parse(p[CHANNEL_INDEX]), double.Parse(p[TIME_INDEX]), double.Parse(p[ENERGY_INDEX]), p[FLAG_INDEX]);
+            }
+
+            public static bool isFlatFile(string firstLine)
+            {
+                var split = firstLine.Split(DEL);
+                return !(split.Length == FLAG_INDEX + 1);
+            }
+
+            public static void AddPulses(NGamSnlPulses pulses)
+            {
+                if (FileExistsAndNotEmpty(pulses.PulseFile))
+                {
+                    using (StreamReader sr = new StreamReader(pulses.PulseFile))
+                    {
+                        sr.ReadLine(); // Read Header
+                        while (!sr.EndOfStream)
+                        {
+                            pulses.AddPulse(GetPulse(sr.ReadLine()));
+                        }
+                    }
+                }
+            }
+        }
+
         public static class PoliMiFileHelper
         {
             private enum PoliMiPulseIndices
@@ -205,6 +242,7 @@ namespace Multiplicity
                 {
                     using (StreamReader sr = new StreamReader(pulses.PulseFile))
                     {
+                        sr.ReadLine(); // Readheader
                         while (!sr.EndOfStream)
                         {
                             pulses.AddPulse(GetPulse(sr.ReadLine()));
@@ -217,5 +255,7 @@ namespace Multiplicity
                 }
             }
         }
+
+
     }
 }

@@ -1077,9 +1077,9 @@ namespace Tests
         }
 
 
-        private Point3D Center = new Point3D {X = 0, Y = -15, Z = 0};
+        private MyPoint3D Center = new MyPoint3D {X = 0, Y = -15, Z = 0};
 
-        private Point3D Axis = new Point3D {X = 0, Y = 0, Z = 1};
+        private MyPoint3D Axis = new MyPoint3D {X = 0, Y = 0, Z = 1};
 
         //[TestMethod]
         //public void WriteMCNPinputFile()
@@ -1154,7 +1154,7 @@ namespace Tests
         {
             string name = "ngen350Test";
             nGen350Fncl nGen = new nGen350Fncl(CONFIG_FILE, true);
-            //   nGen.SetSourcePoint(new Point3D(0, 0, 0));
+            //   nGen.SetSourcePoint(new MyPoint3D(0, 0, 0));
             nGen.MakeMCNPfiles(name + "UNIT_TEST", (int)1e5, Particle.Neutron);
             nGen.RunPoliMiandMPPost();
         }
@@ -1215,8 +1215,8 @@ namespace Tests
 
         //    var uCyl = new UraniumHollowCylinderModels.UraniumHollowCylinderNoInterrogator(configFile);
         //    uCyl.SetEnrichment(UraniumEnrichment.Depleted);
-        //    uCyl.SetCenter(new Point3D(0, 0, 0));
-        //    uCyl.SetCylinderAxis(new Point3D(0, 0, 1));
+        //    uCyl.SetCenter(new MyPoint3D(0, 0, 0));
+        //    uCyl.SetCylinderAxis(new MyPoint3D(0, 0, 1));
         //    uCyl.SetHeight(10.0);
         //    uCyl.SetInnerRadius(1);
         //    uCyl.SetOuterRadius(5);
@@ -1230,8 +1230,8 @@ namespace Tests
         //    string name = "DepletedUCylAmLi";
         //    var uCyl = new UraniumHollowCylinderModels.UraniumHollowCylinderAmLiInterrogator(configFile);
         //    uCyl.SetEnrichment(UraniumEnrichment.Depleted);
-        //    uCyl.SetCenter(new Point3D(0, 0, 0));
-        //    uCyl.SetCylinderAxis(new Point3D(0, 0, 1));
+        //    uCyl.SetCenter(new MyPoint3D(0, 0, 0));
+        //    uCyl.SetCylinderAxis(new MyPoint3D(0, 0, 1));
         //    uCyl.SetHeight(10.0);
         //    uCyl.SetInnerRadius(1);
         //    uCyl.SetOuterRadius(5);
@@ -1315,7 +1315,7 @@ namespace Tests
             for (int i = 1; i <= 6; i++)
             {
                 NonEmbeddedSources.PointSourceInSphericalShell shellSource =
-                    new NonEmbeddedSources.PointSourceInSphericalShell(new Point3D(0, 0, 0), 3.794, i * 2.54,
+                    new NonEmbeddedSources.PointSourceInSphericalShell(new MyPoint3D(0, 0, 0), 3.794, i * 2.54,
                         PoliMiSource.Cf252Sf, Materials.HDPE, false);
                 nGam.AddSourceModel(shellSource);
                 nGam.MakeMCNPfiles("Cf252_" + i.ToString() + "_InchesHDPEthin", (int)1e7, Particle.Photon, 1e5);
@@ -1328,7 +1328,7 @@ namespace Tests
         public void MakeDetectorResponseFunction()
         {
             SelFNCL selFncl = new SelFNCL(CONFIG_FILE, false, AmLiBlockTypes.PWR, "DRF");
-            Point3D drfPoint = selFncl.GetTopOfPostPucks();
+            MyPoint3D drfPoint = selFncl.GetTopOfPostPucks();
             drfPoint.Z += SelMeasurementComponents.HEIGHT_ABOVE_PUCK;
             string energyBoundsFile =
                 @"C:\Users\9eo\Documents\SourceCode\FNCL\polimi_multpilicity\TestDataFiles\neutronEnergyBounds.txt";
@@ -1417,8 +1417,8 @@ namespace Tests
                 FuelHeightDisplacement = 77,
                 InnerRadius = 1,
                 OutRadius = 2,
-                Center = new Point3D(1, 2, 3),
-                Axis = new Point3D(1, 0, 0),
+                Center = new MyPoint3D(1, 2, 3),
+                Axis = new MyPoint3D(1, 0, 0),
                 Radius = 4,
                 Height = 5,
                 Material = 6,
@@ -1434,7 +1434,7 @@ namespace Tests
                 CdThickness = 0.2,
                 UseLeftPanelTwoShield = false,
                 UseRightPanelOneShield = false,
-                ExtraPbShieldDimensions = new Point3D(3, 4, 5),
+                ExtraPbShieldDimensions = new MyPoint3D(3, 4, 5),
                 TrackParticle = Particle.NeutronAndPhoton
             };
 

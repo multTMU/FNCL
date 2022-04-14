@@ -64,16 +64,16 @@ namespace GlobalHelpers
             return GetPositionStrings(points.GetPointCollection());
         }
 
-        public static List<string> GetPoliMiPointSourcePositions(List<Point3D> points)
+        public static List<string> GetPoliMiPointSourcePositions(List<MyPoint3D> points)
         {
             return GetPositionStrings(points);
         }
 
-        private static List<string> GetPositionStrings(List<Point3D> points)
+        private static List<string> GetPositionStrings(List<MyPoint3D> points)
         {
             List<string> positions = new List<string>();
 
-            foreach (Point3D p in points)
+            foreach (MyPoint3D p in points)
             {
                 positions.Add(GetPointSource(p));
             }
@@ -81,12 +81,12 @@ namespace GlobalHelpers
             return positions;
         }
 
-        public static string GetPointSource(Point3D point)
+        public static string GetPointSource(MyPoint3D point)
         {
             return SOURCE + SEP + POS + SEP + point.X + SEP + point.Y + SEP + point.Z;
         }
 
-        public static List<string> GetUniformRangePointSource(Point3D point, double LowEnergy, double HighEnergy,
+        public static List<string> GetUniformRangePointSource(MyPoint3D point, double LowEnergy, double HighEnergy,
             string distNumber = "1")
         {
             List<string> source = new List<string>();
@@ -105,7 +105,7 @@ namespace GlobalHelpers
             return source;
         }
 
-        public static List<string> GetSphereSource(Point3D center, double radius)
+        public static List<string> GetSphereSource(MyPoint3D center, double radius)
         {
             List<string> source = new List<string>();
             source.Add(GetPointSource(center) + SEP + RAD + DIST + DRAD);
@@ -122,7 +122,7 @@ namespace GlobalHelpers
         // useful degenerate case is EXT=0, which provides a source with circular symmetry on
         // a plane.
 
-        public static List<string> GetCylinderSource(Point3D Base, CylinderExtent cylinder)
+        public static List<string> GetCylinderSource(MyPoint3D Base, CylinderExtent cylinder)
         {
             return new List<string>()
             {
@@ -150,7 +150,7 @@ namespace GlobalHelpers
         // SDEF POS=0 0 0 RAD=d1 CEL=8
         // SI1 0 20. $ radial sampling range: 0 to Rmax (=20cm)
         // SP1 -21 2 $ weighting for radial sampling: here r^2
-        public static List<string> GetBoundSourceForManyCells(List<int> cells, Point3D center, double radius)
+        public static List<string> GetBoundSourceForManyCells(List<int> cells, MyPoint3D center, double radius)
         {
             return GetBoundSourceForManyCells(cells, new SphereExtent(center, radius));
         }
@@ -186,7 +186,7 @@ namespace GlobalHelpers
             return source;
         }
 
-        public static List<string> GetBoundSourceForManyCells(List<int> cells, Point3D lower, Point3D upper)
+        public static List<string> GetBoundSourceForManyCells(List<int> cells, MyPoint3D lower, MyPoint3D upper)
         {
             return GetBoundSourceForManyCells(cells, new CuboidExtent(lower, upper));
         }

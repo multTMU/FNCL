@@ -44,5 +44,10 @@ namespace Multiplicity
             // Is possible to have no pulse file, in DRF calculations where detector is completely insensitive
             return false;
         }
+
+        public static bool isFlatFile(string firstLine)
+        {
+            return NGamSnlFileHelper.isFlatFile(firstLine);
+        }
     }
 }

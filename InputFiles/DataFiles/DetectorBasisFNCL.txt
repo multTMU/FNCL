@@ -1,0 +1,166 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+#  Input file for MPPost
+#  Detector Basis File for FNCL
+#  Sean O'Brien, 10/28/2020
+#  version: 2.1.0
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# GENERAL INFORMATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# <<<
+title           liquidScint
+# >>>
+#
+# <<<
+username        9eo
+# >>>
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# I/O FILE INFORMATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+polimi_det_in			dumn1		# MCNP-PoliMi detector filename
+# <<<
+output_file             liquidScint       # Desired output name
+# >>>
+label_output            yes         # (yes/no) Place labels at the top of the output files
+seperate_det_response   yes          # (yes/no) Print individual distributions for each detector
+list_of_pulses          yes          # (yes/no) Print a list mode file of all collected pulses
+event_inventory_on      yes          # (yes/no) Print out a table summarizing all events in the file
+collision_history       no          # (yes/no) Print summary of how collisions make pulses in the detector
+overwrite_files         yes         # (yes/no) Allow the code to overwrite old files
+comma_delimited         yes         # (yes/no) Output files delimited by a comma
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# MEMORY
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+division_size   1000    # MB, size of segments to divide the file
+cushion         200     # number of lines added to the arrays to prevent overstepping arrays
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# DETECTOR INFORMATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# <<<
+time_dependent			yes				# (yes/no) Perform analysis by time instead of by history
+# >>>
+# <<<
+NPS						1e7				# NPS used in the MCNP run
+# >>>
+# <<<
+detector_type           1               
+# >>>
+										# Type of Detector - list for each cell number
+                                        #   0 = Non Active Volume (i.e. PMT)
+                                        #   1 = Liquid Organic Scintillator
+                                        #   2 = He3 (Cannot be run with other types)
+                                        #   3 = Plastic Organic Scintillator
+                                        #   4 = NaI
+                                        #   5 = CaF2
+                                        #   6 = LaBr3 
+threshold			    0.07            # MeVee, Threshold for event detection - list for each cell number
+upper_threshold			20               # originally 3, MeVee, the max acceptable light for event detection - list for each cell number
+# <<<
+detector_cell_numbers ( 3011 3012 3013 3014 ) ( 3021 3022 3023 3024 )  ( 3031 3032 3033 3034 )     # Cell numbers of the detectors
+# >>>
+                                        #   NOTE: To group cells add ( ) around the group. 
+                                        #   There must be a space before and after each (
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# DETECTOR INFORMATION - Pulse Height 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pulse_height_on     yes    		# (yes/no) Print pulse height distributions 
+sum_then_light      no      	# (yes/no) Convert the sum of all contributing particles energy to light
+# <<<
+cross_talk_sub_on   no			# (yes/no) Eliminate particles with cross talk
+# >>>
+# Pulse Generation Time - ns, Light collection time for a pulse
+# <<<
+organic_liq_pgt     10			# Pulse generation time for an organic liquid scintillator
+# >>>
+
+
+# Deadtime - ns, dead time of the detector between pulses
+# <<<
+organic_liq_dt       0			# Dead time for an organic liquid scintillator
+# >>>
+
+histogram_start      0    		# MeVee, Min value for the pulse height distribution
+histogram_stop       20    		# MeVee, Max value for the pulse height distribution
+bin_step             0.01    	# MeVee, Bin step - top side of the bin
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ORGANIC SCINTILLATOR
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+calibration_regions  1                                  # Number of independently fit neutron light regions
+region_type          1                                  # Specify which form for the coefficients, if multiple regions list selections
+                                                        # Type    Form       How to enter values on the neutron_calibraion line
+                                                        #   1 = Ax^2+Bx+C  -> E1 E2 A B C
+                                                        #   2 = Ax^2/(x+B) -> E1 E2 B A
+                                                        #   3 = A(Bx-C(1-exp(Dx^E)))  -> E1 E2 A B C D E
+                                                        #   Where E1 and E2 are the lower and upper energy bounds respectively in MeVee
+neutron_calibration  0 50     0.03495 0.1424  -0.036    # Neutron Calibration - see above for entry instructions
+#                 0.8 1   0 0 0.03495 0.1424  -0.036 &  #   For multiple regions add an '&' to the end of the line and continue next region 
+#                 1   50  0 0 0.03495 0.1424  -0.036    #   on the next line
+photon_calibration      1.000  0.000                    # A,B: Parameters for photon light conversion - Ax+B
+carbon_light_constant   0.02                            # Constant value for carbon light conversion
+deuterium_calibration   0 0 0.0131 0.2009 -0.0331       # A,B,C,D,E: Parameters for deuterium light conversion - Ax^4+Bx^3+Cx^2+Dx+E
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Light Output Resolution
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# <<<
+light_resolution_on   no   	# (yes/no) Turns on/off the a Gaussian Light Broadening
+# >>>
+# <<<
+organic_liq_p_lgt			# Resolution for photons in liquid scintillator
+# >>>
+# <<<
+organic_liq_n_lgt   		# Resolution for neutrons in liquid scintillator
+# >>>
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Time Resolution
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# <<<
+tme_resolution_on  	no    	# (yes/no) Turns on/off time broadening
+# >>>
+# <<<
+organic_liq_p_lgt			# Resolution for photons in liquid scintillator
+# >>>
+# <<<
+organic_liq_n_lgt   		# Resolution for neutrons in liquid scintillator
+# >>>
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# TIME-OF-FLIGHT, CORRELATION, and AUTOCORRELATION INFORMATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tof_on					no     # (yes/no) Turn on/off TOF distributions (cannot have a start detector)
+cross_correlation_on    no      # (yes/no) Turn on/off cross correlation function
+auto_correlation_on     no      # (yes/no) Turn on/off auto correlation function 
+start_detector                  # Cell number of the start detector (leave blank for TOF)
+time_start              0   	# ns, time for the correlation plot to start
+time_stop               100		# ns, time for the correlation plot to stop
+time_increment          1       # ns, time increment between the bins - top side of the bin
+cc_window_incr          1000    # ns, time window for correlation events for time dependent analysis
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Pulse Height Correlation
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pulse_correlation_on   no       # (yes/no) Turn on/off pulse height correlation analysis
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# CAPTURE GATED DETECTORS
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+capture_gate_on     no			# (yes/no) Capture gated detector response on/off
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# He3 MODULE
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+he3_multiplicity		no      # (yes/no) He3 module on/off
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Select Capture Event Type
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+output_sort_file    yes			# (yes/no) Print out a file with all sorted events

@@ -10,13 +10,13 @@ namespace NeutronCaptureGammaDetector
     {
         private MaterialElement shieldMat;
         private MaterialElement detectorMat;
-        private Point3D detectorFacePlaneCenter;
+        private MyPoint3D detectorFacePlaneCenter;
         private double shieldThickness;
-        private Point3D shieldExtents;
+        private MyPoint3D shieldExtents;
         private double deltaXY;
-        private Point3D firstDetector;
+        private MyPoint3D firstDetector;
 
-        public NGammaDetector(Point3D DetectorFacePlaneCenter, double ShieldThickness) : base(
+        public NGammaDetector(MyPoint3D DetectorFacePlaneCenter, double ShieldThickness) : base(
             Indices.NGammaDetector.BASE_INDEX, "Neutron Capture Gamma Detector")
         {
             shieldMat = MaterialManager.GetMaterial(Materials.LEAD);
@@ -135,7 +135,7 @@ namespace NeutronCaptureGammaDetector
 
         private string GetDetectorMacroBody(int row, int col)
         {
-            Point3D detectorBase = firstDetector;
+            MyPoint3D detectorBase = firstDetector;
             detectorBase.X += deltaXY * col;
             detectorBase.Z += deltaXY * row;
 
@@ -148,10 +148,10 @@ namespace NeutronCaptureGammaDetector
                    (col + 1);
         }
 
-        private Point3D GetFirstDetectorPosition()
+        private MyPoint3D GetFirstDetectorPosition()
         {
-            // Point3D offset = shieldExtents - (shieldExtents / 2) * normalAxis;
-            Point3D corner = detectorFacePlaneCenter; //- offset;
+            // MyPoint3D offset = shieldExtents - (shieldExtents / 2) * normalAxis;
+            MyPoint3D corner = detectorFacePlaneCenter; //- offset;
             corner.X += (Extents.NGammaDetector.DETECTOR_RADIUS + Extents.NGammaDetector.MIN_SHIELD_THICKNESS) -
                         (shieldExtents.X / 2);
             corner.Z += (Extents.NGammaDetector.DETECTOR_RADIUS + Extents.NGammaDetector.MIN_SHIELD_THICKNESS) -
@@ -162,7 +162,7 @@ namespace NeutronCaptureGammaDetector
 
         private string GetShieldSurface()
         {
-            Point3D shieldCenter = detectorFacePlaneCenter;
+            MyPoint3D shieldCenter = detectorFacePlaneCenter;
             shieldCenter.Y += (shieldExtents.Y / 2) - shieldThickness;
 
             return MCNPformatHelper.GetSurface(GetShieldIndex(),
@@ -175,14 +175,14 @@ namespace NeutronCaptureGammaDetector
             return GetIndex(Indices.NGammaDetector.SHIELD);
         }
 
-        private Point3D GetShieldExtentsToCoverDetectors()
+        private MyPoint3D GetShieldExtentsToCoverDetectors()
         {
             double rowWidth = (2 + NGammaHelpers.NUMBER_ROWS - 1) * Extents.NGammaDetector.MIN_SHIELD_THICKNESS +
                               2 * NGammaHelpers.NUMBER_ROWS * Extents.NGammaDetector.DETECTOR_RADIUS;
             double colWidth = (2 + NGammaHelpers.NUMBER_COLUMNS - 1) * Extents.NGammaDetector.MIN_SHIELD_THICKNESS +
                               2 * NGammaHelpers.NUMBER_COLUMNS * Extents.NGammaDetector.DETECTOR_RADIUS;
 
-            return new Point3D(colWidth,
+            return new MyPoint3D(colWidth,
                 Extents.NGammaDetector.DETECTOR_LENGTH + 2.0 * Extents.NGammaDetector.THIN_SKIN, rowWidth);
         }
     }

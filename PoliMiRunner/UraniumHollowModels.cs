@@ -110,8 +110,8 @@ namespace Runner
         public interface IUraniumHollowCylinder
         {
             void SetSpecifications(UraniumHollowCylinderSpec specifications);
-            void SetCenter(Point3D Center);
-            void SetCylinderAxis(Point3D Axis);
+            void SetCenter(MyPoint3D Center);
+            void SetCylinderAxis(MyPoint3D Axis);
             void SetHeight(double Height);
             void SetInnerRadius(double InnerRadius);
             void SetOuterRadius(double OuterRadius);
@@ -124,8 +124,8 @@ namespace Runner
         //public class UraniumHollowCylinderNGen : Mp320Fncl, IUraniumHollowCylinder
         //{
         //    protected const string DefaultDescription = "Uranium Hollow Cylinder AmLi";
-        //    protected Point3D center;
-        //    protected Point3D axis;
+        //    protected MyPoint3D center;
+        //    protected MyPoint3D axis;
         //    protected double height;
         //    protected double innerRadius;
         //    protected double outerRadius;
@@ -145,12 +145,12 @@ namespace Runner
         //        outerMat = UraniumHelper.GetMaterial(specifications.Enrichment);
         //    }
 
-        //    public void SetCenter(Point3D Center)
+        //    public void SetCenter(MyPoint3D Center)
         //    {
         //        center = Center;
         //    }
 
-        //    public void SetCylinderAxis(Point3D Axis)
+        //    public void SetCylinderAxis(MyPoint3D Axis)
         //    {
         //        axis = Axis;
         //    }
@@ -203,8 +203,8 @@ namespace Runner
         //public class UraniumHollowCylinderAmLiInterrogator : AmLiFNCL, IUraniumHollowCylinder
         //{
         //    protected const string mcnpDescription = "Uranium Hollow Cylinder AmLi";
-        //    protected Point3D center;
-        //    protected Point3D axis;
+        //    protected MyPoint3D center;
+        //    protected MyPoint3D axis;
         //    protected double height;
         //    protected double innerRadius;
         //    protected double outerRadius;
@@ -228,12 +228,12 @@ namespace Runner
         //        outerMat = UraniumHelper.GetMaterial(specifications.Enrichment);
         //    }
 
-        //    public void SetCenter(Point3D Center)
+        //    public void SetCenter(MyPoint3D Center)
         //    {
         //        center = Center;
         //    }
 
-        //    public void SetCylinderAxis(Point3D Axis)
+        //    public void SetCylinderAxis(MyPoint3D Axis)
         //    {
         //        axis = Axis;
         //    }
@@ -283,8 +283,8 @@ namespace Runner
         //public class UraniumHollowCylinderNoInterrogator : RunFnclDetector, IUraniumHollowCylinder
         //{
         //    protected const string mcnpDescription = "Uranium Hollow Cylinder No Iterrogator";
-        //    protected Point3D center;
-        //    protected Point3D axis;
+        //    protected MyPoint3D center;
+        //    protected MyPoint3D axis;
         //    protected double height;
         //    protected double innerRadius;
         //    protected double outerRadius;
@@ -309,12 +309,12 @@ namespace Runner
         //        outerMat = UraniumHelper.GetMaterial(specifications.Enrichment);
         //    }
 
-        //    public void SetCenter(Point3D Center)
+        //    public void SetCenter(MyPoint3D Center)
         //    {
         //        center = Center;
         //    }
 
-        //    public void SetCylinderAxis(Point3D Axis)
+        //    public void SetCylinderAxis(MyPoint3D Axis)
         //    {
         //        axis = Axis;
         //    }

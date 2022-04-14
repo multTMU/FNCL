@@ -81,13 +81,13 @@
     <Compile Include="Transformations.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GeometrySampling\GeometrySampling.csproj">
-      <Project>{ddae23bc-b015-4b64-931f-dd47d6b2dee8}</Project>
-      <Name>GeometrySampling</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\GeometrySampling\GeometrySampling.csproj">
+      <Project>{DDAE23BC-B015-4B64-931F-DD47D6B2DEE8}</Project>
+      <Name>GeometrySampling</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

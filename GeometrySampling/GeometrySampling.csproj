@@ -58,7 +58,7 @@
     <Compile Include="BoundingValues.cs" />
     <Compile Include="ExtentsHelper.cs" />
     <Compile Include="OneDimension.cs" />
-    <Compile Include="Point3D.cs" />
+    <Compile Include="MyPoint3D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreeDimensions.cs" />
     <Compile Include="TwoDimensions.cs" />

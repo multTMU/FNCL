@@ -26,14 +26,14 @@ namespace FastNeutronCollar
             private int gapIndex;
             private int cladIndex;
 
-            private Point3D Center;
-            private Point3D fuelBase;
-            private Point3D axisVector;
+            private MyPoint3D Center;
+            private MyPoint3D fuelBase;
+            private MyPoint3D axisVector;
 
             private int transformation;
 
-            private List<Point3D> rowCenters;
-            private List<Point3D> columnCenters;
+            private List<MyPoint3D> rowCenters;
+            private List<MyPoint3D> columnCenters;
 
             private double boxBuffer;
             private const int BOUNDBOX_BIG = 99;
@@ -85,7 +85,7 @@ namespace FastNeutronCollar
                 MCNPformatHelper.FormatThenWriteToFile(surfaceFile, Surfaces);
             }
 
-            public void SetFuelCenter(Point3D center)
+            public void SetFuelCenter(MyPoint3D center)
             {
                 Center = center;
             }
@@ -155,7 +155,7 @@ namespace FastNeutronCollar
 
             private string GetFuelLine(FuelArray.FuelArrayElement pin, int leadingIndex, double radius)
             {
-                Point3D cylinderBase = rowCenters[pin.RowIndex] + columnCenters[pin.ColIndex] + fuelBase;
+                MyPoint3D cylinderBase = rowCenters[pin.RowIndex] + columnCenters[pin.ColIndex] + fuelBase;
                 return WriterHelper.RemoveExtraSpace(GetPinName(pin, leadingIndex) + " " +
                                                      McnpSurfaces.GetRightCircularCylinder(cylinderBase,
                                                          axisVector, radius));
@@ -203,16 +203,16 @@ namespace FastNeutronCollar
                 Surfaces.Add(MCNPformatHelper.GetCommentLine("Imaginary Box Around Fuel"));
                 Surfaces.Add(MCNPformatHelper.GetCommentLine());
 
-                Point3D bufferPoint = new Point3D
+                MyPoint3D bufferPoint = new MyPoint3D
                 {
                     X = boxBuffer + fuelSpec.CoolingChannelOuterRadius,
                     Y = boxBuffer + fuelSpec.CoolingChannelOuterRadius,
                     Z = boxBuffer
                 };
 
-                Point3D minPoint = rowCenters.First() + columnCenters.First();
+                MyPoint3D minPoint = rowCenters.First() + columnCenters.First();
                 minPoint.Z = fuelBase.Z;
-                Point3D maxPoint = rowCenters.Last() + columnCenters.Last();
+                MyPoint3D maxPoint = rowCenters.Last() + columnCenters.Last();
                 maxPoint.Z = fuelBase.Z + fuelSpec.Length;
 
                 minPoint -= bufferPoint;
@@ -239,12 +239,12 @@ namespace FastNeutronCollar
                 startPinCol = midPinCol - fuel.MaxColumn / 4;
                 endPinCol = midPinCol + fuel.MaxColumn / 4;
 
-                Point3D minPoint = rowCenters[startPinRow] + columnCenters[startPinCol];
+                MyPoint3D minPoint = rowCenters[startPinRow] + columnCenters[startPinCol];
                 minPoint.Z = fuelBase.Z;
-                Point3D maxPoint = rowCenters[endPinRow] + columnCenters[endPinCol];
+                MyPoint3D maxPoint = rowCenters[endPinRow] + columnCenters[endPinCol];
                 maxPoint.Z = fuelBase.Z + fuelSpec.Length;
 
-                Point3D insideBuffer = new Point3D
+                MyPoint3D insideBuffer = new MyPoint3D
                 {
                     X = fuelSpec.ArrayPitch / 2, Y = fuelSpec.ArrayPitch / 2, Z = boxBuffer
                 };
@@ -267,14 +267,14 @@ namespace FastNeutronCollar
                 fuelBase = Center;
                 fuelBase.Z -= fuelSpec.Length / 2;
 
-                axisVector = new Point3D {X = 0, Y = 0, Z = fuelSpec.Length};
+                axisVector = new MyPoint3D {X = 0, Y = 0, Z = fuelSpec.Length};
             }
 
-            private List<Point3D> GetSpacing(int nPins, bool isRow)
+            private List<MyPoint3D> GetSpacing(int nPins, bool isRow)
             {
                 double range = (fuelSpec.ArrayPitch * (nPins - 1)) / 2;
-                Point3D startPoint = Center;
-                Point3D endPoint = Center;
+                MyPoint3D startPoint = Center;
+                MyPoint3D endPoint = Center;
 
                 if (isRow)
                 {

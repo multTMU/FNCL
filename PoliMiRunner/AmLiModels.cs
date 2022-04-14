@@ -1,5 +1,4 @@
-﻿using System.IO;
-using FastNeutronCollar;
+﻿using FastNeutronCollar;
 using GlobalHelpers;
 
 namespace Runner
@@ -51,9 +50,9 @@ namespace Runner
     {
         private const string COMMENT = "AmLi Source FNCL";
 
-        // private Point3D blockCenter;
-        //private Point3D blockExtents;
-        //private Point3D amLiCenter;
+        // private MyPoint3D blockCenter;
+        //private MyPoint3D blockExtents;
+        //private MyPoint3D amLiCenter;
         //private double caseThickness;
         //private int blockMat;
         //protected int caseMat;

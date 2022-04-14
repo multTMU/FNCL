@@ -44,7 +44,7 @@ namespace GuiWidgets.Source
             }
         }
 
-        public void SetAll(Point3D vector)
+        public void SetAll(MyPoint3D vector)
         {
             SetAll(vector.X, vector.Y, vector.Z);
         }
@@ -78,9 +78,9 @@ namespace GuiWidgets.Source
             inZ.Label = zLabel;
         }
 
-        public Point3D GetPoint()
+        public MyPoint3D GetPoint()
         {
-            return new Point3D(inX.Value, inY.Value, inZ.Value);
+            return new MyPoint3D(inX.Value, inY.Value, inZ.Value);
         }
 
         public void SetCustomValidator(CustomValidator<string, double> customValidator)

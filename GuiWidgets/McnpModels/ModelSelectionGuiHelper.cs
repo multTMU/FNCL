@@ -20,12 +20,12 @@ namespace GuiWidgets.FnclModels
         double GetCadmiumThickness();
         AmLiBlockTypes GetAmLiBlockType();
         NeutronGeneratorTypes GetNeutronGeneratorType();
-        Point3D GetExtraLeadSideShieldDimensions();
+        MyPoint3D GetExtraLeadSideShieldDimensions();
         bool GetUseExtraLeadRightPanelOne();
         bool GetUseExtraLeadLeftPanelTwo();
 
-        Point3D GetGeneratorAxis();
-        Point3D GetGeneratorSourcePoint();
+        MyPoint3D GetGeneratorAxis();
+        MyPoint3D GetGeneratorSourcePoint();
         double GetGeneratorRotationDegrees();
     }
 

@@ -44,7 +44,8 @@ namespace Multiplicity
         Undefined,
         PoliMi,
         FnclFlat,
-        FnclBinary
+        FnclBinary,
+        NGamSnl
     }
 
     public enum Interaction
@@ -333,6 +334,25 @@ namespace Multiplicity
         }
     }
 
+    public class NGamSnlPulse : Pulse, IPulseHeight
+    {
+        private readonly int board;
+        private double energyKeV;
+        private string flag;
+        
+        public NGamSnlPulse(int Board, int Channel, double TimeTag, double EnergyKeV, string Flag) : base(Channel, TimeTag, Particle.Photon)
+        {
+            board = Board;
+            energyKeV = EnergyKeV;
+            flag = Flag;
+        }
+
+        public double GetPulseHeightKeVee()
+        {
+            return energyKeV;
+        }
+
+    }
 
     /// <summary>
     /// Workhorse for multiplicity counting, controls how gates-types (e.g. Shift Register) interact with the pulse stream

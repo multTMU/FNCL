@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using GlobalHelpers;
 using GeometrySampling;
+using GlobalHelpers;
 
 namespace GuiWidgets.Source
 {
@@ -46,12 +46,12 @@ namespace GuiWidgets.Source
             return 0;
         }
 
-        public Point3D GetCenter()
+        public MyPoint3D GetCenter()
         {
             return inCenter.GetPoint();
         }
 
-        public Point3D GetAxis()
+        public MyPoint3D GetAxis()
         {
             return inAxis.GetPoint();
         }

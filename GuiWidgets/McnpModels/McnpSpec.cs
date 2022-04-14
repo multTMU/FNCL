@@ -1,6 +1,5 @@
 ﻿using System.Windows.Forms;
 using GlobalHelpers;
-using GuiInterface;
 
 namespace GuiWidgets.FnclModels
 {

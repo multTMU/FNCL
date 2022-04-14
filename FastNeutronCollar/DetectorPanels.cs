@@ -82,7 +82,7 @@ namespace FastNeutronCollar
             private class DetectorSideShields : Component
             {
                 private const int SHIELD_INDEX_OFFSET = 3;
-                private Point3D shieldExtent;
+                private MyPoint3D shieldExtent;
                 private MaterialElement shieldMat;
                 private readonly List<int> detSurfaces;
 
@@ -141,9 +141,9 @@ namespace FastNeutronCollar
             {
                 private const string COMMENT = "Panel Shield";
                 private const bool TOP_LEVEL = true;
-                private Point3D shieldExtent;
-                private Point3D shieldNormal;
-                private Point3D planeCutPoint;
+                private MyPoint3D shieldExtent;
+                private MyPoint3D shieldNormal;
+                private MyPoint3D planeCutPoint;
 
                 private const int BLOCK_INDEX_OFFSET = 2;
                 private const int PLANE_INDEX_OFFSET = 1;
@@ -260,11 +260,11 @@ namespace FastNeutronCollar
 
         private class PanelEnclosure : Component
         {
-            private readonly Point3D externalExtents;
+            private readonly MyPoint3D externalExtents;
             private readonly double enclosureThickness;
             private readonly List<int> interiorCells;
 
-            public PanelEnclosure(int PrimaryIndex, Point3D centerPanel, Point3D extents, double EnclosureThick,
+            public PanelEnclosure(int PrimaryIndex, MyPoint3D centerPanel, MyPoint3D extents, double EnclosureThick,
                 List<int> InteriorCells) : base(PrimaryIndex, "Enclosure")
             {
                 center = centerPanel;

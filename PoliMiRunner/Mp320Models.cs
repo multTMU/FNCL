@@ -1,5 +1,4 @@
-﻿using System.IO;
-using FastNeutronCollar;
+﻿using FastNeutronCollar;
 using GeometrySampling;
 using GlobalHelpers;
 using PoliMiRunner;
@@ -34,8 +33,8 @@ namespace Runner
     {
         protected static string COMMENT = "MP320 DD FNCL";
         private bool useNgenSource;
-        private Point3D nGenCenter;
-        private Point3D nGenAxis;
+        private MyPoint3D nGenCenter;
+        private MyPoint3D nGenAxis;
         private bool useCd;
         private bool usePb;
         private double thicknessCd;
@@ -44,7 +43,7 @@ namespace Runner
 
         private bool useSideShieldLeftPanelTwo;
         private bool useSideShieldRightPanelOne;
-        private Point3D sideShieldDimensions;
+        private MyPoint3D sideShieldDimensions;
 
         public Mp320Fncl(string configFile, bool ActiveInterrogation, string additionalComment = "") : base(configFile,
             COMMENT + " " + additionalComment)
@@ -66,12 +65,12 @@ namespace Runner
             InitializeDefaults(ActiveInterrogation);
         }
 
-        public void SetNeutronGeneratorCenter(Point3D Center)
+        public void SetNeutronGeneratorCenter(MyPoint3D Center)
         {
             nGenCenter = Center + CenterOfFNCL;
         }
 
-        public void SetNeutronGeneratorAxis(Point3D Axis)
+        public void SetNeutronGeneratorAxis(MyPoint3D Axis)
         {
             nGenAxis = Axis;
         }
@@ -129,7 +128,7 @@ namespace Runner
     public class Mp320FnclSel : Mp320Fncl, ISelMeasurement
     {
         protected int nPucks;
-        protected Point3D topOfPostPucks;
+        protected MyPoint3D topOfPostPucks;
 
         public Mp320FnclSel(ProblemConfig Config, bool UseNGenSource) : base(Config, UseNGenSource)
         {
@@ -157,7 +156,7 @@ namespace Runner
             topOfPostPucks = SelMeasurementComponents.GetCenterOfTopOfPucksAndPost(nPucks);
         }
 
-        public Point3D GetTopOfPostPucks()
+        public MyPoint3D GetTopOfPostPucks()
         {
             return SelMeasurementComponents.GetCenterOfTopOfPucksAndPost(nPucks);
         }

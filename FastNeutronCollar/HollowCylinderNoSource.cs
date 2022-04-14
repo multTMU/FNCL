@@ -5,7 +5,7 @@
     //    private const string SOURCE = "Source";
     //    private readonly PoliMiSource source;
 
-    //    public HollowCylinderSource(int mcnpIndex, Point3D Center, Point3D Axis, double Height, double InnerRadius,
+    //    public HollowCylinderSource(int mcnpIndex, MyPoint3D Center, MyPoint3D Axis, double Height, double InnerRadius,
     //        double OuterRadius, MaterialElement InnerMat, MaterialElement OuterMat, PoliMiSource Source,
     //        string extraCommnent = SOURCE) :
     //        base(mcnpIndex, Center, Axis, Height, InnerRadius, OuterRadius, InnerMat, OuterMat, extraCommnent)
@@ -13,7 +13,7 @@
     //        source = Source;
     //    }
 
-    //    //public HollowCylinderSource(int mcnpIndex, Point3D Center, UraniumHollowCylinderSpec spec,
+    //    //public HollowCylinderSource(int mcnpIndex, MyPoint3D Center, UraniumHollowCylinderSpec spec,
     //    //    string extraCommnent = SOURCE) : base(mcnpIndex, Center, spec.Axis, spec.Height, spec.InnerRadius,
     //    //    spec.OuterRadius, spec.InnerMat, extraCommnent)
     //    //{
@@ -24,9 +24,9 @@
     //    { List<string> sourceSpec = new List<string>();
 
     //        sourceSpec.Add("sdef pos=" + center.ToString() + " rad=d1 cel=" + GetIndex(OUTER));
-    //        sourceSpec.Add("si1 " + extents.Inner.Radius.ToString(Point3D.FORMAT) + " " + MCNPsurfacesHelpers
+    //        sourceSpec.Add("si1 " + extents.Inner.Radius.ToString(MyPoint3D.FORMAT) + " " + MCNPsurfacesHelpers
     //            .BoundingSphereRadiusForCylinder(extents.Outer.Radius, extents.Outer.Axis)
-    //            .ToString(Point3D.FORMAT));
+    //            .ToString(MyPoint3D.FORMAT));
     //        sourceSpec.Add("sp1 -21 2");
     //        return new SourceSpecification(source, sourceSpec);
     //    }
@@ -37,8 +37,8 @@
     //    private const string COMMENT = "Hollow Cylinder";
 
     //    private const bool TOP_LEVEL = true;
-    //    //  protected readonly Point3D baseCenter;
-    //    //   protected readonly Point3D axisVector;
+    //    //  protected readonly MyPoint3D baseCenter;
+    //    //   protected readonly MyPoint3D axisVector;
     //    //   protected readonly double innerRadius;
     //    //   protected readonly double outerRadius;
     //    //  private readonly MaterialElement innerMat;
@@ -53,7 +53,7 @@
     //    private EncasedCylinder hollowCylinder;
     //    protected Encased<CylinderExtent> extents;
 
-    //    public HollowCylinderNoSource(int mcnpIndex, Point3D Center, Point3D Axis, double Height, double InnerRadius,
+    //    public HollowCylinderNoSource(int mcnpIndex, MyPoint3D Center, MyPoint3D Axis, double Height, double InnerRadius,
     //        double OuterRadius, MaterialElement InnerMat, MaterialElement OuterMat, string extraComment = "NoSource") :
     //        base(mcnpIndex, COMMENT + " " + extraComment, TOP_LEVEL)
     //    {
@@ -66,7 +66,7 @@
     //        // baseCenter = Center - (Height / 2) * Axis;
     //        // axisVector = Height * Axis;
 
-    //        Encased<Point3D> encasedCenter = new Encased<Point3D>(Center, Center);
+    //        Encased<MyPoint3D> encasedCenter = new Encased<MyPoint3D>(Center, Center);
     //        extents = new Encased<CylinderExtent>
     //        {
     //            Inner = new CylinderExtent(Height, InnerRadius, Axis),
@@ -77,11 +77,11 @@
     //        hollowCylinder = new EncasedCylinder(primaryIndex, encasedCenter, extents, materials, true, comments);
     //    }
 
-    //    public HollowCylinderNoSource(int mcnpIndex, Point3D Center, Encased<CylinderExtent> Extents,
+    //    public HollowCylinderNoSource(int mcnpIndex, MyPoint3D Center, Encased<CylinderExtent> Extents,
     //        Encased<MaterialElement> Materials, string extraComment = "NoSource") :
     //        base(mcnpIndex, COMMENT + " " + extraComment, TOP_LEVEL)
     //    {
-    //        Encased<Point3D> encasedCenter = new Encased<Point3D>(Center, Center);
+    //        Encased<MyPoint3D> encasedCenter = new Encased<MyPoint3D>(Center, Center);
     //        extents = Extents;
     //        hollowCylinder = new EncasedCylinder(primaryIndex, encasedCenter, extents, Materials, true, comments);
     //    }

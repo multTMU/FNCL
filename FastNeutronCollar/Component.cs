@@ -21,7 +21,7 @@ namespace FastNeutronCollar
         protected List<string> ExternalSurfaces;
         protected readonly int primaryIndex;
         protected List<IComponentSpecification> subComponents;
-        protected Point3D center;
+        protected MyPoint3D center;
         protected readonly bool topLevel;
         protected bool hasSourceTerm;
         protected PoliMiSource poliMiSource;

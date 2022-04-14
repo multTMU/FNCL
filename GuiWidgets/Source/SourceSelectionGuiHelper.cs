@@ -12,8 +12,8 @@ namespace GuiWidgets.Source
         string GetFuelFile();
         double GetInnerRadius();
         double GetOuterRadius();
-        Point3D GetCenter();
-        Point3D GetAxis();
+        MyPoint3D GetCenter();
+        MyPoint3D GetAxis();
 
         double GetRadius();
 

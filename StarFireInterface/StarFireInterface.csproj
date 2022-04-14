@@ -58,5 +58,11 @@
     <Compile Include="OperationSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeometrySampling\GeometrySampling.csproj">
+      <Project>{ddae23bc-b015-4b64-931f-dd47d6b2dee8}</Project>
+      <Name>GeometrySampling</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

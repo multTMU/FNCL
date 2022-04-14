@@ -1,0 +1,140 @@
+a# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
+#  Input file for MPPost
+#
+#  version: 2.1.0
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# GENERAL INFORMATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# <<<
+title           Ngam12
+# >>>
+#
+# <<<
+username        SeanOBrien
+# >>>
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# I/O FILE INFORMATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+polimi_det_in			dumn1		# MCNP-PoliMi detector filename
+# <<<
+output_file             NGamDet12       # Desired output name
+# >>>
+label_output            yes          # (yes/no) Place labels at the top of the output files
+seperate_det_response   yes          # (yes/no) Print individual distributions for each detector
+list_of_pulses          yes          # (yes/no) Print a list mode file of all collected pulses
+event_inventory_on      yes          # (yes/no) Print out a table summarizing all events in the file
+collision_history       no          # (yes/no) Print summary of how collisions make pulses in the detector
+overwrite_files         yes         # (yes/no) Allow the code to overwrite old files
+comma_delimited         yes         # (yes/no) Output files delimited by a comma
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# MEMORY
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+division_size   1000    # MB, size of segments to divide the file
+cushion         200     # number of lines added to the arrays to prevent overstepping arrays
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# DETECTOR INFORMATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# <<<
+time_dependent			no				# (yes/no) Perform analysis by time instead of by history
+# >>>
+# <<<
+NPS						1e7				# NPS used in the MCNP run
+# >>>
+# <<<
+detector_type           4               # Type of Detector - list for each cell number
+# >>>
+                                        #   0 = Non Active Volume (i.e. PMT)
+                                        #   1 = Liquid Organic Scintillator
+                                        #   2 = He3 (Cannot be run with other types)
+                                        #   3 = Plastic Organic Scintillator
+                                        #   4 = NaI
+                                        #   5 = CaF2
+                                        #   6 = LaBr3
+threshold			    0.07            # MeVee, Threshold for event detection - list for each cell number
+upper_threshold			3               # MeVee, the max acceptable light for event detection - list for each cell number
+# <<<
+detector_cell_numbers 200 201 202 203 210 211 212 213 220 221 222 223 # Cell numbers of the detectors
+# >>>
+                                        #   NOTE: To group cells add ( ) around the group.
+                                        #   There must be a space before and after each (
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# DETECTOR INFORMATION - Pulse Height
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pulse_height_on     yes    		# (yes/no) Print pulse height distributions
+sum_then_light      no      	# (yes/no) Convert the sum of all contributing particles energy to light
+# <<<
+cross_talk_sub_on   no			# (yes/no) Eliminate particles with cross talk
+# >>>
+# Pulse Generation Time - ns, Light collection time for a pulse
+# <<<
+nai_pgt             10       	# Pulse generation time for a NaI detector
+# >>>
+
+# Deadtime - ns, dead time of the detector between pulses
+# <<<
+nai_dt               0     		# Dead time for a NaI detector
+# >>>
+
+histogram_start      0    		# MeVee, Min value for the pulse height distribution
+histogram_stop      10    		# MeVee, Max value for the pulse height distribution
+bin_step             0.01    	# MeVee, Bin step - top side of the bin
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Light Output Resolution
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# <<<
+light_resolution_on   no   	# (yes/no) Turns on/off the a Gaussian Light Broadening
+# >>>
+                           	#    Coefficients A,B,C for Gaussian Broadening: A*LO+B*Sqrt(LO)+C
+# <<<
+nai_lgt                     # Resolution for NaI detector
+# >>>
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Time Resolution
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# <<<
+tme_resolution_on  	no    	# (yes/no) Turns on/off time broadening
+# >>>
+# <<<
+nai_tme             10		# FWHM for NaI
+# >>>
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# TIME-OF-FLIGHT, CORRELATION, and AUTOCORRELATION INFORMATION
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tof_on					no      # (yes/no) Turn on/off TOF distributions (cannot have a start detector)
+# cross_correlation_on    no      # (yes/no) Turn on/off cross correlation function
+# auto_correlation_on     no      # (yes/no) Turn on/off auto correlation function
+# start_detector          100     # Cell number of the start detector  (leave blank for TOF)
+# time_start              -100	# ns, time for the correlation plot to start
+# time_stop               100		# ns, time for the correlation plot to stop
+# time_increment          1       # ns, time increment between the bins - top side of the bin
+# cc_window_incr          1000    # ns, time window for correlation events for time dependent analysis
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Pulse Height Correlation
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pulse_correlation_on   no       # (yes/no) Turn on/off pulse height correlation analysis
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# CAPTURE GATED DETECTORS
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+capture_gate_on     no			# (yes/no) Capture gated detector response on/off
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# He3 MODULE
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+he3_multiplicity		no      # (yes/no) He3 module on/off
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Select Capture Event Type
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+output_sort_file    yes			# (yes/no) Print out a file with all sorted events

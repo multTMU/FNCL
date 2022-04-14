@@ -1,5 +1,4 @@
-﻿using System.IO;
-using FastNeutronCollar;
+﻿using FastNeutronCollar;
 using GeometrySampling;
 using GlobalHelpers;
 using PoliMiRunner;
@@ -39,8 +38,8 @@ namespace Runner
     {
         protected static string COMMENT = "StarFire nGen350 DD FNCL";
         private bool useNgenSource;
-        private Point3D sourceLocation;
-        private Point3D nGenAxis;
+        private MyPoint3D sourceLocation;
+        private MyPoint3D nGenAxis;
         private double rotation;
 
         public nGen350Fncl(string configurationFile, bool ActiveInterrogation, string additionalComment = "") : base(

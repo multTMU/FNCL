@@ -59,6 +59,7 @@
     <Compile Include="CombineBinaryPulses.cs" />
     <Compile Include="DetectorDefaults.cs" />
     <Compile Include="Detectors.cs" />
+    <Compile Include="NGamSnlMultiplicityGui.cs" />
     <Compile Include="UndefinedPulsesForGui.cs" />
     <Compile Include="FnclMultiplicityGui.cs" />
     <Compile Include="DetectorHelpers.cs" />

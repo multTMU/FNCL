@@ -103,10 +103,13 @@
       <DependentUpon>EnergyCalibration.cs</DependentUpon>
     </Compile>
     <Compile Include="FnclFiltersGUI.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FnclPsdGUI.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FnclWaveformGUI.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="HelpSplash.cs">
       <SubType>Form</SubType>
@@ -120,7 +123,9 @@
     <Compile Include="ModelManager.Designer.cs">
       <DependentUpon>ModelManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="FnclSimulationGUI.cs" />
+    <Compile Include="FnclSimulationGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FuelSpecsEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,7 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeometrySampling\GeometrySampling.csproj">
-      <Project>{DDAE23BC-B015-4B64-931F-DD47D6B2DEE8}</Project>
+      <Project>{ddae23bc-b015-4b64-931f-dd47d6b2dee8}</Project>
       <Name>GeometrySampling</Name>
     </ProjectReference>
     <ProjectReference Include="..\GlobalHelpersDefaults\GlobalHelpersDefaults.csproj">

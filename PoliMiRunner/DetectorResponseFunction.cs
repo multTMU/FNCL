@@ -49,7 +49,7 @@ namespace Runner
 
         private readonly RunFnclDetector fnclModel;
         private readonly List<Bounds<double>> neutronBounds;
-        private readonly Point3D sourceLocation;
+        private readonly MyPoint3D sourceLocation;
 
         private const PoliMiSource Source = PoliMiSource.None;
         private const string DRF_DIR = "_DRFgroup_";
@@ -58,7 +58,7 @@ namespace Runner
         private List<DrfProblem> drfProblems;
         private readonly string basisName;
 
-        public DetectorResponseFunction(RunFnclDetector FnclModel, Point3D PointSourceLocation,
+        public DetectorResponseFunction(RunFnclDetector FnclModel, MyPoint3D PointSourceLocation,
             List<Bounds<double>> NeutronEnergyBounds, string BasisName)
         {
             fnclModel = FnclModel;
@@ -67,7 +67,7 @@ namespace Runner
             basisName = BasisName;
         }
 
-        public DetectorResponseFunction(RunFnclDetector FnclModel, Point3D PointSourceLocation,
+        public DetectorResponseFunction(RunFnclDetector FnclModel, MyPoint3D PointSourceLocation,
             string NeutronBoundaryFile, string BasisName) : this(FnclModel, PointSourceLocation,
             DetectorResponseFunctionHelper.GetNeutronBoundsFromFlatFile(NeutronBoundaryFile), BasisName)
         {

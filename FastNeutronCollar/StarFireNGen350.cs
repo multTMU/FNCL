@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GeometrySampling;
 using GlobalHelpers;
 using GlobalHelpersDefaults;
@@ -10,12 +9,12 @@ namespace FastNeutronCollar
     {
         private const string COMMENT = "NGen350 Neutron Generator";
         private const string SOURCE_COMMENT = "D-D Source Defined By PoliMi Cards";
-        private readonly Point3D axis;
-        private readonly Point3D sourcePoint;
+        private readonly MyPoint3D axis;
+        private readonly MyPoint3D sourcePoint;
         private readonly double rotation;
         private readonly bool includeSource;
 
-        public StarFireNGen350(Point3D SourceLocation, Point3D Axis, bool IncludeSource, double HeightDisplacement,
+        public StarFireNGen350(MyPoint3D SourceLocation, MyPoint3D Axis, bool IncludeSource, double HeightDisplacement,
             double Rotation) : base(
             Indices.NGen350.NEUTRON_GENERATOR, COMMENT, true)
         {
@@ -45,13 +44,13 @@ namespace FastNeutronCollar
                 GetBoxOrientationAxis(), axis, includeSource));
         }
 
-        private Point3D GetBoxOrientationAxis()
+        private MyPoint3D GetBoxOrientationAxis()
         {
             // idea is to rotate box by the given angle
             return Extents.NGen350.DefaultBlockOrientation;
         }
 
-        private Point3D GetTubeBase()
+        private MyPoint3D GetTubeBase()
         {
 
             return sourcePoint + axis * Extents.NGen350.Block/2 + axis * (Extents.NGen350.BoronThickness + Extents.EPSILON_GAP) +
@@ -60,10 +59,10 @@ namespace FastNeutronCollar
 
         private class Tube : Component
         {
-            private readonly Point3D tubeCenter;
-            private readonly Point3D tubeAxis;
+            private readonly MyPoint3D tubeCenter;
+            private readonly MyPoint3D tubeAxis;
 
-            public Tube(int mcnpIndex, Point3D TubeBase, Point3D TubeAxis) : base(mcnpIndex, "nGen350 Tube", false)
+            public Tube(int mcnpIndex, MyPoint3D TubeBase, MyPoint3D TubeAxis) : base(mcnpIndex, "nGen350 Tube", false)
             {
                 tubeAxis = TubeAxis;
                 tubeCenter = ExtentsHelper.GetCenterFromCylinderBase(TubeBase, tubeAxis, Extents.NGen350.CentralLength);
@@ -98,11 +97,11 @@ namespace FastNeutronCollar
 
         private class SourceAndFluxMonitorBox : Component
         {
-            private readonly Point3D sourcePoint;
-            private readonly Point3D shortFaceAxis;
-            private readonly Point3D tubeAxis;
+            private readonly MyPoint3D sourcePoint;
+            private readonly MyPoint3D shortFaceAxis;
+            private readonly MyPoint3D tubeAxis;
 
-            public SourceAndFluxMonitorBox(int mcnpIndex, Point3D SourePoint, Point3D ShortFaceAxis, Point3D TubeAxis, bool IncludeSource)
+            public SourceAndFluxMonitorBox(int mcnpIndex, MyPoint3D SourePoint, MyPoint3D ShortFaceAxis, MyPoint3D TubeAxis, bool IncludeSource)
                 : base(mcnpIndex,
                     "Moderator Box", false)
             {
@@ -138,7 +137,7 @@ namespace FastNeutronCollar
                 return SourcesHelper.GetPointSource(sourcePoint) + " " + MCNPformatHelper.GetInLineComment(SOURCE_COMMENT);
             }
 
-            private Point3D GetCenterOfBlock()
+            private MyPoint3D GetCenterOfBlock()
             {
                 return sourcePoint + Extents.NGen350.SourceOffsetFromCenterBlock +
                        Extents.NGen350.SourceLocationFromFrontFaceTubeCentered;
@@ -146,11 +145,11 @@ namespace FastNeutronCollar
 
             private class FluxMonitors : Component
             {
-                private Point3D sourcePoint;
-                private Point3D shortFaceAxis;
-                private Point3D tubeAxis;
+                private MyPoint3D sourcePoint;
+                private MyPoint3D shortFaceAxis;
+                private MyPoint3D tubeAxis;
 
-                public FluxMonitors(int mcnpIndex, Point3D SourcePoint, Point3D ShortFaceAxis, Point3D TubeAxis) : base(
+                public FluxMonitors(int mcnpIndex, MyPoint3D SourcePoint, MyPoint3D ShortFaceAxis, MyPoint3D TubeAxis) : base(
                     mcnpIndex, "Flux Monitors", true)
                 {
                     sourcePoint = SourcePoint;
@@ -184,12 +183,12 @@ namespace FastNeutronCollar
 
                 private FluxMonitorSpec GetFluxMonitorCorner(int detectorIndex)
                 {
-                    Point3D startPoint = Extents.NGen350.FluxMonitors.GetHeadPoint(detectorIndex);
-                    Point3D endPoint = Extents.NGen350.FluxMonitors.GetHeadPoint(detectorIndex + 1);
+                    MyPoint3D startPoint = Extents.NGen350.FluxMonitors.GetHeadPoint(detectorIndex);
+                    MyPoint3D endPoint = Extents.NGen350.FluxMonitors.GetHeadPoint(detectorIndex + 1);
 
-                    Point3D aSide = endPoint - startPoint;
-                    Point3D bSide = Extents.NGen350.FluxMonitors.Dimensions.Z * tubeAxis;
-                    Point3D cSide = Extents.NGen350.FluxMonitors.Dimensions.Y *
+                    MyPoint3D aSide = endPoint - startPoint;
+                    MyPoint3D bSide = Extents.NGen350.FluxMonitors.Dimensions.Z * tubeAxis;
+                    MyPoint3D cSide = Extents.NGen350.FluxMonitors.Dimensions.Y *
                                     Point3DHelper.GetUnitVector(Point3DHelper.CrossProduct(bSide, aSide));
 
                     FluxMonitorSpec outer = new FluxMonitorSpec
@@ -200,7 +199,7 @@ namespace FastNeutronCollar
                     return outer; 
                 }
 
-                private static Point3D GetInteriorSide(Point3D side)
+                private static MyPoint3D GetInteriorSide(MyPoint3D side)
                 {
                     return Point3DHelper.GetUnitVector(side) *
                            (Point3DHelper.GetMagnitude(side) - 2.0 * Extents.NGen350.FluxMonitors.CASE_THICKNESS);
@@ -209,7 +208,7 @@ namespace FastNeutronCollar
                 private struct FluxMonitorSpec
                 {
                     public Matrix3D Sides;
-                    public Point3D Corner;
+                    public MyPoint3D Corner;
                 }
 
                 private class UnitFluxMonitor : Component

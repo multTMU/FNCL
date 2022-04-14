@@ -83,12 +83,12 @@ namespace GuiWidgets.Source
             return this.sourceWidget.GetOuterRadius();
         }
 
-        public GeometrySampling.Point3D GetCenter()
+        public GeometrySampling.MyPoint3D GetCenter()
         {
             return this.sourceWidget.GetCenter();
         }
 
-        public GeometrySampling.Point3D GetAxis()
+        public GeometrySampling.MyPoint3D GetAxis()
         {
             return this.sourceWidget.GetAxis();
         }

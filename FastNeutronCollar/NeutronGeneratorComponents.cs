@@ -12,14 +12,14 @@ namespace FastNeutronCollar
         private const string SOURCE_COMMENT = "D-D Source Defined By PoliMi Cards";
         private const int INTERIOR_INDEX_SHIFT = 1;
 
-        private readonly Point3D axis;
-        private readonly Point3D enclosureAxisLength;
-        private readonly Point3D internalAxisLength;
+        private readonly MyPoint3D axis;
+        private readonly MyPoint3D enclosureAxisLength;
+        private readonly MyPoint3D internalAxisLength;
 
         private MaterialElement internalMat;
         private MaterialElement enclosureMat;
 
-        public NeutronGeneratorTube(int mcnpIndex, Point3D Center, Point3D Axis, bool IncludeSource = true) : base(
+        public NeutronGeneratorTube(int mcnpIndex, MyPoint3D Center, MyPoint3D Axis, bool IncludeSource = true) : base(
             mcnpIndex, COMMENT)
         {
             axis = Point3DHelper.GetUnitVector(Axis);
@@ -46,7 +46,7 @@ namespace FastNeutronCollar
 
         private string GetPointSource()
         {
-            Point3D sourcePoint = center + ((Extents.Mp320.SOURCE_FROM_CENTER + (Extents.Mp320.LENGTH / 2)) * axis);
+            MyPoint3D sourcePoint = center + ((Extents.Mp320.SOURCE_FROM_CENTER + (Extents.Mp320.LENGTH / 2)) * axis);
             return SourcesHelper.GetPointSource(sourcePoint) + " " + MCNPformatHelper.GetInLineComment(SOURCE_COMMENT);
         }
 
@@ -123,9 +123,9 @@ namespace FastNeutronCollar
     public class He3TubeDetector : Component
     {
         private const string COMMENT = "He3 Tube ";
-        private Point3D axis;
+        private MyPoint3D axis;
 
-        public He3TubeDetector(int mcnpIndex, Point3D He3TubeCenter, Point3D Axis, string Comment) : base(mcnpIndex,
+        public He3TubeDetector(int mcnpIndex, MyPoint3D He3TubeCenter, MyPoint3D Axis, string Comment) : base(mcnpIndex,
             COMMENT + Comment, false)
         {
             center = He3TubeCenter;
@@ -144,9 +144,9 @@ namespace FastNeutronCollar
             return new Encased<string> {Inner = "He 3 gas", Outer = "Tube"};
         }
 
-        private Encased<Point3D> GetEncasedCenter()
+        private Encased<MyPoint3D> GetEncasedCenter()
         {
-            return new Encased<Point3D> {Inner = center, Outer = center};
+            return new Encased<MyPoint3D> {Inner = center, Outer = center};
         }
 
         private Encased<int> GetEncasedMaterials()

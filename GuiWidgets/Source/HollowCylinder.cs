@@ -50,12 +50,12 @@ namespace GuiWidgets.Source
             return inOutRadius.Value;
         }
 
-        public Point3D GetCenter()
+        public MyPoint3D GetCenter()
         {
             return inCenter.GetPoint();
         }
 
-        public Point3D GetAxis()
+        public MyPoint3D GetAxis()
         {
             return inAxis.GetPoint();
         }

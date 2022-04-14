@@ -7,7 +7,7 @@ namespace PoliMiRunner
 {
     public abstract class RunNGammaDetectorBase : ModelRunner
     {
-        protected Point3D faceCenter;
+        protected MyPoint3D faceCenter;
         protected double shieldThickess;
         private NGammaDetector nGammaDetector;
         private ProblemConfig problemConfig;

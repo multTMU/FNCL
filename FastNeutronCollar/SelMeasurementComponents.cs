@@ -7,7 +7,7 @@ namespace FastNeutronCollar
     public class SelMeasurementComponents : Component
     {
         private const string COMMENT = "SEL measurement setup ";
-        private readonly Point3D postTopCenter;
+        private readonly MyPoint3D postTopCenter;
         private readonly int numberPucks;
 
         public const double HEIGHT_ABOVE_PUCK = 0.01;
@@ -22,8 +22,8 @@ namespace FastNeutronCollar
         private readonly int peSlabIndex;
         private readonly int concreteIndex;
 
-        public Point3D topOfPostPucks;
-        private Point3D lastBottomCenter;
+        public MyPoint3D topOfPostPucks;
+        private MyPoint3D lastBottomCenter;
 
         public SelMeasurementComponents(int mcnpIndex, int NumberPucks) : base(mcnpIndex, COMMENT, true)
         {
@@ -39,9 +39,9 @@ namespace FastNeutronCollar
             lastBottomCenter = postTopCenter;
         }
 
-        public static Point3D GetCenterOfTopOfPucksAndPost(int nPucks)
+        public static MyPoint3D GetCenterOfTopOfPucksAndPost(int nPucks)
         {
-            Point3D centerTop = Extents.SelMeasurementSetup.PostTopOffsetFromCenter;
+            MyPoint3D centerTop = Extents.SelMeasurementSetup.PostTopOffsetFromCenter;
             return centerTop += (nPucks * Extents.SelMeasurementSetup.Puck.Height) *
                                 Extents.SelMeasurementSetup.Puck.Axis;
         }
@@ -84,7 +84,7 @@ namespace FastNeutronCollar
         private string concreteSurface()
         {
             ExternalSurfaces.Add(concreteIndex.ToString());
-            Point3D baseCenter = lastBottomCenter;
+            MyPoint3D baseCenter = lastBottomCenter;
             baseCenter.Z -= Extents.SelMeasurementSetup.ConcreteFloor.Height;
             string macroBody =
                 McnpSurfaces.GetRightCircularCylinder(baseCenter, Extents.SelMeasurementSetup.ConcreteFloor);
@@ -94,7 +94,7 @@ namespace FastNeutronCollar
         private string peSlabSurface()
         {
             ExternalSurfaces.Add(peSlabIndex.ToString());
-            Point3D slabCenter = lastBottomCenter;
+            MyPoint3D slabCenter = lastBottomCenter;
             slabCenter.Z -= (Extents.SelMeasurementSetup.PEslab.Z / 2.0);
             lastBottomCenter.Z -= Extents.SelMeasurementSetup.PEslab.Z;
             string macroBody =
@@ -116,7 +116,7 @@ namespace FastNeutronCollar
         private string woodenPostSurface()
         {
             ExternalSurfaces.Add(postIndex.ToString());
-            Point3D postCenter = Extents.SelMeasurementSetup.GetPostCenter(postTopCenter);
+            MyPoint3D postCenter = Extents.SelMeasurementSetup.GetPostCenter(postTopCenter);
             lastBottomCenter.Z -= Extents.SelMeasurementSetup.PostExtents.Z;
             string macroBody =
                 McnpSurfaces.GetRectangularParallelepipedFromCenterExtents(postCenter,

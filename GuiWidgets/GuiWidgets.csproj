@@ -50,10 +50,6 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GeometrySampling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\FNCL_PoliMi\GeometrySampling.dll</HintPath>
-    </Reference>
     <Reference Include="MathNet.Numerics, Version=4.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MathNet.Numerics.4.15.0\lib\net461\MathNet.Numerics.dll</HintPath>
     </Reference>
@@ -700,6 +696,10 @@
     <ProjectReference Include="..\FastNeutronCollar\FastNeutronCollar.csproj">
       <Project>{6804A97B-2F50-4403-945B-7C6A382DD000}</Project>
       <Name>FastNeutronCollar</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeometrySampling\GeometrySampling.csproj">
+      <Project>{DDAE23BC-B015-4B64-931F-DD47D6B2DEE8}</Project>
+      <Name>GeometrySampling</Name>
     </ProjectReference>
     <ProjectReference Include="..\GlobalHelpersDefaults\GlobalHelpersDefaults.csproj">
       <Project>{6D5D4C37-EC93-4805-B31D-7EBF6B6669CB}</Project>

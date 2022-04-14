@@ -10,7 +10,7 @@ namespace FastNeutronCollar
         {
             private readonly CylinderExtent cylinder;
 
-            public CylinderSource(Point3D Base, Point3D Axis, double Radius, double Height, bool UseSource,
+            public CylinderSource(MyPoint3D Base, MyPoint3D Axis, double Radius, double Height, bool UseSource,
                 PoliMiSource Source, int mcnpIndex = Indices.SOURCE) : base(mcnpIndex, "Cylinder", true)
             {
                 hasSourceTerm = UseSource;
@@ -51,7 +51,7 @@ namespace FastNeutronCollar
             private EncasedCylinder hollowCylinder;
             protected Encased<CylinderExtent> extents;
 
-            public HollowCylinder(int mcnpIndex, Point3D Base, Point3D Axis, double Height, double InnerRadius,
+            public HollowCylinder(int mcnpIndex, MyPoint3D Base, MyPoint3D Axis, double Height, double InnerRadius,
                 double OuterRadius, MaterialElement InnerMat, MaterialElement OuterMat, bool UseSource,
                 PoliMiSource Source = PoliMiSource.None) :
                 base(mcnpIndex, COMMENT, TOP_LEVEL)
@@ -59,13 +59,13 @@ namespace FastNeutronCollar
                 Initialze(Base, Axis, Height, InnerRadius, OuterRadius, InnerMat, OuterMat, UseSource, Source);
             }
 
-            private void Initialze(Point3D Base, Point3D Axis, double Height, double InnerRadius, double OuterRadius,
+            private void Initialze(MyPoint3D Base, MyPoint3D Axis, double Height, double InnerRadius, double OuterRadius,
                 MaterialElement InnerMat, MaterialElement OuterMat, bool UseSource, PoliMiSource Source)
             {
                 center = ExtentsHelper.GetCenterFromCylinderBase(Base, Axis, Height);
                 hasSourceTerm = UseSource;
                 poliMiSource = Source;
-                Encased<Point3D> encasedCenter = new Encased<Point3D>(center, center);
+                Encased<MyPoint3D> encasedCenter = new Encased<MyPoint3D>(center, center);
                 extents = new Encased<CylinderExtent>
                 {
                     Inner = new CylinderExtent(Height, InnerRadius, Axis),
@@ -76,13 +76,13 @@ namespace FastNeutronCollar
                 hollowCylinder = new EncasedCylinder(primaryIndex, encasedCenter, extents, materials, true, comments);
             }
 
-            //public HollowCylinder(Point3D Center, Encased<CylinderExtent> Extents,
+            //public HollowCylinder(MyPoint3D Center, Encased<CylinderExtent> Extents,
             //    Encased<MaterialElement> Materials, bool UseSource, PoliMiSource Source,
             //    int mcnpIndex = Indices.NonEmbeddedSource) :
             //    base(mcnpIndex, COMMENT, TOP_LEVEL)
             //{
             //    poliMiSource = Source;
-            //    Encased<Point3D> encasedCenter = new Encased<Point3D>(Center, Center);
+            //    Encased<MyPoint3D> encasedCenter = new Encased<MyPoint3D>(Center, Center);
             //    extents = Extents;
             //    hollowCylinder = new EncasedCylinder(primaryIndex, encasedCenter, extents, Materials, true, comments);
             //}
@@ -106,9 +106,9 @@ namespace FastNeutronCollar
                 List<string> sourceSpec = new List<string>();
 
                 sourceSpec.Add("sdef pos=" + center.ToString() + " rad=d1 cel=" + GetIndex(OUTER));
-                sourceSpec.Add("si1 " + extents.Inner.Radius.ToString(Point3D.FORMAT) + " " + McnpSurfaceHelpers
+                sourceSpec.Add("si1 " + extents.Inner.Radius.ToString(MyPoint3D.FORMAT) + " " + McnpSurfaceHelpers
                     .BoundingSphereRadiusForCylinder(extents.Outer.Radius, extents.Outer.Axis)
-                    .ToString(Point3D.FORMAT));
+                    .ToString(MyPoint3D.FORMAT));
                 sourceSpec.Add("sp1 -21 2");
                 return new SourceSpecification(poliMiSource, sourceSpec);
             }
@@ -118,11 +118,11 @@ namespace FastNeutronCollar
         {
             private const string COMMENT = "Point Source In Spherical Shell";
             private Encased<double> sphereExtents;
-            private Encased<Point3D> sphereCenters;
+            private Encased<MyPoint3D> sphereCenters;
             private Encased<MaterialElement> materials;
             private Encased<string> comments;
 
-            public PointSourceInSphericalShell(Point3D Center, double InnerRadius, double Thickness,
+            public PointSourceInSphericalShell(MyPoint3D Center, double InnerRadius, double Thickness,
                 PoliMiSource Source, int shellMaterial, bool ActiveProblem, int mcnpIndex = Indices.SOURCE) : base(
                 mcnpIndex, COMMENT)
             {
@@ -133,7 +133,7 @@ namespace FastNeutronCollar
 
                 sphereExtents = new Encased<double> {Inner = InnerRadius, Outer = InnerRadius + Thickness};
 
-                sphereCenters = new Encased<Point3D> {Inner = Center, Outer = Center};
+                sphereCenters = new Encased<MyPoint3D> {Inner = Center, Outer = Center};
 
                 comments = new Encased<string>() {Inner = "Inner Void", Outer = "Spherical Shell"};
                 hasSourceTerm = !ActiveProblem;
@@ -160,11 +160,11 @@ namespace FastNeutronCollar
         {
             private const string COMMENT = "Poly Ball";
             private Encased<double> sphereExtents;
-            private Encased<Point3D> sphereCenters;
+            private Encased<MyPoint3D> sphereCenters;
             private Encased<MaterialElement> materials;
             private Encased<string> comments;
 
-            public PolyBall(Point3D Center, double Radius, double Thickness, PoliMiSource source, int InnerMaterial,
+            public PolyBall(MyPoint3D Center, double Radius, double Thickness, PoliMiSource source, int InnerMaterial,
                 bool ActiveProblem,
                 int mcnpIndex = Indices.SOURCE) : base(mcnpIndex, COMMENT)
             {
@@ -176,7 +176,7 @@ namespace FastNeutronCollar
 
                 sphereExtents = new Encased<double> {Inner = Radius, Outer = Radius + Thickness};
 
-                sphereCenters = new Encased<Point3D> {Inner = Center, Outer = Center};
+                sphereCenters = new Encased<MyPoint3D> {Inner = Center, Outer = Center};
                 hasSourceTerm = !ActiveProblem;
                 poliMiSource = source;
             }
@@ -213,11 +213,11 @@ namespace FastNeutronCollar
 
         public class PointSource : Component
         {
-            //protected Point3D center;
+            //protected MyPoint3D center;
             protected string SourceName;
             // private readonly PoliMiSource Source;
 
-            public PointSource(Point3D Center, PoliMiSource source, int mcnpIndex = 0,
+            public PointSource(MyPoint3D Center, PoliMiSource source, int mcnpIndex = 0,
                 bool topLevelComments = false) : base(
                 mcnpIndex, "Point Source", topLevelComments)
             {
@@ -252,11 +252,11 @@ namespace FastNeutronCollar
 
         public class Sphere : Component
         {
-            // private Point3D center;
+            // private MyPoint3D center;
             private double radius;
             private MaterialElement material;
 
-            public Sphere(Point3D Center, double Radius, int Material, PoliMiSource Source, bool UseSourceTerm,
+            public Sphere(MyPoint3D Center, double Radius, int Material, PoliMiSource Source, bool UseSourceTerm,
                 int mcnpIndex = Indices.SOURCE) : base(mcnpIndex,
                 "Homogenous Sphere", true)
             {
@@ -270,7 +270,7 @@ namespace FastNeutronCollar
                 hasSourceTerm = UseSourceTerm;
             }
 
-            public Sphere(Point3D Center, double Radius, MaterialElement Material, PoliMiSource Source,
+            public Sphere(MyPoint3D Center, double Radius, MaterialElement Material, PoliMiSource Source,
                 bool UseSourceTerm,
                 int mcnpIndex = Indices.SOURCE) : base(mcnpIndex,
                 "Homogenous Sphere", true)
@@ -280,7 +280,7 @@ namespace FastNeutronCollar
                 Initialize(Center, Radius, Source);
             }
 
-            private void Initialize(Point3D Center, double Radius, PoliMiSource Source)
+            private void Initialize(MyPoint3D Center, double Radius, PoliMiSource Source)
             {
                 center = Center;
                 radius = Radius;
@@ -325,15 +325,15 @@ namespace FastNeutronCollar
 
         public class NblStandard : Component
         {
-            private Point3D baseOfCylinder;
-            private Point3D axis;
+            private MyPoint3D baseOfCylinder;
+            private MyPoint3D axis;
             private MaterialElement innermaterial;
             private MaterialElement canMaterial;
             private double height;
-            private Encased<Point3D> baseOfPlug;
+            private Encased<MyPoint3D> baseOfPlug;
             private const string COMMENT = "NBL Standard";
 
-            public NblStandard(Point3D Base, Point3D Axis, int FillMaterial, double Height,
+            public NblStandard(MyPoint3D Base, MyPoint3D Axis, int FillMaterial, double Height,
                 PoliMiSource Source, int mcnpIndex = Indices.SOURCE) : base(mcnpIndex, COMMENT)
             {
                 baseOfCylinder = Base;
@@ -388,7 +388,7 @@ namespace FastNeutronCollar
                 return surfaces;
             }
 
-            private Point3D GetInnerCanBase()
+            private MyPoint3D GetInnerCanBase()
             {
                 return baseOfCylinder + Extents.NblStandard.BaseThickness * axis;
             }
@@ -452,16 +452,16 @@ namespace FastNeutronCollar
                 return surfaces;
             }
 
-            private Point3D GetTopPlugCutPoint(Point3D baseOfPlug)
+            private MyPoint3D GetTopPlugCutPoint(MyPoint3D baseOfPlug)
             {
                 return baseOfPlug + Extents.NblStandard.PlugHeight * axis;
             }
 
-            private Encased<Point3D> GetBaseOfPlug()
+            private Encased<MyPoint3D> GetBaseOfPlug()
             {
-                Point3D baseOfPlugOuter = GetInnerCanBase() + height * axis;
+                MyPoint3D baseOfPlugOuter = GetInnerCanBase() + height * axis;
 
-                return new Encased<Point3D>
+                return new Encased<MyPoint3D>
                 {
                     Inner = baseOfPlugOuter + Extents.NblStandard.WallThickness * axis, Outer = baseOfPlugOuter
                 };

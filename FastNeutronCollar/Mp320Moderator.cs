@@ -7,7 +7,7 @@ namespace FastNeutronCollar
     public class Mp320Moderator : Component
     {
         private const string COMMENT = "Mp320 Moderator";
-        private Point3D moderatorBulk;
+        private MyPoint3D moderatorBulk;
         private readonly bool useCdShield;
         private readonly double cdThickness;
         private readonly bool usePdShield;
@@ -17,17 +17,17 @@ namespace FastNeutronCollar
 
         private int neutronIndex;
         private int he3Index;
-        private Point3D faceCenter;
+        private MyPoint3D faceCenter;
         private double additionalThickness;
 
 
         private bool useSideShieldLeftPanelTwo;
         private bool useSideShieldRightPanelOne;
-        private Point3D sideShieldDimensions;
+        private MyPoint3D sideShieldDimensions;
 
         public Mp320Moderator(int mcnpIndex, bool UseCdShield, double CdThickness,
             bool UsePdShield, double PbThickness, double HeightDisplacement, double extraThickness,
-            Point3D SideShieldDimensions, bool UseSideShieldLeftPanelTwo, bool UseSideShieldRightPanelOne,
+            MyPoint3D SideShieldDimensions, bool UseSideShieldLeftPanelTwo, bool UseSideShieldRightPanelOne,
             int neutronGeneratorOutermostIndex, int he3TubeOutermostIndex) : base(
             mcnpIndex, COMMENT)
         {
@@ -75,9 +75,9 @@ namespace FastNeutronCollar
             faceCenter.Z += heightDisplacement;
         }
 
-        private Point3D AddOffsetToFace()
+        private MyPoint3D AddOffsetToFace()
         {
-            Point3D face = Extents.Mp320.ModeratorFaceCenter;
+            MyPoint3D face = Extents.Mp320.ModeratorFaceCenter;
             face.Y -= (pbThickness + cdThickness);
 
             if (useSideShieldRightPanelOne || useSideShieldLeftPanelTwo)
@@ -90,7 +90,7 @@ namespace FastNeutronCollar
 
         private void AddPEoffsetToBulk()
         {
-            Point3D bulk = Extents.Mp320.ModeratorBulk;
+            MyPoint3D bulk = Extents.Mp320.ModeratorBulk;
             bulk.Y += additionalThickness;
             moderatorBulk = bulk;
         }
@@ -165,7 +165,7 @@ namespace FastNeutronCollar
 
         private List<string> GetModeratorSurfaces()
         {
-            Point3D rightNormal = GetRightNormalVector();
+            MyPoint3D rightNormal = GetRightNormalVector();
 
             List<string> surfaces = new List<string>();
             surfaces.Add(GetBulkIndex() + " " +
@@ -179,55 +179,55 @@ namespace FastNeutronCollar
             surfaces.Add(GetRightPlaneIndex() + " " + McnpSurfaces.GetPlane(GetPlanePoint(true), rightNormal) + " " +
                          GetComments(true, "Right Plane"));
             surfaces.Add(GetLeftPlaneIndex() + " " +
-                         McnpSurfaces.GetPlane(GetPlanePoint(false), Point3D.MirrorX(rightNormal)) + " " +
+                         McnpSurfaces.GetPlane(GetPlanePoint(false), MyPoint3D.MirrorX(rightNormal)) + " " +
                          GetComments(true, "Left Plane"));
             surfaces.AddRange(base.MakeSurfaces());
             return surfaces;
         }
 
-        private Point3D GetNotchPlane()
+        private MyPoint3D GetNotchPlane()
         {
-            Point3D notchPlane = faceCenter;
+            MyPoint3D notchPlane = faceCenter;
             notchPlane.Y -= additionalThickness + Extents.Mp320.MODERATOR_FRONT_LENGTH_Y;
             return notchPlane;
         }
 
-        private Point3D GetBulkCenter()
+        private MyPoint3D GetBulkCenter()
         {
-            Point3D bulkMidPoint = faceCenter;
+            MyPoint3D bulkMidPoint = faceCenter;
             bulkMidPoint.Y -= moderatorBulk.Y / 2;
             return bulkMidPoint;
         }
 
-        private Point3D GetRightNormalVector()
+        private MyPoint3D GetRightNormalVector()
         {
             return Point3DHelper.GetUnitVector(Point3DHelper.CrossProduct(GetRightVector2() - GetRightVector1(),
-                new Point3D(0, 0, -1)));
+                new MyPoint3D(0, 0, -1)));
         }
 
-        private Point3D GetRightVector1()
+        private MyPoint3D GetRightVector1()
         {
-            Point3D rightA1 = faceCenter;
+            MyPoint3D rightA1 = faceCenter;
             rightA1.X += Extents.Mp320.ModeratorBulk.X / 2 -
                          Extents.Mp320.MODERATOR_INSET_LENGTH_X;
             rightA1.Y -= additionalThickness + Extents.Mp320.MODERATOR_FRONT_LENGTH_Y;
             return rightA1;
         }
 
-        private Point3D GetRightVector2()
+        private MyPoint3D GetRightVector2()
         {
-            Point3D rightA2 = faceCenter;
+            MyPoint3D rightA2 = faceCenter;
             rightA2.Y -= additionalThickness + Extents.Mp320.ModeratorBulk.Y;
             rightA2.X += Extents.Mp320.MODERATOR_BACK_LENGTH_X / 2;
             return rightA2;
         }
 
-        private Point3D GetPlanePoint(bool rightPlane)
+        private MyPoint3D GetPlanePoint(bool rightPlane)
         {
             double extentSide = (rightPlane) ? -1.0 : 1.0;
             double bulkSide = (rightPlane) ? 1.0 : -1.0;
 
-            Point3D planePoint = faceCenter;
+            MyPoint3D planePoint = faceCenter;
             planePoint.X += bulkSide * (moderatorBulk.X / 2.0) +
                             extentSide * Extents.Mp320.MODERATOR_INSET_LENGTH_X;
             planePoint.Y -= additionalThickness + Extents.Mp320.MODERATOR_FRONT_LENGTH_Y;
@@ -256,9 +256,9 @@ namespace FastNeutronCollar
 
         private class Mp320ModeratorShield : Component
         {
-            private Point3D shieldExtent;
-            private Point3D shieldNormal;
-            private Point3D planeCutPoint;
+            private MyPoint3D shieldExtent;
+            private MyPoint3D shieldNormal;
+            private MyPoint3D planeCutPoint;
 
             private MaterialElement leadMat;
             private MaterialElement cadmiumMat;
@@ -269,7 +269,7 @@ namespace FastNeutronCollar
             private bool usePdShield;
             private bool includeCutPlane;
 
-            public Mp320ModeratorShield(Point3D FaceCenter, bool UseCdShield, double cdThickness, bool UsePdShield,
+            public Mp320ModeratorShield(MyPoint3D FaceCenter, bool UseCdShield, double cdThickness, bool UsePdShield,
                 double pbThickness) : base(
                 Indices.Mp320.MODERATOR + Indices.Mp320.MODERATOR_SHIELD,
                 "Moderator Front Shield")
@@ -368,15 +368,15 @@ namespace FastNeutronCollar
         {
             private const string PANEL_COMMENT = "Left Panel One";
 
-            public LeftPanelSideShield(int mcnpIndex, double heightOffset, Point3D ShieldExtents,
+            public LeftPanelSideShield(int mcnpIndex, double heightOffset, MyPoint3D ShieldExtents,
                 bool TopLevel = false) : base(mcnpIndex + Indices.Mp320.SIDE_PANEL_SHIELD_LEFT, heightOffset,
                 ShieldExtents, PANEL_COMMENT, TopLevel)
             {
             }
 
-            protected override Point3D ShiftFaceFromRightFace(Point3D rightPanelFace)
+            protected override MyPoint3D ShiftFaceFromRightFace(MyPoint3D rightPanelFace)
             {
-                return Point3D.MirrorX(rightPanelFace);
+                return MyPoint3D.MirrorX(rightPanelFace);
             }
 
             protected override string GetPanelComment()
@@ -389,13 +389,13 @@ namespace FastNeutronCollar
         {
             private const string PANEL_COMMENT = "Right Panel Two";
 
-            public RightPanelSideShield(int mcnpIndex, double heightOffset, Point3D ShieldExtents,
+            public RightPanelSideShield(int mcnpIndex, double heightOffset, MyPoint3D ShieldExtents,
                 bool TopLevel = false) : base(mcnpIndex + Indices.Mp320.SIDE_PANEL_SHIELD_RIGHT,
                 heightOffset, ShieldExtents, PANEL_COMMENT, TopLevel)
             {
             }
 
-            protected override Point3D ShiftFaceFromRightFace(Point3D rightPanelFace)
+            protected override MyPoint3D ShiftFaceFromRightFace(MyPoint3D rightPanelFace)
             {
                 return rightPanelFace;
             }
@@ -408,11 +408,11 @@ namespace FastNeutronCollar
 
         private abstract class PanelExtraSideShield : Component
         {
-            private readonly Point3D shieldCenter;
-            private readonly Point3D shieldExtents;
+            private readonly MyPoint3D shieldCenter;
+            private readonly MyPoint3D shieldExtents;
             private readonly MaterialElement shieldMaterial;
 
-            protected PanelExtraSideShield(int mcnpIndex, double heightOffset, Point3D ShieldExtents, string Comment,
+            protected PanelExtraSideShield(int mcnpIndex, double heightOffset, MyPoint3D ShieldExtents, string Comment,
                 bool TopLevel = false) : base(mcnpIndex + Indices.Mp320.SIDE_PANEL_SHIELD,
                 Comment + " Lead Side Shield", TopLevel)
             {
@@ -423,15 +423,15 @@ namespace FastNeutronCollar
                 shieldCenter.Y += ShieldExtents.Y / 2.0;
             }
 
-            protected Point3D GetPanelFaceCenter()
+            protected MyPoint3D GetPanelFaceCenter()
             {
-                Point3D rightPanelFace = Extents.FNCL.PANEL_CENTER;
+                MyPoint3D rightPanelFace = Extents.FNCL.PANEL_CENTER;
                 rightPanelFace.Y -= (Extents.FNCL.PANEL_ENCLOSURE_EXTENT.Y / 2.0 + shieldExtents.Y +
                                      Extents.ENCLOSURE_THICK);
                 return ShiftFaceFromRightFace(rightPanelFace);
             }
 
-            protected abstract Point3D ShiftFaceFromRightFace(Point3D rightPanelFace);
+            protected abstract MyPoint3D ShiftFaceFromRightFace(MyPoint3D rightPanelFace);
 
             protected override List<string> MakeExternalSurfaces()
             {

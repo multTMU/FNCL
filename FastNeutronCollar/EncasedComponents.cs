@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GeometrySampling;
 using GlobalHelpers;
 
@@ -8,14 +7,14 @@ namespace FastNeutronCollar
     public abstract class EncasedComponent<TExtents> : Component
     {
         private const string DESCRIPTION = "Encased";
-        protected Encased<Point3D> centerEncased;
+        protected Encased<MyPoint3D> centerEncased;
         protected Encased<TExtents> extents;
         protected Encased<MaterialElement> material;
         private readonly Encased<string> componentComment;
         private readonly List<int> interiorCells;
         protected readonly bool innerSource;
 
-        protected EncasedComponent(int mcnpIndex, string Comment, bool TopLevel, Encased<Point3D> Center,
+        protected EncasedComponent(int mcnpIndex, string Comment, bool TopLevel, Encased<MyPoint3D> Center,
             Encased<TExtents> Extents, Encased<int> Material,
             Encased<string> ComponentComment, PoliMiSource Source = PoliMiSource.None, bool InnerSource = true,
             string comment = DESCRIPTION, List<int> InteriorCells = null) : base(
@@ -31,7 +30,7 @@ namespace FastNeutronCollar
             innerSource = InnerSource;
         }
 
-        protected EncasedComponent(int mcnpIndex, string Comment, bool TopLevel, Encased<Point3D> Center,
+        protected EncasedComponent(int mcnpIndex, string Comment, bool TopLevel, Encased<MyPoint3D> Center,
             Encased<TExtents> Extents, Encased<MaterialElement> Material,
             Encased<string> ComponentComment, PoliMiSource Source = PoliMiSource.None, bool InnerSource = true,
             string comment = DESCRIPTION, List<int> InteriorCells = null) : base(
@@ -153,7 +152,7 @@ namespace FastNeutronCollar
     {
         private const string DESCRIPTION = "Cylinder";
 
-        public EncasedCylinder(int mcnpIndex, Encased<Point3D> Center, Encased<CylinderExtent> Extents,
+        public EncasedCylinder(int mcnpIndex, Encased<MyPoint3D> Center, Encased<CylinderExtent> Extents,
             Encased<int> Material,
             bool TopLevel, Encased<string> ComponentComment, PoliMiSource Source = PoliMiSource.None,
             bool IsInnerSource = true, string comment = DESCRIPTION,
@@ -162,7 +161,7 @@ namespace FastNeutronCollar
         {
         }
 
-        public EncasedCylinder(int mcnpIndex, Encased<Point3D> Center, Encased<CylinderExtent> Extents,
+        public EncasedCylinder(int mcnpIndex, Encased<MyPoint3D> Center, Encased<CylinderExtent> Extents,
             Encased<MaterialElement> Material,
             bool TopLevel, Encased<string> ComponentComment, PoliMiSource Source = PoliMiSource.None,
             bool IsInnerSource = true, string comment = DESCRIPTION,
@@ -173,7 +172,7 @@ namespace FastNeutronCollar
 
         protected override string GetMacroBodyOuter()
         {
-            Point3D baseCenter = GetBaseCenter(centerEncased.Outer, extents.Outer);
+            MyPoint3D baseCenter = GetBaseCenter(centerEncased.Outer, extents.Outer);
             return McnpSurfaces.GetRightCircularCylinder(baseCenter, extents.Outer.Axis, extents.Outer.Height,
                 extents.Outer.Radius);
         }
@@ -189,12 +188,12 @@ namespace FastNeutronCollar
 
         protected override string GetMacroBodyInner()
         {
-            Point3D baseCenter = GetBaseCenter(centerEncased.Inner, extents.Inner);
+            MyPoint3D baseCenter = GetBaseCenter(centerEncased.Inner, extents.Inner);
             return McnpSurfaces.GetRightCircularCylinder(baseCenter, extents.Inner.Axis, extents.Inner.Height,
                 extents.Inner.Radius);
         }
 
-        private Point3D GetBaseCenter(Point3D center, CylinderExtent extent)
+        private MyPoint3D GetBaseCenter(MyPoint3D center, CylinderExtent extent)
         {
             return center - (extent.Height / 2) * extent.Axis;
         }
@@ -202,7 +201,7 @@ namespace FastNeutronCollar
 
     public class EncasedArbitrarilyOrientedBox : EncasedComponent<Matrix3D>
     {
-        public EncasedArbitrarilyOrientedBox(int mcnpIndex, string Comment, bool TopLevel, Encased<Point3D> Corner,
+        public EncasedArbitrarilyOrientedBox(int mcnpIndex, string Comment, bool TopLevel, Encased<MyPoint3D> Corner,
             Encased<Matrix3D> Extents, Encased<int> Material, Encased<string> ComponentComment,
             PoliMiSource Source = PoliMiSource.None, bool InnerSource = true, string comment = "Encased",
             List<int> InteriorCells = null) : base(mcnpIndex, Comment, TopLevel, Corner, Extents, Material,
@@ -210,7 +209,7 @@ namespace FastNeutronCollar
         {
         }
 
-        public EncasedArbitrarilyOrientedBox(int mcnpIndex, string Comment, bool TopLevel, Encased<Point3D> Corner,
+        public EncasedArbitrarilyOrientedBox(int mcnpIndex, string Comment, bool TopLevel, Encased<MyPoint3D> Corner,
             Encased<Matrix3D> Extents, Encased<MaterialElement> Material, Encased<string> ComponentComment,
             PoliMiSource Source = PoliMiSource.None, bool InnerSource = true, string comment = "Encased",
             List<int> InteriorCells = null) : base(mcnpIndex, Comment, TopLevel, Corner, Extents, Material,
@@ -241,12 +240,12 @@ namespace FastNeutronCollar
         }
     }
 
-    public class EncasedBlock : EncasedComponent<Point3D>
+    public class EncasedBlock : EncasedComponent<MyPoint3D>
     {
         private const string DESCRIPTION = "Cuboid";
 
-        public EncasedBlock(int mcnpIndex, string Comment, bool TopLevel, Encased<Point3D> Center,
-            Encased<Point3D> Extents, Encased<int> Material, Encased<string> ComponentComment,
+        public EncasedBlock(int mcnpIndex, string Comment, bool TopLevel, Encased<MyPoint3D> Center,
+            Encased<MyPoint3D> Extents, Encased<int> Material, Encased<string> ComponentComment,
             PoliMiSource Source = PoliMiSource.None, bool IsInnerSource = true,
             string comment = DESCRIPTION, List<int> InteriorCells = null) : base(mcnpIndex, Comment, TopLevel,
             Center, Extents, Material,
@@ -254,8 +253,8 @@ namespace FastNeutronCollar
         {
         }
 
-        public EncasedBlock(int mcnpIndex, string Comment, bool TopLevel, Encased<Point3D> Center,
-            Encased<Point3D> Extents, Encased<MaterialElement> Material, Encased<string> ComponentComment,
+        public EncasedBlock(int mcnpIndex, string Comment, bool TopLevel, Encased<MyPoint3D> Center,
+            Encased<MyPoint3D> Extents, Encased<MaterialElement> Material, Encased<string> ComponentComment,
             PoliMiSource Source = PoliMiSource.None, bool IsInnerSource = true,
             string comment = DESCRIPTION, List<int> InteriorCells = null) : base(mcnpIndex, Comment, TopLevel,
             Center, Extents, Material,
@@ -263,13 +262,13 @@ namespace FastNeutronCollar
         {
         }
 
-        public EncasedBlock(int mcnpIndex, bool TopLevel, Point3D Center, Point3D Extents, double thickness,
+        public EncasedBlock(int mcnpIndex, bool TopLevel, MyPoint3D Center, MyPoint3D Extents, double thickness,
             int innerMat, int outermat, Encased<string> ComponentComment, PoliMiSource Source = PoliMiSource.None,
             bool IsInnerSource = true, string comment = DESCRIPTION,
             List<int> InteriorCells = null) : base(
             mcnpIndex, comment, TopLevel,
-            new Encased<Point3D> {Inner = Center, Outer = Center},
-            new Encased<Point3D> {Inner = Extents, Outer = Extents + 2.0 * thickness},
+            new Encased<MyPoint3D> {Inner = Center, Outer = Center},
+            new Encased<MyPoint3D> {Inner = Extents, Outer = Extents + 2.0 * thickness},
             new Encased<MaterialElement>
             {
                 Inner = MaterialManager.GetMaterial(innerMat), Outer = MaterialManager.GetMaterial(outermat)
@@ -278,14 +277,14 @@ namespace FastNeutronCollar
         {
         }
 
-        public EncasedBlock(int mcnpIndex, bool TopLevel, Point3D Center, Point3D Extents, double thickness,
+        public EncasedBlock(int mcnpIndex, bool TopLevel, MyPoint3D Center, MyPoint3D Extents, double thickness,
             MaterialElement innerMat, MaterialElement outermat, Encased<string> ComponentComment,
             PoliMiSource Source = PoliMiSource.None,
             bool IsInnerSource = true, string comment = DESCRIPTION,
             List<int> InteriorCells = null) : base(
             mcnpIndex, comment, TopLevel,
-            new Encased<Point3D> {Inner = Center, Outer = Center},
-            new Encased<Point3D> {Inner = Extents, Outer = Extents + 2.0 * thickness},
+            new Encased<MyPoint3D> {Inner = Center, Outer = Center},
+            new Encased<MyPoint3D> {Inner = Extents, Outer = Extents + 2.0 * thickness},
             new Encased<MaterialElement> {Inner = innerMat, Outer = outermat},
             ComponentComment, Source, IsInnerSource, comment, InteriorCells)
         {
@@ -315,7 +314,7 @@ namespace FastNeutronCollar
     {
         private const string DESCRIPTION = "Sphere";
 
-        public EncasedSphere(int mcnpIndex, string Comment, bool TopLevel, Encased<Point3D> Center,
+        public EncasedSphere(int mcnpIndex, string Comment, bool TopLevel, Encased<MyPoint3D> Center,
             Encased<double> Extents, Encased<int> Material, Encased<string> ComponentComment,
             PoliMiSource Source = PoliMiSource.None, bool IsInnerSource = true,
             string comment = "Encased", List<int> InteriorCells = null) : base(mcnpIndex, Comment, TopLevel, Center,
@@ -323,7 +322,7 @@ namespace FastNeutronCollar
         {
         }
 
-        public EncasedSphere(int mcnpIndex, string Comment, bool TopLevel, Encased<Point3D> Center,
+        public EncasedSphere(int mcnpIndex, string Comment, bool TopLevel, Encased<MyPoint3D> Center,
             Encased<double> Extents, Encased<MaterialElement> Material, Encased<string> ComponentComment,
             PoliMiSource Source = PoliMiSource.None, bool IsInnerSource = true,
             string comment = "Encased", List<int> InteriorCells = null) : base(mcnpIndex, Comment, TopLevel, Center,

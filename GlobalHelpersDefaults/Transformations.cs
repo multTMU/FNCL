@@ -7,25 +7,25 @@ namespace GlobalHelpers
         private const string TRANSLATE = "tr";
         private const string DEFAULT_DISPLACEMENT = " 0 0 0 ";
 
-        public static string GetDisplacement(int label, Point3D displacmentVector)
+        public static string GetDisplacement(int label, MyPoint3D displacmentVector)
         {
             string dataLabel = GetDataLabel(label);
 
             return dataLabel + " " + displacmentVector.ToString();
         }
 
-        public static string GetRotation(int label, Point3D basisVector, Point3D newVector)
+        public static string GetRotation(int label, MyPoint3D basisVector, MyPoint3D newVector)
         {
             return GetDataLabel(label) + " " + DEFAULT_DISPLACEMENT + GetRotation(basisVector, newVector);
         }
 
-        public static string GetDisplacementAndRotation(int label, Point3D displacmentVector, Point3D basisVector,
-            Point3D newVector)
+        public static string GetDisplacementAndRotation(int label, MyPoint3D displacmentVector, MyPoint3D basisVector,
+            MyPoint3D newVector)
         {
             return GetDisplacement(label, displacmentVector) + " " + GetRotation(basisVector, newVector);
         }
 
-        private static string GetRotation(Point3D basisVector, Point3D newVector)
+        private static string GetRotation(MyPoint3D basisVector, MyPoint3D newVector)
         {
             basisVector = Point3DHelper.GetUnitVector(basisVector);
             newVector = Point3DHelper.GetUnitVector(newVector);

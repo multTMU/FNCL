@@ -45,6 +45,20 @@ namespace Multiplicity
             }
         }
 
+        public static NGamSnlPulses GetNGamSnlPulses(string file)
+        {
+            NGamSnlPulses pulses = new NGamSnlPulses(file, false);
+            NGamSnlFileHelper.AddPulses(pulses);
+            return pulses;
+        }
+
+        public class NGamSnlPulses : Pulses<NGamSnlPulse>
+        {
+            public NGamSnlPulses(string file, bool bigFile) : base(file, bigFile, PulseFileType.NGamSnl)
+            {
+            }
+        }
+
         private class FnclPoliMiPulses : Pulses<PoliMiPulse>
         {
             private readonly double activity;

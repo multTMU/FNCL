@@ -8,10 +8,10 @@ namespace FastNeutronCollar
         //private class BlockOfHDPE: Component
         //{
         //    private const string COMMENT = "HDPE Block";
-        //    private readonly Point3D centerOfHDPE;
-        //    private readonly Point3D extents;
+        //    private readonly MyPoint3D centerOfHDPE;
+        //    private readonly MyPoint3D extents;
 
-        //    public BlockOfHDPE(int mcnpLabel, Point3D CenterOfHDPE, string ExtraComment) : base(mcnpLabel, COMMENT + " " + ExtraComment)
+        //    public BlockOfHDPE(int mcnpLabel, MyPoint3D CenterOfHDPE, string ExtraComment) : base(mcnpLabel, COMMENT + " " + ExtraComment)
         //    {
         //        centerOfHDPE = CenterOfHDPE;
         //        extents = Extents.FNCL.HDPE_BLOCK_EXTENT;
@@ -51,7 +51,7 @@ namespace FastNeutronCollar
             private const bool TopLevel = true;
             private readonly double caseThickness;
 
-            public EncasedBlockOfHDPE(int mcnpIndex, Point3D CenterOfHDPE, double CaseThickness, string ExtraComment) :
+            public EncasedBlockOfHDPE(int mcnpIndex, MyPoint3D CenterOfHDPE, double CaseThickness, string ExtraComment) :
                 base(mcnpIndex, "Encased HDPE Block " + ExtraComment, TopLevel)
             {
                 center = CenterOfHDPE;

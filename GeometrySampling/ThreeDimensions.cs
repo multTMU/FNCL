@@ -16,9 +16,9 @@ namespace GeometrySampling
             Dim3 = dim3Ranger;
         }
 
-        public virtual List<Point3D> GetPointCollection()
+        public virtual List<MyPoint3D> GetPointCollection()
         {
-            List<Point3D> positions = new List<Point3D>();
+            List<MyPoint3D> positions = new List<MyPoint3D>();
             foreach (double d1 in Dim1.GetValues())
             {
                 foreach (double d2 in Dim2.GetValues())
@@ -33,7 +33,7 @@ namespace GeometrySampling
             return positions;
         }
 
-        protected abstract Point3D GetPoint(in double d1, in double d2, in double d3);
+        protected abstract MyPoint3D GetPoint(in double d1, in double d2, in double d3);
     }
 
 
@@ -44,9 +44,9 @@ namespace GeometrySampling
         {
         }
 
-        protected override Point3D GetPoint(in double x, in double y, in double z)
+        protected override MyPoint3D GetPoint(in double x, in double y, in double z)
         {
-            return new Point3D(x, y, z);
+            return new MyPoint3D(x, y, z);
         }
     }
 
@@ -57,14 +57,14 @@ namespace GeometrySampling
         {
         }
 
-        protected override Point3D GetPoint(in double r, in double cosine, in double phi)
+        protected override MyPoint3D GetPoint(in double r, in double cosine, in double phi)
         {
             double sine = Math.Sin(Math.Acos(cosine));
             double x = r * sine * Math.Cos(phi);
             double y = r * sine * Math.Sin(phi);
             double z = r * cosine;
 
-            return new Point3D(x, y, z);
+            return new MyPoint3D(x, y, z);
         }
     }
 
@@ -75,11 +75,11 @@ namespace GeometrySampling
         {
         }
 
-        protected override Point3D GetPoint(in double radius, in double height, in double phi)
+        protected override MyPoint3D GetPoint(in double radius, in double height, in double phi)
         {
             double x = radius * Math.Cos(phi);
             double y = radius * Math.Sin(phi);
-            return new Point3D(x, y, height);
+            return new MyPoint3D(x, y, height);
         }
     }
 }

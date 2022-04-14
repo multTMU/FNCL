@@ -131,7 +131,7 @@ namespace GuiWidgets.FnclModels
             return this.model.GetNeutronGeneratorType();
         }
 
-        public Point3D GetExtraLeadSideShieldDimensions()
+        public MyPoint3D GetExtraLeadSideShieldDimensions()
         {
             return this.model.GetExtraLeadSideShieldDimensions();
         }
@@ -146,12 +146,12 @@ namespace GuiWidgets.FnclModels
             return this.model.GetUseExtraLeadLeftPanelTwo();
         }
 
-        public Point3D GetGeneratorAxis()
+        public MyPoint3D GetGeneratorAxis()
         {
             return this.model.GetGeneratorAxis();
         }
 
-        public Point3D GetGeneratorSourcePoint()
+        public MyPoint3D GetGeneratorSourcePoint()
         {
             return this.model.GetGeneratorSourcePoint();
         }

@@ -68,7 +68,7 @@ namespace Runner
 
     public abstract class RunFnclDetector : ModelRunner
     {
-        protected Point3D CenterOfFNCL;
+        protected MyPoint3D CenterOfFNCL;
         protected double heightDisplacement;
 
         private FNCLcomponent fncl;

@@ -38,7 +38,7 @@ namespace Runner
             base.InitializeComponents();
         }
 
-        private Point3D getCenterOfDU()
+        private MyPoint3D getCenterOfDU()
         {
             return SelMeasurementComponents.GetCenterOfTopOfPucksAndPost(nPucks) + (specs.Height / 2) * specs.Axis;
         }
@@ -46,7 +46,7 @@ namespace Runner
 
     public interface ISelMeasurement
     {
-        Point3D GetTopOfPostPucks();
+        MyPoint3D GetTopOfPostPucks();
         int GetNumberOfPucks();
         void SetNumberOfPucks(int pucks);
         void InitializeSelFncl();
@@ -56,7 +56,7 @@ namespace Runner
     public class SelFNCL : AmLiFNCL, ISelMeasurement
     {
         protected int nPucks;
-        protected Point3D topOfPostPucks;
+        protected MyPoint3D topOfPostPucks;
 
         public SelFNCL(string configurationFile, bool UseAmLiSources, AmLiBlockTypes AmLiBlock,
             string additionalComment = "") : base(
@@ -100,7 +100,7 @@ namespace Runner
             topOfPostPucks = SelMeasurementComponents.GetCenterOfTopOfPucksAndPost(nPucks);
         }
 
-        public Point3D GetTopOfPostPucks()
+        public MyPoint3D GetTopOfPostPucks()
         {
             return SelMeasurementComponents.GetCenterOfTopOfPucksAndPost(nPucks);
         }

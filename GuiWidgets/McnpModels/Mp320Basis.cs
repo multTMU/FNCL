@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using GuiInterface;
-using GeometrySampling;
 using GlobalHelpers;
+using GeometrySampling;
 
 namespace GuiWidgets.FnclModels
 {
@@ -89,7 +89,7 @@ namespace GuiWidgets.FnclModels
             inThickPb.SetValueRaiseNoEvent(0);
         }
 
-        public Point3D GetExtraLeadSideShieldDimensions()
+        public MyPoint3D GetExtraLeadSideShieldDimensions()
         {
             return inShieldDimensions.GetPoint();
         }
@@ -104,14 +104,14 @@ namespace GuiWidgets.FnclModels
             return cbLeftPanelTwo.Checked;
         }
 
-        public Point3D GetGeneratorAxis()
+        public MyPoint3D GetGeneratorAxis()
         {
-            return new Point3D(GARBAGE, GARBAGE, GARBAGE);
+            return new MyPoint3D(GARBAGE, GARBAGE, GARBAGE);
         }
 
-        public Point3D GetGeneratorSourcePoint()
+        public MyPoint3D GetGeneratorSourcePoint()
         {
-            return new Point3D(GARBAGE, GARBAGE, GARBAGE);
+            return new MyPoint3D(GARBAGE, GARBAGE, GARBAGE);
         }
 
         public double GetGeneratorRotationDegrees()

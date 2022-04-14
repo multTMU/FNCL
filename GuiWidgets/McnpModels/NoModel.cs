@@ -69,9 +69,9 @@ namespace GuiWidgets.FnclModels
             return NeutronGeneratorTypes.Undefined;
         }
 
-        public Point3D GetExtraLeadSideShieldDimensions()
+        public MyPoint3D GetExtraLeadSideShieldDimensions()
         {
-            return new Point3D(GARBAGE, GARBAGE, GARBAGE);
+            return new MyPoint3D(GARBAGE, GARBAGE, GARBAGE);
         }
 
         public bool GetUseExtraLeadRightPanelOne()
@@ -84,14 +84,14 @@ namespace GuiWidgets.FnclModels
             return false;
         }
 
-        public Point3D GetGeneratorAxis()
+        public MyPoint3D GetGeneratorAxis()
         {
-            return new Point3D(GARBAGE, GARBAGE, GARBAGE);
+            return new MyPoint3D(GARBAGE, GARBAGE, GARBAGE);
         }
 
-        public Point3D GetGeneratorSourcePoint()
+        public MyPoint3D GetGeneratorSourcePoint()
         {
-            return new Point3D(GARBAGE, GARBAGE, GARBAGE);
+            return new MyPoint3D(GARBAGE, GARBAGE, GARBAGE);
         }
 
         public double GetGeneratorRotationDegrees()
