@@ -53,48 +53,51 @@ namespace NGamSnlCli
 
                     using (StreamWriter swTrig = new StreamWriter(Path.ChangeExtension(pulseFile, "trig")))
                     {
-                        swTrig.WriteLine("Trigger Gate file: " + pulseFile);
-
-                        swTrig.WriteLine("Peak Bounds (keV) Low: " + peak.Lower + " High): " + peak.Upper);
-                        swShift.WriteLine("Peak Bounds (keV) Low: " + peak.Lower + " High): " + peak.Upper);
-
-                        swTrig.WriteLine(MultiplicityRates.HEADER);
-                        swShift.WriteLine(MultiplicityRates.HEADER);
-                        foreach (var g in gates)
+                        using (StreamWriter swSeq = new StreamWriter(Path.ChangeExtension(pulseFile, "seq")))
                         {
-                            Console.WriteLine("Gate: " + g.ToString());
+                            swTrig.WriteLine("Trigger Gate file: " + pulseFile);
 
-                            MultiplicityRates mult = RunShiftRegister(allPulses, g, 0, longGateMultiplier * g);
-                            swShift.WriteLine("All " + mult.ToString());
+                            swTrig.WriteLine("Peak Bounds (keV) Low: " + peak.Lower + " High): " + peak.Upper);
+                            swShift.WriteLine("Peak Bounds (keV) Low: " + peak.Lower + " High): " + peak.Upper);
 
-                            mult = RunShiftRegister(peakPulses, g, 0, longGateMultiplier * g);
-                            swShift.WriteLine("Peak " + mult.ToString());
+                            swTrig.WriteLine(MultiplicityRates.HEADER);
+                            swShift.WriteLine(MultiplicityRates.HEADER);
+                            foreach (var g in gates)
+                            {
+                                Console.WriteLine("Gate: " + g.ToString());
 
-                            mult = RunShiftRegister(belowPulses, g, 0, longGateMultiplier * g);
-                            swShift.WriteLine("Below_Peak " + mult.ToString());
+                                MultiplicityRates mult = RunShiftRegister(allPulses, g, 0, longGateMultiplier * g);
+                                swShift.WriteLine("All " + mult.ToString());
 
-                            RunShiftRegister(abovePules, g, 0, longGateMultiplier * g);
-                            swShift.WriteLine("Above_Peak " + mult.ToString());
+                                mult = RunShiftRegister(peakPulses, g, 0, longGateMultiplier * g);
+                                swShift.WriteLine("Peak " + mult.ToString());
 
-                            mult = RunShiftRegister(notPeakPulses, g, 0, longGateMultiplier * g);
-                            swShift.WriteLine("Not_Peak " + mult.ToString());
-                            swShift.WriteLine("");
+                                mult = RunShiftRegister(belowPulses, g, 0, longGateMultiplier * g);
+                                swShift.WriteLine("Below_Peak " + mult.ToString());
 
-                            mult = RunTriggeredGate(allPulses, g);
-                            swTrig.WriteLine("All " + mult.ToString());
+                                RunShiftRegister(abovePules, g, 0, longGateMultiplier * g);
+                                swShift.WriteLine("Above_Peak " + mult.ToString());
 
-                            mult = RunTriggeredGate(peakPulses, g);
-                            swTrig.WriteLine("Peak " + mult.ToString());
+                                mult = RunShiftRegister(notPeakPulses, g, 0, longGateMultiplier * g);
+                                swShift.WriteLine("Not_Peak " + mult.ToString());
+                                swShift.WriteLine("");
 
-                            mult = RunTriggeredGate(belowPulses, g);
-                            swTrig.WriteLine("Below_Peak " + mult.ToString());
+                                mult = RunTriggeredGate(allPulses, g);
+                                swTrig.WriteLine("All " + mult.ToString());
 
-                            mult = RunTriggeredGate(abovePules, g);
-                            swTrig.WriteLine("Above_Peak " + mult.ToString());
+                                mult = RunTriggeredGate(peakPulses, g);
+                                swTrig.WriteLine("Peak " + mult.ToString());
 
-                            mult = RunTriggeredGate(notPeakPulses, g);
-                            swTrig.WriteLine("Not_Peak " + mult.ToString());
-                            swTrig.WriteLine("");
+                                mult = RunTriggeredGate(belowPulses, g);
+                                swTrig.WriteLine("Below_Peak " + mult.ToString());
+
+                                mult = RunTriggeredGate(abovePules, g);
+                                swTrig.WriteLine("Above_Peak " + mult.ToString());
+
+                                mult = RunTriggeredGate(notPeakPulses, g);
+                                swTrig.WriteLine("Not_Peak " + mult.ToString());
+                                swTrig.WriteLine("");
+                            }
                         }
                     }
                 }
