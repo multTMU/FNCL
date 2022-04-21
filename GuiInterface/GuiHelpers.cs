@@ -95,7 +95,8 @@ namespace GuiInterface
         MP320Sel,
         Starfire,
         StarfireSel,
-        NGamArray12
+        NGamArray12,
+        NGamSnl
     }
 
     public enum AppliedPulseFilters

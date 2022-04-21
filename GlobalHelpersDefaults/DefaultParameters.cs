@@ -120,6 +120,30 @@ namespace GlobalHelpers
         public const int PLYWOOD = 35;
         public const int URANIUMOXIDE_20p11 = 90;
         public const int POLYURETHANE_FOAM = 48;
+
+        public static int GetDetectorMaterial(MPPostDetectorTypes detectorTypes)
+        {
+            switch (detectorTypes)
+            {
+                case MPPostDetectorTypes.NonActiveVolume:
+                    return AIR;
+                case MPPostDetectorTypes.LiquidOrganicScintillator:
+                    return EJ309;
+                case MPPostDetectorTypes.He3:
+                    return HE3_GAS;
+                case MPPostDetectorTypes.PlasticOrganicScintillator:
+                    throw new Exception("Material Not Defined Yet: " + detectorTypes.ToString());
+                case MPPostDetectorTypes.NaI:
+                    return NAI;
+                case MPPostDetectorTypes.CaF2:
+                    throw new Exception("Material Not Defined Yet: " + detectorTypes.ToString());
+                case MPPostDetectorTypes.LaBr3:
+                    throw new Exception("Material Not Defined Yet: " + detectorTypes.ToString());
+                default:
+                    return AIR;
+
+            }
+        }
     }
 
     public static class FuelAssembly

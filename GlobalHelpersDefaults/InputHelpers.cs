@@ -51,6 +51,7 @@ namespace GlobalHelpers
         LaBr3 = 6
     }
 
+
     public static class DataCardHelper
     {
         private const string COMMENT = "RUN SPECIFICATION";

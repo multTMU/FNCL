@@ -55,9 +55,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CombinePulses\BatchCombinePulses.cs">
@@ -149,6 +151,12 @@
     </Compile>
     <Compile Include="FittedDataPlotter.Designer.cs">
       <DependentUpon>FittedDataPlotter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="McnpModels\NGamSnlModel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="McnpModels\NGamSnlModel.Designer.cs">
+      <DependentUpon>NGamSnlModel.cs</DependentUpon>
     </Compile>
     <Compile Include="McnpModels\StarFireNGen350Basis.cs">
       <SubType>UserControl</SubType>
@@ -787,6 +795,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="McnpModels\NGamArray.resx">
       <DependentUpon>NGamArray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="McnpModels\NGamSnlModel.resx">
+      <DependentUpon>NGamSnlModel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="McnpModels\ProblemRunner.resx">
       <DependentUpon>ProblemRunner.cs</DependentUpon>

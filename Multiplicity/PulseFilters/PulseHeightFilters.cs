@@ -6,7 +6,10 @@ namespace Multiplicity.PulseFilters
     public abstract class PulseHeightFilter<TPulse> : PulseFilter<TPulse> where TPulse : IPulseHeight
     {
         private readonly List<Bounds<double>> pulseHeights;
-
+        protected PulseHeightFilter(Bounds<double> validPulseHeightRange)
+        {
+            pulseHeights = new List<Bounds<double>>() {validPulseHeightRange};
+        }
         protected PulseHeightFilter(List<Bounds<double>> validPulseHeightRanges)
         {
             pulseHeights = validPulseHeightRanges;
@@ -75,6 +78,9 @@ namespace Multiplicity.PulseFilters
 
     public class PulseHeightKeVeeFilter<TPulse> : PulseHeightFilter<TPulse> where TPulse : IPulseHeight
     {
+        public PulseHeightKeVeeFilter(Bounds<double> validPulseHeightRange) : base(validPulseHeightRange)
+        {
+        }
         public PulseHeightKeVeeFilter(List<Bounds<double>> validPulseHeightRanges) : base(validPulseHeightRanges)
         {
         }

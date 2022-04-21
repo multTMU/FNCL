@@ -67,5 +67,11 @@ namespace GuiWidgets
             model = GuiInterface.ModelTypes.NGamArray12;
             ModelTypeSelected();
         }
+
+        private void bNGamSnl_Click(object sender, EventArgs e)
+        {
+            model = GuiInterface.ModelTypes.NGamSnl;
+            ModelTypeSelected();
+        }
     }
 }

@@ -37,6 +37,7 @@
             this.bAmLiSEL = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.bNGam12Array = new System.Windows.Forms.Button();
+            this.bNGamSnl = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -121,6 +122,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.bNGamSnl);
             this.groupBox2.Controls.Add(this.bNGam12Array);
             this.groupBox2.Location = new System.Drawing.Point(3, 86);
             this.groupBox2.Name = "groupBox2";
@@ -138,6 +140,16 @@
             this.bNGam12Array.Text = "NaI-Array";
             this.bNGam12Array.UseVisualStyleBackColor = true;
             this.bNGam12Array.Click += new System.EventHandler(this.bNGam12Array_Click);
+            // 
+            // bNGamSnl
+            // 
+            this.bNGamSnl.Location = new System.Drawing.Point(87, 19);
+            this.bNGamSnl.Name = "bNGamSnl";
+            this.bNGamSnl.Size = new System.Drawing.Size(75, 23);
+            this.bNGamSnl.TabIndex = 9;
+            this.bNGamSnl.Text = "SNL";
+            this.bNGamSnl.UseVisualStyleBackColor = true;
+            this.bNGamSnl.Click += new System.EventHandler(this.bNGamSnl_Click);
             // 
             // ModelSelector
             // 
@@ -164,5 +176,6 @@
         private System.Windows.Forms.Button bMP320;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button bNGam12Array;
+        private System.Windows.Forms.Button bNGamSnl;
     }
 }
