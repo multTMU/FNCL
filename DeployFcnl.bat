@@ -1,5 +1,5 @@
 set programDestination=C:\FNCL\Program\
-set programSource=C:\Users\9eo\Documents\SourceCode\FNCL\GUI\fastneutroncollaranalysisgui\GuiFastNeutronCollar\bin\x64\Release\
+set programSource=C:\Users\9eo\Documents\SourceCode\FNCL\FNCL_OPEN\GuiFastNeutronCollar\bin\x64\Release\
 copy %programSource%GuiFastNeutronCollar.exe %programDestination%
 copy %programSource%FastNeutronCollar.dll %programDestination%
 copy %programSource%GeometrySampling.dll %programDestination%

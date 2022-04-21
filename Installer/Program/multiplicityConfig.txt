@@ -2,5 +2,5 @@
 
 C:\MCNPpolimi\bin\Win\mcnpx_polimi_v270_v200.exe
 C:\MPPost\bin\MPPost_win64.exe
-E:\FNCLdata\mp320Cf252April16\SESSION_0\EXAM\Cf252_6081\IM\DAQ\FNCL_DAQ_0.bin
+
 None

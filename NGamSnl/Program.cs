@@ -12,37 +12,39 @@ namespace NGamSnlCli
     {
         static void Main(string[] args)
         {
-            double peakLow = 2100;
-            double peakHigh = 2500;
-         
-            Bounds<double> peak = new Bounds<double>(peakLow, peakHigh);
-            Bounds<double> peakBelow = new Bounds<double>(0, peakLow);
-            Bounds<double> peakAbove = new Bounds<double>(peakHigh, double.MaxValue);
+            string pulseFile = args[0];
+
+            List<Bounds<double>> bounds = new List<Bounds<double>>();
+
+            for (int i = 1; i < args.Length; i +=2)
+            {
+                bounds.Add(new Bounds<double>(double.Parse(args[i]), double.Parse(args[i])));
+            }
+
+            //double peakLow = double.Parse(args[1]);
+            //double peakHigh = double.Parse(args[2]);
+
+            //Bounds<double> peak = new Bounds<double>(peakLow, peakHigh);
+            //Bounds<double> peakBelow = new Bounds<double>(0, peakLow);
+            //Bounds<double> peakAbove = new Bounds<double>(peakHigh, double.MaxValue);
             
-            List<Bounds<double>> outsidePeak = new List<Bounds<double>>()
-            {
-                peakBelow, peakAbove
-            };
+            //List<Bounds<double>> outsidePeak = new List<Bounds<double>>()
+            //{
+            //    peakBelow, peakAbove
+            //};
 
-            string pulseDir = @"C:\Users\9eo\Documents\Projects\NGamLDRD\DAF_Data (1)\DAF_Data\";
-            var pulseFileList = Directory.GetFiles(pulseDir, "*.txt").ToList();
-            foreach (var pulseFile in pulseFileList)
-            {
-                
-                //string pulseFile = @"C:\Users\9eo\Documents\Projects\NGamLDRD\DAF_Data (1)\DAF_Data\C10_50cm_Tin_1000th.txt";
-                Pulses<NGamSnlPulse> allPulses = PulsesHelper.GetNGamSnlPulses(pulseFile);
+         
+                Pulses<NGamSnlPulse> pulses = PulsesHelper.GetNGamSnlPulses(pulseFile);
+              pulses.RunExternalFilter(new PulseHeightKeVeeFilter<NGamSnlPulse>(bounds));
 
-                Pulses<NGamSnlPulse> peakPulses = allPulses.Clone();
-                peakPulses.RunExternalFilter(new PulseHeightKeVeeFilter<NGamSnlPulse>(peak));
+                //Pulses<NGamSnlPulse> belowPulses = allPulses.Clone();
+                //boundPulses.RunExternalFilter(new PulseHeightKeVeeFilter<NGamSnlPulse>(peakBelow));
 
-                Pulses<NGamSnlPulse> belowPulses = allPulses.Clone();
-                peakPulses.RunExternalFilter(new PulseHeightKeVeeFilter<NGamSnlPulse>(peakBelow));
+                //Pulses<NGamSnlPulse> abovePules = allPulses.Clone();
+                //boundPulses.RunExternalFilter(new PulseHeightKeVeeFilter<NGamSnlPulse>(peakHigh));
 
-                Pulses<NGamSnlPulse> abovePules = allPulses.Clone();
-                peakPulses.RunExternalFilter(new PulseHeightKeVeeFilter<NGamSnlPulse>(peakHigh));
-
-                Pulses<NGamSnlPulse> notPeakPulses = allPulses.Clone();
-                peakPulses.RunExternalFilter(new PulseHeightKeVeeFilter<NGamSnlPulse>(outsidePeak));
+                //Pulses<NGamSnlPulse> notPeakPulses = allPulses.Clone();
+                //boundPulses.RunExternalFilter(new PulseHeightKeVeeFilter<NGamSnlPulse>(outsidePeak));
 
                 List<double> gates = GetLogSpaced(1e4, 1e6, 10);
                 double longGateMultiplier = 10;
@@ -57,8 +59,8 @@ namespace NGamSnlCli
                         {
                             swTrig.WriteLine("Trigger Gate file: " + pulseFile);
 
-                            swTrig.WriteLine("Peak Bounds (keV) Low: " + peak.Lower + " High): " + peak.Upper);
-                            swShift.WriteLine("Peak Bounds (keV) Low: " + peak.Lower + " High): " + peak.Upper);
+                            //swTrig.WriteLine("Peak Bounds (keV) Low: " + peak.Lower + " High): " + peak.Upper);
+                            //swShift.WriteLine("Peak Bounds (keV) Low: " + peak.Lower + " High): " + peak.Upper);
 
                             swTrig.WriteLine(MultiplicityRates.HEADER);
                             swShift.WriteLine(MultiplicityRates.HEADER);
@@ -66,42 +68,42 @@ namespace NGamSnlCli
                             {
                                 Console.WriteLine("Gate: " + g.ToString());
 
-                                MultiplicityRates mult = RunShiftRegister(allPulses, g, 0, longGateMultiplier * g);
-                                swShift.WriteLine("All " + mult.ToString());
+                                MultiplicityRates mult = RunShiftRegister(pulses, g, 0, longGateMultiplier * g);
+                                swShift.WriteLine(mult.ToString());
 
-                                mult = RunShiftRegister(peakPulses, g, 0, longGateMultiplier * g);
-                                swShift.WriteLine("Peak " + mult.ToString());
+                                //mult = RunShiftRegister(boundPulses, g, 0, longGateMultiplier * g);
+                                //swShift.WriteLine("Peak " + mult.ToString());
 
-                                mult = RunShiftRegister(belowPulses, g, 0, longGateMultiplier * g);
-                                swShift.WriteLine("Below_Peak " + mult.ToString());
+                                //mult = RunShiftRegister(belowPulses, g, 0, longGateMultiplier * g);
+                                //swShift.WriteLine("Below_Peak " + mult.ToString());
 
-                                RunShiftRegister(abovePules, g, 0, longGateMultiplier * g);
-                                swShift.WriteLine("Above_Peak " + mult.ToString());
+                                //RunShiftRegister(abovePules, g, 0, longGateMultiplier * g);
+                                //swShift.WriteLine("Above_Peak " + mult.ToString());
 
-                                mult = RunShiftRegister(notPeakPulses, g, 0, longGateMultiplier * g);
-                                swShift.WriteLine("Not_Peak " + mult.ToString());
-                                swShift.WriteLine("");
+                                //mult = RunShiftRegister(notPeakPulses, g, 0, longGateMultiplier * g);
+                                //swShift.WriteLine("Not_Peak " + mult.ToString());
+                                //swShift.WriteLine("");
 
-                                mult = RunTriggeredGate(allPulses, g);
-                                swTrig.WriteLine("All " + mult.ToString());
+                                //mult = RunTriggeredGate(pulses, g);
+                                //swTrig.WriteLine("All " + mult.ToString());
 
-                                mult = RunTriggeredGate(peakPulses, g);
-                                swTrig.WriteLine("Peak " + mult.ToString());
+                                //mult = RunTriggeredGate(boundPulses, g);
+                                //swTrig.WriteLine("Peak " + mult.ToString());
 
-                                mult = RunTriggeredGate(belowPulses, g);
-                                swTrig.WriteLine("Below_Peak " + mult.ToString());
+                                //mult = RunTriggeredGate(belowPulses, g);
+                                //swTrig.WriteLine("Below_Peak " + mult.ToString());
 
-                                mult = RunTriggeredGate(abovePules, g);
-                                swTrig.WriteLine("Above_Peak " + mult.ToString());
+                                //mult = RunTriggeredGate(abovePules, g);
+                                //swTrig.WriteLine("Above_Peak " + mult.ToString());
 
-                                mult = RunTriggeredGate(notPeakPulses, g);
-                                swTrig.WriteLine("Not_Peak " + mult.ToString());
-                                swTrig.WriteLine("");
+                                //mult = RunTriggeredGate(notPeakPulses, g);
+                                //swTrig.WriteLine("Not_Peak " + mult.ToString());
+                                //swTrig.WriteLine("");
                             }
                         }
                     }
                 }
-            }
+           // }
 
         }
 
